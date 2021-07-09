@@ -4,13 +4,24 @@ import { getUsers } from "../apiCalls/adminCalls"
 import { isLoggedIn } from "../helpers/loginHelp";
 import ReportTable from "../components/reportTable"
 import { Button, ButtonGroup } from "@material-ui/core";
+import Nutritian from "../components/Nutrition";
+import Messocycle from "src/components/Messocycle";
+import Habbit from "src/components/Habbit";
+import BioFeedback from "src/components/BioFeedback";
+import NutritionForm from "src/components/NutritionForm";
+import NutritionTable from "../components/NutritionTable";
 export default function UserPage() {
 
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [currentUser, setCurrentUser] = useState({});
-    const [showReport, setShowReport] = useState(false)
+    const [showReport, setShowReport] = useState(false);
+    const [bioFeedback, setBioFeedback] = useState(false);
+    const [nutrition, setNutrition] = useState(false);
+    const [messocycle, setMessocycle] = useState(false);
+    const [habbit, setHabbit] = useState(false);
+
 
     const userSelect = (user) => {
         setShowReport(true)
@@ -61,12 +72,15 @@ export default function UserPage() {
                         <div className="col-sm-12 no-float mt-5">
                             <div className="container">
                                 <ButtonGroup color="primary" aria-label="outlined primary button group">
-                                    <Button variant="contained" >Bio Feedback</Button>
-                                    <Button>Nutritian</Button>
-                                    <Button>Messocycle Tracker</Button>
-                                    <Button>Habbit Tracker</Button>
+                                    <Button variant="contained" onClick={() => setBioFeedback(true)}>Bio Feedback</Button>
+                                    <Button onClick={() => setNutrition(true)}>Nutritian</Button>
+                                    <Button onClick={() => setMessocycle(true)}>Messocycle Tracker</Button>
+                                    <Button onClick={() => setHabbit(true)}>Habbit Tracker</Button>
                                 </ButtonGroup>
-                                <h2>BIO Feedback Tracker</h2>
+                                {bioFeedback && <BioFeedback />}
+                                {nutrition && <Nutritian />}
+                                {messocycle && <Messocycle />}
+                                {habbit && <Habbit />}
                                 {currentUser && currentUser.reports && currentUser.reports.length === 0
                                     ?
                                     <div className="alert alert-danger self-align-center" role="alert">
@@ -77,6 +91,7 @@ export default function UserPage() {
                                         {showReport && <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />}
                                     </>
                                 }
+                                <NutritionTable />
                             </div>
                         </div>
                     </div>

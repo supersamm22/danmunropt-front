@@ -21,11 +21,11 @@ const userSidebarConfig = [
   },
   {
     title: 'Messocycle Tracker',
-    path: '/messocycle'
+    path: '/messocycle-tracker'
   },
   {
     title: 'Habbit Tracker',
-    path: '/habbit'
+    path: '/habbit-tracker'
   }
 ];
 
