@@ -1,15 +1,7 @@
-import { Icon } from '@iconify/react';
-import plusFill from '@iconify/icons-eva/plus-fill';
-import { Link as RouterLink } from 'react-router-dom';
-import trash2Fill from '@iconify/icons-eva/trash-2-fill';
-
 // material
 import {
     Card,
     Table,
-    Stack,
-    Button,
-    Checkbox,
     TableRow,
     TableBody,
     TableCell,
@@ -17,32 +9,26 @@ import {
     Typography,
     TableContainer,
     TableHead,
-    Tooltip,
-    TablePagination,
-    IconButton,
-    TableFooter,
 } from '@material-ui/core';
 import { UserListHead } from './_dashboard/user';
 import Scrollbar from './Scrollbar';
 import { useState } from 'react';
-import Page from './Page';
-// components
-//
-
-// ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-    { id: 'mealnum', label: 'No.', alignRight: false },
     { id: 'mealtime', label: 'Meal Time', alignRight: false },
     { id: 'steak', label: 'Steak', alignRight: false },
     { id: 'calories', label: 'Calories', alignRight: false },
     { id: 'protein', label: 'Protein', alignRight: false },
     { id: 'carbohydrates', label: 'Carbohydrates', alignRight: false },
     { id: 'fats', label: 'Fats', alignRight: false },
+    { id: 'comments', label: 'Comments', alignRight: false },
 
 ];
+const Total = [
+    { calories_: "10", protein_: "10", carbohydrates_: "10", fats_: "10" }
+]
 const DATA = [
-    { number: 1, mealtime: "8:00", steak: "steak", calories: "cal", protein: "pro", carbohydrates: "carbo", fats: "fat" },
+    { mealtime: "8:00", steak: "steak", calories: "cal", protein: "pro", carbohydrates: "carbo", fats: "fat", comments: "comments" },
 ]
 // ----------------------------------------------------------------------
 
@@ -51,63 +37,86 @@ export default function NutritionTable() {
 
     return (
         <>
-            <Page title="Nutrition | Minimal-UI">
-                <Container>
-                    <Card>
-
-                        <Scrollbar>
-                            <TableContainer sx={{ minWidth: 800 }}>
-                                <Table>
-                                    <TableHead>
-                                        <Typography variant="h6" id="tableTitle" component="div" px={4} py={2}>
-                                            User1
-                                            <Tooltip title="Delete" >
-                                                <IconButton aria-label="delete">
-                                                    <Icon icon={trash2Fill} />
-                                                </IconButton>
-                                            </Tooltip>
-                                        </Typography>
-                                    </TableHead>
-                                    <UserListHead
-                                        headLabel={TABLE_HEAD}
-                                    />
-                                    <TableBody>
-
-
-                                        {DATA.map((e, index) => {
-                                            return <TableRow
-                                                hover
-                                                tabIndex={-1}
-                                                role="checkbox"
-                                                key={index}
-                                            >
-                                                <TableCell align="left">{e.number}</TableCell>
-                                                <TableCell align="left">{e.mealtime}</TableCell>
-                                                <TableCell align="left">{e.steak}</TableCell>
-                                                <TableCell align="left">{e.calories}</TableCell>
-                                                <TableCell align="left">{e.protein}</TableCell>
-                                                <TableCell align="left">{e.carbohydrates}</TableCell>
-                                                <TableCell align="left">{e.fats}</TableCell>
-                                            </TableRow>
-                                        }
-                                        )}
-
-                                        <TableRow style={{ height: 53 }}>
-                                            <TableCell colSpan={6} />
+            <Container className="mt-4">
+                <Card>
+                    <Scrollbar>
+                        <TableContainer sx={{ minWidth: 800 }}>
+                            <Table>
+                                <TableHead>
+                                    <Typography variant="h6" id="tableTitle" component="div" px={2} py={2}>
+                                        Nutritian
+                                    </Typography>
+                                </TableHead>
+                                <TableRow hover>
+                                    <TableCell className="totals" style={{ borderBottom: "none" }}>Wake Up Time:</TableCell>
+                                    <TableCell style={{ borderBottom: "none" }}>6:00am</TableCell>
+                                </TableRow>
+                                <UserListHead
+                                    headLabel={TABLE_HEAD}
+                                />
+                                <TableBody>
+                                    {DATA.map((e, index) => {
+                                        return <TableRow
+                                            hover
+                                            tabIndex={-1}
+                                            key={index}>
+                                            <TableCell align="left">{e.mealtime}</TableCell>
+                                            <TableCell align="left">{e.steak}</TableCell>
+                                            <TableCell align="left">{e.calories}</TableCell>
+                                            <TableCell align="left">{e.protein}</TableCell>
+                                            <TableCell align="left">{e.carbohydrates}</TableCell>
+                                            <TableCell align="left">{e.fats}</TableCell>
+                                            <TableCell align="left">{e.comments}</TableCell>
                                         </TableRow>
-                                    </TableBody>
-                                    <TableFooter>
-                                        <Typography variant="h6" id="tableTitle" component="div" px={4} py={2}>
-                                            Daily Totals
-                                        </Typography>
+                                    }
+                                    )}
 
-                                    </TableFooter>
-                                </Table>
-                            </TableContainer>
-                        </Scrollbar>
-                    </Card>
-                </Container>
-            </Page>
+
+                                    <Typography variant="h6" id="tableTitle" component="div" px={2} my={2}>
+                                        Daily Totals
+                                    </Typography>
+                                    <TableRow >
+                                        <TableCell className="totals">Calories</TableCell>
+                                        <TableCell className="totals">Protein</TableCell>
+                                        <TableCell className="totals">Carbohydrates</TableCell>
+                                        <TableCell className="totals">Fats</TableCell>
+                                    </TableRow>
+                                    {Total.map((e, index) => {
+                                        return <TableRow key={index} hover>
+                                            <TableCell>{e.calories_}</TableCell>
+                                            <TableCell>{e.protein_}</TableCell>
+                                            <TableCell>{e.carbohydrates_}</TableCell>
+                                            <TableCell>{e.fats_}</TableCell>
+                                        </TableRow>
+                                    }
+                                    )}
+
+
+                                    <Typography variant="h6" id="tableTitle" component="div" px={2} my={2}>
+                                        Water and  Alcohol Intake
+                                    </Typography>
+                                    <TableRow hover>
+                                        <TableCell>How many litres of Water did you consume today?</TableCell>
+                                        <TableCell>98</TableCell>
+                                    </TableRow>
+                                    <TableRow hover>
+                                        <TableCell>Did you consume any Alcohol today? (Yes/No)</TableCell>
+                                        <TableCell>yes</TableCell>
+                                    </TableRow>
+                                    <TableRow hover>
+                                        <TableCell>If Yes - please detail what you consumed:</TableCell>
+                                        <TableCell></TableCell>
+                                    </TableRow>
+                                    <TableRow hover>
+                                        <TableCell>Total Alcoholic Cal consumption today:</TableCell>
+                                        <TableCell>98</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                        </TableContainer>
+                    </Scrollbar>
+                </Card>
+            </Container>
         </>
     );
 }

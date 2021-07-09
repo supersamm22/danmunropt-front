@@ -30,12 +30,13 @@ export default function UserListHead({
 
   return (
     <TableHead>
-      <TableRow>
+      <TableRow >
         {headLabel.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.alignRight ? 'right' : 'left'}
+            // align={headCell.alignRight ? 'right' : 'left'}
             sortDirection={orderBy === headCell.id ? order : false}
+            style={{ padding: 4, textAlign: 'center', border: "1px solid #919eab3d" }}
           >
             <TableSortLabel
               hideSortIcon

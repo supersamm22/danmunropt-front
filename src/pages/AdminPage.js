@@ -10,6 +10,12 @@ import Habbit from "src/components/Habbit";
 import BioFeedback from "src/components/BioFeedback";
 import NutritionForm from "src/components/NutritionForm";
 import NutritionTable from "../components/NutritionTable";
+import Scrollbar from "src/components/Scrollbar";
+import HabbitForm from "src/components/habbit/HabbitForm";
+import HabbitTable from "src/components/habbit/HabbitTable";
+import MessocycleForm from "src/components/messocycle/MessocycleForm";
+import MessocycleTable from "src/components/messocycle/MessocycleTable";
+import Report from "src/components/report";
 export default function UserPage() {
 
     const [users, setUsers] = useState([]);
@@ -70,17 +76,35 @@ export default function UserPage() {
                     :
                     <div>
                         <div className="col-sm-12 no-float mt-5">
-                            <div className="container">
-                                <ButtonGroup color="primary" aria-label="outlined primary button group">
-                                    <Button variant="contained" onClick={() => setBioFeedback(true)}>Bio Feedback</Button>
-                                    <Button onClick={() => setNutrition(true)}>Nutritian</Button>
-                                    <Button onClick={() => setMessocycle(true)}>Messocycle Tracker</Button>
-                                    <Button onClick={() => setHabbit(true)}>Habbit Tracker</Button>
-                                </ButtonGroup>
-                                {bioFeedback && <BioFeedback />}
-                                {nutrition && <Nutritian />}
-                                {messocycle && <Messocycle />}
-                                {habbit && <Habbit />}
+                            <div className="container col-lg-12 col-md-12">
+                                <Scrollbar>
+                                    <ButtonGroup color="primary" aria-label="outlined primary button group">
+                                        <Button variant="contained" onClick={() => setBioFeedback(true)}>Bio Feedback</Button>
+                                        <Button onClick={() => setNutrition(true)}>Nutritian</Button>
+                                        <Button onClick={() => setMessocycle(true)}>Messocycle Tracker</Button>
+                                        <Button onClick={() => setHabbit(true)}>Habbit Tracker</Button>
+                                    </ButtonGroup>
+                                </Scrollbar>
+                                {bioFeedback &&
+                                    <>
+                                        <ReportTable />
+                                        <Report />
+                                    </>}
+                                {nutrition &&
+                                    <>
+                                        <NutritionForm />
+                                        <NutritionTable />
+                                    </>}
+                                {messocycle &&
+                                    <>
+                                        <MessocycleForm />
+                                        <MessocycleTable />
+                                    </>}
+                                {habbit &&
+                                    <>
+                                        <HabbitForm />
+                                        <HabbitTable />
+                                    </>}
                                 {currentUser && currentUser.reports && currentUser.reports.length === 0
                                     ?
                                     <div className="alert alert-danger self-align-center" role="alert">
@@ -91,7 +115,7 @@ export default function UserPage() {
                                         {showReport && <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />}
                                     </>
                                 }
-                                <NutritionTable />
+
                             </div>
                         </div>
                     </div>

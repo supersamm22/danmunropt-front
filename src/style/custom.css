@@ -59,3 +59,24 @@
     display: flex !important;
     justify-content: flex-end !important;
 }
+
+.css-1s562cl-MuiTableCell-root{
+    color: #212B36 !important;
+    font-size: 0.875 !important;
+    line-height: 1.5714285714285714 !important;
+}
+.css-429m73-MuiTableCell-root{
+    border: 1px solid #919eab3d !important;
+    padding: 8px !important;
+}
+.totals{
+    font-weight: 600 !important;
+}
+
+.css-1450wqh-MuiListItemText-root{
+    font-size: 16px !important;
+    color: #212B36 !important;
+}
+.css-66mibm-MuiButtonBase-root-MuiTableSortLabel-root{
+    font-size: 12px;
+}

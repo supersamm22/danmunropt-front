@@ -1,7 +1,6 @@
 // material
 import { Box, Grid, Container, Typography } from '@material-ui/core';
-import AdminTable from '../components/Admin/AdminTable';
-import UserTable from '../components/UserTable';
+import MessocycleTable from 'src/components/messocycle/MessocycleTable';
 // components
 import Page from '../components/Page';
 import {
@@ -23,9 +22,9 @@ import {
 
 export default function DashboardApp() {
   return (
-    <Page title="Dashboard | Minimal-UI">
+    <Page title="Daniel Munro | Dashboard">
       <Container maxWidth="xl">
-        <AdminTable />
+        <MessocycleTable />
         {/* <UserTable /> */}
         {/* <Box sx={{ pb: 5 }}>
           <Typography variant="h4">Hi, Welcome back</Typography>

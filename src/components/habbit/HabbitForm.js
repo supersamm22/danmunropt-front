@@ -1,11 +1,10 @@
 import { Card, Container } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-//-------
-import { uploadReport } from "../apiCalls/reportCalls"
-import { isLoggedIn } from "../helpers/loginHelp"
+import { uploadReport } from '../../apiCalls/reportCalls';
+import { isLoggedIn } from "../../helpers/loginHelp"
 
-export default function NutritionForm() {
+export default function HabbitForm() {
 
     const { register, handleSubmit, reset } = useForm();
     const [loading, setLoading] = useState(false);
@@ -42,7 +41,7 @@ export default function NutritionForm() {
         <Container className="mt-4">
             <Card>
                 <Container>
-                    <h4 className="mt-2">Nutrition Form</h4>
+                    <h4 className="mt-2">Habbit</h4>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div>
                             <div className="row">
