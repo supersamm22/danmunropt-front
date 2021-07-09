@@ -8,36 +8,34 @@ import Register from './pages/Register';
 import DashboardApp from './pages/DashboardApp';
 import Products from './pages/Products';
 import Blog from './pages/Blog';
-import User from './pages/User';
+import UserPage from './pages/UserPage';
+import AdminPage from './pages/AdminPage';
 import NotFound from './pages/Page404';
 
 // ----------------------------------------------------------------------
 
 export default function Router() {
   return useRoutes([
+    { path: '/', element: <Login />, exect: true },
     {
-      path: '/dashboard',
+      path: '/',
       element: <DashboardLayout />,
       children: [
-        { path: '/', element: <Navigate to="/dashboard/app" replace /> },
-        { path: 'app', element: <DashboardApp /> },
-        { path: 'user', element: <User /> },
+        { path: '/', element: <Navigate to="/dashboard" replace /> },
+        { path: '/dashboard', element: <DashboardApp /> },
+        { path: '/user', element: <UserPage /> },
+        { path: 'admin', element: <AdminPage /> },
         { path: 'products', element: <Products /> },
         { path: 'blog', element: <Blog /> }
       ]
     },
     {
       path: '/',
-      element: <LogoOnlyLayout />,
       children: [
-        { path: 'login', element: <Login /> },
-        { path: 'register', element: <Register /> },
-        { path: '404', element: <NotFound /> },
         { path: '/', element: <Navigate to="/dashboard" /> },
-        { path: '*', element: <Navigate to="/404" /> }
+        { path: '*', element: <Navigate to="/dashboard" /> }
       ]
     },
-
-    { path: '*', element: <Navigate to="/404" replace /> }
+    { path: '/*', element: <Navigate to="/dashboard" replace /> }
   ]);
 }

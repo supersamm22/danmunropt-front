@@ -1,5 +1,7 @@
 // material
 import { Box, Grid, Container, Typography } from '@material-ui/core';
+import AdminTable from '../components/Admin/AdminTable';
+import UserTable from '../components/UserTable';
 // components
 import Page from '../components/Page';
 import {
@@ -23,7 +25,9 @@ export default function DashboardApp() {
   return (
     <Page title="Dashboard | Minimal-UI">
       <Container maxWidth="xl">
-        <Box sx={{ pb: 5 }}>
+        <AdminTable />
+        {/* <UserTable /> */}
+        {/* <Box sx={{ pb: 5 }}>
           <Typography variant="h4">Hi, Welcome back</Typography>
         </Box>
         <Grid container spacing={3}>
@@ -72,6 +76,7 @@ export default function DashboardApp() {
             <AppTasks />
           </Grid>
         </Grid>
+       */}
       </Container>
     </Page>
   );

@@ -7,11 +7,9 @@ export const getUsers = (token) => {
             Authorization: `Bearer ${token}`
         }
     })
-        .then(response => { return response.json() })
-})
-    .catch ((err) => {
-    console.log(err);
-});
+        .then(response => { return response.json() }).catch((err) => {
+            console.log(err);
+        });
 };
 export const checkAdmin = (token) => {
     return fetch(`http://localhost:8080/isAdmin`, {

@@ -11,25 +11,26 @@ import { Button, Box, Divider, MenuItem, Typography, Avatar, IconButton } from '
 import MenuPopover from '../../components/MenuPopover';
 //
 import account from '../../_mocks_/account';
+import { isLoggedIn } from 'src/helpers/loginHelp';
 
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
-  {
-    label: 'Home',
-    icon: homeFill,
-    linkTo: '/'
-  },
-  {
-    label: 'Profile',
-    icon: personFill,
-    linkTo: '#'
-  },
-  {
-    label: 'Settings',
-    icon: settings2Fill,
-    linkTo: '#'
-  }
+  // {
+  //   label: 'Home',
+  //   icon: homeFill,
+  //   linkTo: '/'
+  // },
+  // {
+  //   label: 'Profile',
+  //   icon: personFill,
+  //   linkTo: '#'
+  // },
+  // {
+  //   label: 'Settings',
+  //   icon: settings2Fill,
+  //   linkTo: '#'
+  // }
 ];
 
 // ----------------------------------------------------------------------
@@ -44,7 +45,7 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const user = isLoggedIn().user
   return (
     <>
       <IconButton
@@ -78,10 +79,10 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle1" noWrap>
-            {account.displayName}
+            {user.name}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
-            {account.email}
+            {user.email}
           </Typography>
         </Box>
 

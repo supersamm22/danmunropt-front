@@ -1,0 +1,13 @@
+.fixed {
+    position: fixed;
+    top: 0;
+    bottom: 45px;
+    /* added */
+    min-height: 0 !important;
+    /* added */
+}
+
+.formside {
+    margin-left: 25%;
+}
+

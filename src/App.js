@@ -1,11 +1,9 @@
-// routes
 import Router from './routes';
-// theme
 import ThemeConfig from './theme';
-// components
 import ScrollToTop from './components/ScrollToTop';
-
-// ----------------------------------------------------------------------
+import '../src/style/custom.css'
+import '../src/style/app.css'
+import '../src/style/login.css';
 
 export default function App() {
   return (
