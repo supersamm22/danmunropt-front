@@ -20,6 +20,7 @@ import { Box, Typography, Container } from '@material-ui/core';
 // components
 import { MotionContainer, varBounceIn } from '../components/animate';
 import Page from '../components/Page';
+import { getUsers } from "src/apiCalls/adminCalls";
 
 export default function UserPage(props) {
 
@@ -28,29 +29,56 @@ export default function UserPage(props) {
     const [users, setUsers] = useState([]);
     const [error, setError] = useState("");
     const [currentUser, setCurrentUser] = useState({});
-    const [showReport, setShowReport] = useState(false);
     const [bioFeedback, setBioFeedback] = useState(true);
     const [nutrition, setNutrition] = useState(false);
     const [messocycle, setMessocycle] = useState(false);
     const [habit, setHabit] = useState(false);
 
-
-    const userSelect = (user) => {
-        setShowReport(true)
-        setCurrentUser(user)
-    }
     const { pathname } = useLocation();
     useEffect(() => {
+        let uid = ""
         if (pathname) {
             const split = pathname.split("/")
             if (split.length > 2) {
+                uid = split[2]
                 setId(split[2])
             }
         }
-    }, [pathname])
+        const loginData = isLoggedIn()
+        const token = loginData.token;
 
-    const url = "";
-    console.log(id)
+        if (loginData.user.isAdmin && users.length == 0) {
+            getUsers(token).then(data => {
+                if (data) {
+                    console.log(data, data.msg)
+                    if (data.msg) {
+                        setError(data.msg)
+                        setLoading(false)
+                    } else {
+                        setUsers(data.users)
+                        console.log("1")
+                        if (!currentUser.id) {
+                            console.log("2", data.users.length, id)
+                            const currentUser_ = data.users.find((e) => e._id === uid) || {}
+                            data.users.forEach(e => {
+                                console.log(e._id, uid)
+
+                            })
+                            setCurrentUser(currentUser_)
+                        }
+                        setLoading(false)
+                    }
+                } else {
+                    setError("Unable to connect to database")
+                }
+            })
+        }
+        if (!currentUser.id) {
+            const currentUser_ = users.find((e) => e._id === uid) || {}
+            setCurrentUser(currentUser_)
+        }
+
+    }, [pathname])
 
     if (!id) {
         return (
@@ -119,8 +147,16 @@ export default function UserPage(props) {
                         </Scrollbar>
                         {bioFeedback &&
                             <>
-                                <ReportTable id={id} />
-                                <Report id={id} />
+                                {!currentUser || !currentUser.reports || currentUser.reports.length === 0
+                                    ?
+                                    <div className="alert alert-danger self-align-center" role="alert">
+                                        {currentUser.name} has no report
+                                    </div>
+                                    :
+                                    <>
+                                        <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />
+                                    </>
+                                }
                             </>}
                         {nutrition &&
                             <>
@@ -135,16 +171,6 @@ export default function UserPage(props) {
                             <>
                                 <HabitTable id={id} />
                             </>}
-                        {currentUser && currentUser.reports && currentUser.reports.length === 0
-                            ?
-                            <div className="alert alert-danger self-align-center" role="alert">
-                                {currentUser.name} has no report
-                            </div>
-                            :
-                            <>
-                                {showReport && <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />}
-                            </>
-                        }
 
                     </div>
                 </div>

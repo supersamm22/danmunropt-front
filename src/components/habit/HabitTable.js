@@ -48,14 +48,13 @@ export default function HabitTable({ id }) {
     if (loading) {
         return "loading"
     }
-    console.log("Habits", habits)
     return (
         <>
             <Container className="mt-4">
                 <Card>
                     <Scrollbar>
                         <TableContainer sx={{ minWidth: 800 }}>
-                            {habits.map((habit, index) => {
+                            {habits.map((h, index) => {
                                 return <Table>
                                     <TableHead>
                                         <Typography variant="h6" id="tableTitle" component="div" px={2} py={2}>
@@ -74,7 +73,7 @@ export default function HabitTable({ id }) {
                                             <TableCell align="left" className="totals">Saturday<br />Date</TableCell>
                                             <TableCell align="left" className="totals">Sunday<br />Date</TableCell>
                                         </TableRow>
-                                        {habit.map((e, index) => {
+                                        {h.habits.map((e, index) =>
                                             <TableRow
                                                 hover
                                                 tabIndex={-1}>
@@ -88,19 +87,7 @@ export default function HabitTable({ id }) {
                                                 <TableCell align="left">{e.saturday}</TableCell>
                                                 <TableCell align="left">{e.sunday}</TableCell>
                                             </TableRow>
-                                        })}
-                                        <TableRow
-                                            hover>
-                                            <TableCell className="totals">Complete Daily Total</TableCell>
-                                            <TableCell>6</TableCell>
-                                            <TableCell>6</TableCell>
-                                            <TableCell>6</TableCell>
-                                            <TableCell>6</TableCell>
-                                            <TableCell>6</TableCell>
-                                            <TableCell>6</TableCell>
-                                            <TableCell>6</TableCell>
-                                            <TableCell>6</TableCell>
-                                        </TableRow>
+                                        )}
                                         <TableRow hover>
                                             <TableCell className="totals">MInimal Points to win the day</TableCell>
                                             <TableCell>5</TableCell>
