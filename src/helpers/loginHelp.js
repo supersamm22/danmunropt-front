@@ -20,3 +20,11 @@ export const isLoggedIn = () => {
     else
         return false;
 }
+
+export const logout = (next) => {
+    if (typeof window !== "undefined") {
+        localStorage.setItem("auth_PO", null)
+        localStorage.setItem("time_PO", null)
+    }
+    next()
+}

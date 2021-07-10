@@ -11,7 +11,7 @@ import { Button, Box, Divider, MenuItem, Typography, Avatar, IconButton } from '
 import MenuPopover from '../../components/MenuPopover';
 //
 import account from '../../_mocks_/account';
-import { isLoggedIn } from 'src/helpers/loginHelp';
+import { isLoggedIn, logout } from 'src/helpers/loginHelp';
 
 // ----------------------------------------------------------------------
 
@@ -111,7 +111,13 @@ export default function AccountPopover() {
         ))}
 
         <Box sx={{ p: 2, pt: 1.5 }}>
-          <Button fullWidth color="inherit" variant="outlined">
+          <Button fullWidth color="inherit" variant="outlined"
+            onClick={() => {
+              logout(() => {
+                window.location = "/"
+              })
+            }}
+          >
             Logout
           </Button>
         </Box>

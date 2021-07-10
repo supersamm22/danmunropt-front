@@ -1,3 +1,6 @@
+a:hover{
+    color: #fff !important;
+}
 .css-ict6bo{
     background-color: #fff !important;
     color: #000 !important;
@@ -5,6 +8,7 @@
 
 .css-dnimke-MuiPaper-root-MuiCard-root{
     border-radius: 8px !important;
+    padding: 12px !important;
 }
 
 .MuiModal-root css-79ws1d-MuiModal-root{
@@ -18,35 +22,15 @@
     background: rgba(0, 0, 0, 0.5) !important ;
 }
 
-.makeStyles-paper-3{
-    border: none !important;
-    border-radius: 4px !important;
-    border: 1px solid rgba(0,0,21,.2) !important;
-}
-.makeStyles-paper-12{
-     border: none !important;
-    border-radius: 4px !important;
-    border: 1px solid rgba(0,0,21,.2) !important;
-}
-.makeStyles-paper-15{
-     border: none !important;
-    border-radius: 4px !important;
-    border: 1px solid rgba(0,0,21,.2) !important;
-}
-.makeStyles-paper-48{
-     border: none !important;
-    border-radius: 4px !important;
-    border: 1px solid rgba(0,0,21,.2) !important;
-}
-.makeStyles-paper-9{
-      border: none !important;
-    border-radius: 4px !important;
-    border: 1px solid rgba(0,0,21,.2) !important;
-}
 .modal_{
-     border: none !important;
+   width: 70% !important;
+    border: 2px solid #00001533 !important;
+    padding: 16px 32px 24px !important;
+    box-shadow: 0px 3px 5px -1px rgb(145 158 171 / 20%),
+     0px 5px 8px 0px rgb(145 158 171 / 14%),
+     0px 1px 14px 0px rgb(145 158 171 / 12%) !important;
+    background-color: #fff !important;
     border-radius: 4px !important;
-    border: 1px solid rgba(0,0,21,.2) !important;
 }
 
 .css-vxcmzt{
@@ -79,4 +63,10 @@
 }
 .css-66mibm-MuiButtonBase-root-MuiTableSortLabel-root{
     font-size: 12px;
+}
+   
+@media only screen and (min-device-width : 320px) and (max-device-width : 768px) {
+.modal_{
+    width: 80% !important;
+}
 }

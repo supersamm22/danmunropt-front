@@ -8,14 +8,14 @@ import Nutritian from "../components/Nutrition";
 import Messocycle from "src/components/Messocycle";
 import Habbit from "src/components/Habbit";
 import BioFeedback from "src/components/BioFeedback";
-import NutritionForm from "src/components/NutritionForm";
-import NutritionTable from "../components/NutritionTable";
 import Scrollbar from "src/components/Scrollbar";
 import HabbitForm from "src/components/habbit/HabbitForm";
 import HabbitTable from "src/components/habbit/HabbitTable";
 import MessocycleForm from "src/components/messocycle/MessocycleForm";
 import MessocycleTable from "src/components/messocycle/MessocycleTable";
 import Report from "src/components/report";
+import NutritionForm from "src/components/Nutrition/NutritionForm";
+import NutritionTable from "src/components/Nutrition/NutritionTable";
 export default function UserPage() {
 
     const [users, setUsers] = useState([]);

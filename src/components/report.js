@@ -10,11 +10,6 @@ const Report = () => {
     const [error, setError] = useState("");
     const [report, setReport] = useState({});
 
-
-
-
-
-
     useEffect(() => {
         const token = isLoggedIn().token;
 

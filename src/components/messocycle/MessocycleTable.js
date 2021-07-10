@@ -23,8 +23,10 @@ import {
 } from '@material-ui/core';
 import { UserListHead } from '../_dashboard/user';
 import Scrollbar from '../Scrollbar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import MessocycleForm from './MessocycleForm';
+import { getMessocycle } from 'src/apiCalls/reportCalls';
+import { isLoggedIn } from 'src/helpers/loginHelp';
 // components
 //
 
@@ -38,27 +40,31 @@ const TABLE_HEAD = [
     { id: 'rest', label: 'Rest', alignRight: false },
     { id: 'tempo', label: 'Tempo', alignRight: false },
     { id: 'notes', label: 'Notes', alignRight: false },
-    { id: 'totalreps', label: 'Total Volume(Reps)', alignRight: false },
-    { id: 'totalLoad', label: 'Total Load(kg)', alignRight: false },
 ];
-const DATA = [
-    { exercise: "Bicep Curl", sets: "4", reps: "12", load: "32kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "48", totalLoad: "1536kg" },
-    { exercise: "Chest Press", sets: "4", reps: "12", load: "39kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "48", totalLoad: "1872kg" },
-    { exercise: "Vertical Row", sets: "4", reps: "12", load: "52kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "48", totalLoad: "2496kg" },
-    { exercise: "Shoulder Press", sets: "4", reps: "12", load: "25kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "48", totalLoad: "1200kg" },
-    { exercise: "Lat Pull Down(Machine)", sets: "4", reps: "12", load: "52kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "48", totalLoad: "2496kg" },
-    { exercise: "Tricep Press", sets: "4", reps: "12", load: "42kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "48", totalLoad: "2016kg" },
-    { exercise: "Low Row", sets: "4", reps: "12", load: "35kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "48", totalLoad: "1680kg" },
-    { exercise: "Lat Pull Down(Cable)", sets: "4", reps: "8", load: "35kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "32", totalLoad: "1120kg" },
-    { exercise: "Pec Fly", sets: "4", reps: "10", load: "32kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "40", totalLoad: "1280kg" },
-    { exercise: "Rear Delt", sets: "4", reps: "10", load: "32kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "40", totalLoad: "1280kg" },
-    { exercise: "Tricep Extension w / Rope", sets: "4", reps: "12", load: "32kg", rest: "60", tempo: "3:1:3:1", notes: "", totalVolume: "48", totalLoad: "1536kg" }
-]
 // ----------------------------------------------------------------------
 
 export default function MessocycleTable() {
     const [open, setOpen] = useState(false)
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [messocycles, setMessocycle] = useState([]);
 
+
+    useEffect(() => {
+        const token_ = isLoggedIn();
+        getMessocycle(token_.token, token_.user.id).then(data => {
+            if (data && Array.isArray(data) && data.length > 0) {
+                setMessocycle(data)
+                setLoading(false)
+            } else {
+                setError("Unable to get messocycle data")
+                setLoading(false)
+            }
+        })
+    }, [])
+    if (loading) {
+        return "loading"
+    }
     return (
         <>
             {
@@ -85,52 +91,58 @@ export default function MessocycleTable() {
                 <Card>
                     <Scrollbar>
                         <TableContainer sx={{ minWidth: 800 }}>
-                            <Table>
-                                <TableHead>
-                                    <Typography variant="h6" id="tableTitle" component="div" px={4} py={2}>
-                                        User1
-                                        <Tooltip title="Delete" >
-                                            <IconButton aria-label="delete">
-                                                <Icon icon={trash2Fill} />
-                                            </IconButton>
-                                        </Tooltip>
-                                    </Typography>
-                                </TableHead>
-                                <TableRow>
-                                    <TableCell className="totals">Warm Up:</TableCell>
-                                    <TableCell>78</TableCell>
-                                </TableRow>
-                                <UserListHead
-                                    headLabel={TABLE_HEAD}
-                                />
-                                <TableBody>
-                                    {DATA.map((e, index) => {
-                                        return <TableRow
-                                            hover
-                                            tabIndex={-1}
-                                            role="checkbox"
-                                            key={index}
-                                        >
-                                            <TableCell align="left">{e.exercise}</TableCell>
-                                            <TableCell align="left">{e.sets}</TableCell>
-                                            <TableCell align="left">{e.reps}</TableCell>
-                                            <TableCell align="left">{e.load}</TableCell>
-                                            <TableCell align="left">{e.rest}</TableCell>
-                                            <TableCell align="left">{e.tempo}</TableCell>
-                                            <TableCell align="left">{e.notes}</TableCell>
-                                            <TableCell align="left">{e.totalVolume}</TableCell>
-                                            <TableCell align="left">{e.totalLoad}</TableCell>
-                                        </TableRow>
-                                    }
-                                    )}
+                            {messocycles.map((messocycle) =>
+                                <Table>
+                                    <TableHead>
+                                        <Typography variant="h6" id="tableTitle" component="div" px={4} py={2}>
+                                            User1
+                                            <Tooltip title="Delete" >
+                                                <IconButton aria-label="delete">
+                                                    <Icon icon={trash2Fill} />
+                                                </IconButton>
+                                            </Tooltip>
+                                        </Typography>
+                                    </TableHead>
                                     <TableRow>
-                                        <TableCell className="totals">Cool Down:</TableCell>
-                                        <TableCell>2kg run</TableCell>
+                                        <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
+                                        <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
                                     </TableRow>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell>Exercise</TableCell>
+                                            <TableCell>Sets</TableCell>
+                                            <TableCell >Reps</TableCell>
+                                            <TableCell>Load</TableCell>
+                                            <TableCell>Rest</TableCell>
+                                            <TableCell>Tempo</TableCell>
+                                            <TableCell colSpan={8}>Notes</TableCell>
+                                        </TableRow>
+                                        {messocycle.exercises.map((e, index) => {
+                                            return <TableRow
+                                                hover
+                                                tabIndex={-1}
+                                                role="checkbox"
+                                                key={index}
+                                            >
+                                                <TableCell align="left">{e.exercise}</TableCell>
+                                                <TableCell align="left">{e.sets}</TableCell>
+                                                <TableCell align="left" >{e.reps}</TableCell>
+                                                <TableCell align="left">{e.load}</TableCell>
+                                                <TableCell align="left">{e.rest}</TableCell>
+                                                <TableCell align="left">{e.tempo}</TableCell>
+                                                <TableCell align="left">{e.notes}</TableCell>
+                                            </TableRow>
+                                        }
+                                        )}
+                                        <TableRow>
+                                            <TableCell className="totals">Cool Down:</TableCell>
+                                            <TableCell>2kg run</TableCell>
+                                        </TableRow>
 
-                                </TableBody>
+                                    </TableBody>
 
-                            </Table>
+                                </Table>
+                            )}
                         </TableContainer>
                     </Scrollbar>
                 </Card>
