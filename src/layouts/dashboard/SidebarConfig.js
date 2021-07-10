@@ -12,7 +12,7 @@
 const userSidebarConfig = [
   {
     title: 'Bio Feedback',
-    path: '/bio-feedback',
+    path: '/user',
     // icon: getIcon(pieChart2Fill)
   },
   {

@@ -1,6 +1,8 @@
+import { BASE_URL } from "src/helpers/loginHelp";
+
 export const getUsers = (token) => {
     // http://localhost:8080/
-    return fetch(`https://api.danmunropt.com/`, {
+    return fetch(BASE_URL, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -13,7 +15,7 @@ export const getUsers = (token) => {
         });
 };
 export const checkAdmin = (token) => {
-    return fetch(`https://api.danmunropt.com/isAdmin`, {
+    return fetch(`${BASE_URL}isAdmin`, {
         method: "GET",
         headers: {
             Accept: "application/json",

@@ -34,7 +34,7 @@ const DATA = [
 ]
 // ----------------------------------------------------------------------
 
-export default function NutritionTable() {
+export default function NutritionTable({ id }) {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -42,7 +42,9 @@ export default function NutritionTable() {
 
     useEffect(() => {
         const token_ = isLoggedIn();
-        getNutrition(token_.token, token_.user.id).then(data => {
+        setLoading(true)
+        setNutrition([])
+        getNutrition(token_.token, id).then(data => {
             console.log(data)
             if (data && Array.isArray(data) && data.length > 0) {
                 setNutrition(data)
@@ -52,7 +54,7 @@ export default function NutritionTable() {
                 setLoading(false)
             }
         })
-    }, [])
+    }, [id])
     if (loading) {
         return "loading"
     }

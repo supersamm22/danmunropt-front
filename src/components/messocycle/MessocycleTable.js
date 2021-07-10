@@ -28,7 +28,7 @@ import MessocycleForm from './MessocycleForm';
 import { getMessocycle } from 'src/apiCalls/reportCalls';
 import { isLoggedIn } from 'src/helpers/loginHelp';
 
-export default function MessocycleTable() {
+export default function MessocycleTable({ id }) {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -37,7 +37,10 @@ export default function MessocycleTable() {
 
     useEffect(() => {
         const token_ = isLoggedIn();
-        getMessocycle(token_.token, token_.user.id).then(data => {
+        setMessocycle([])
+        setLoading(true)
+
+        getMessocycle(token_.token, id).then(data => {
             if (data && Array.isArray(data) && data.length > 0) {
                 setMessocycle(data)
                 setLoading(false)
@@ -46,7 +49,7 @@ export default function MessocycleTable() {
                 setLoading(false)
             }
         })
-    }, [])
+    }, [id])
     if (loading) {
         return "loading"
     }
@@ -93,6 +96,8 @@ export default function MessocycleTable() {
                                         <TableRow>
                                             <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
                                             <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
+                                            <TableCell className="totals">Cool Down:</TableCell>
+                                            <TableCell>2kg run</TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell>Exercise</TableCell>
@@ -121,8 +126,6 @@ export default function MessocycleTable() {
                                         }
                                         )}
                                         <TableRow>
-                                            <TableCell className="totals">Cool Down:</TableCell>
-                                            <TableCell>2kg run</TableCell>
                                         </TableRow>
 
                                     </TableBody>

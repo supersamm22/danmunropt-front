@@ -1,6 +1,8 @@
+import { BASE_URL } from "src/helpers/loginHelp";
+
 export const uploadReport = (data, token) => {
     console.log('token: ' + token);
-    return fetch(`https://api.danmunropt.com/report`, {
+    return fetch(`${BASE_URL}report`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -14,7 +16,7 @@ export const uploadReport = (data, token) => {
 }
 export const lastReport = (token) => {
     console.log('token: ' + token)
-    return fetch(`https://api.danmunropt.com/myreport`, {
+    return fetch(`${BASE_URL}myreport`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -30,7 +32,7 @@ export const lastReport = (token) => {
 
 export const getMessocycle = (token, id) => {
     console.log('token: ' + token)
-    return fetch(`https://api.danmunropt.com/messocycles?userId=${id}`, {
+    return fetch(`${BASE_URL}messocycles?userId=${id}`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -45,7 +47,7 @@ export const getMessocycle = (token, id) => {
 }
 
 export const addMesscycle = (token, data) => {
-    return fetch(`https://api.danmunropt.com/messocycles`, {
+    return fetch(`${BASE_URL}messocycles`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -62,7 +64,7 @@ export const addMesscycle = (token, data) => {
 
 export const getNutrition = (token, id) => {
     console.log('token: ' + token)
-    return fetch(`https://api.danmunropt.com/nutritions?userId=${id}&date=10-07-2021`, {
+    return fetch(`${BASE_URL}nutritions?userId=${id}&date=10-07-2021`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -78,7 +80,7 @@ export const getNutrition = (token, id) => {
 
 export const addNutrition = (token, data) => {
     data.date = "10-07-2021"
-    return fetch(`https://api.danmunropt.com/nutritions`, {
+    return fetch(`${BASE_URL}nutritions`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -94,7 +96,7 @@ export const addNutrition = (token, data) => {
 //Habits
 export const getHabit = (token, id) => {
     console.log('token: ' + token)
-    return fetch(`https://api.danmunropt.com/habits?userId=${id}&week=1`, {
+    return fetch(`${BASE_URL}habits?userId=${id}&week=1`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -110,7 +112,7 @@ export const getHabit = (token, id) => {
 
 export const addHabit = (token, data) => {
     data.week = 1
-    return fetch(`https://api.danmunropt.com/habits`, {
+    return fetch(`${BASE_URL}habits`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -127,7 +129,7 @@ export const addHabit = (token, data) => {
 
 export const submitComment = (token, data, reportId, userId) => {
 
-    return fetch(`https://api.danmunropt.com/addComment?` + new URLSearchParams({ reportId, userId }), {
+    return fetch(`${BASE_URL}addComment?` + new URLSearchParams({ reportId, userId }), {
         method: 'POST',
         headers: {
             Accept: 'application/json',

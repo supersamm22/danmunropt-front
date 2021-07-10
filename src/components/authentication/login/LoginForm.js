@@ -37,7 +37,8 @@ function Login(props) {
   };
 
   if (redirect) {
-    return <Redirect to={`/${redirect}`} />;
+    window.location = `/${redirect}`
+    return
   }
   const handleSignup = async (e) => {
     e.preventDefault();

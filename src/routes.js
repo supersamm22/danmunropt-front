@@ -15,6 +15,7 @@ import BioFeedback from './pages/BioFeedback';
 import Nutritian from './pages/Nutritian';
 import MessocycleTracker from './pages/MessocycleTracker';
 import HabitTracker from './pages/HabitTracker';
+import Page404 from './pages/Page404';
 
 // ----------------------------------------------------------------------
 
@@ -28,22 +29,24 @@ export default function Router() {
         { path: '/', element: <Navigate to="/dashboard" replace /> },
         { path: '/dashboard', element: <DashboardApp /> },
         { path: '/user', element: <UserPage /> },
-        { path: 'admin', element: <AdminPage /> },
-        { path: 'products', element: <Products /> },
-        { path: 'blog', element: <Blog /> },
-        { path: 'bio-feedback', element: <BioFeedback /> },
-        { path: 'nutritian', element: <Nutritian /> },
-        { path: 'messocycle-tracker', element: <MessocycleTracker /> },
-        { path: 'habit-tracker', element: <HabitTracker /> }
+        { path: '/admin', element: <AdminPage /> },
+        { path: '/admin/:id', element: <AdminPage /> },
+        { path: '/products', element: <Products /> },
+        { path: '/blog', element: <Blog /> },
+        { path: '/bio-feedback', element: <BioFeedback /> },
+        { path: '/nutritian', element: <Nutritian /> },
+        { path: '/messocycle-tracker', element: <MessocycleTracker /> },
+        { path: '/habit-tracker', element: <HabitTracker /> },
+        {path: '/404', element: <Page404/>}
       ]
     },
     {
       path: '/',
       children: [
-        { path: '/', element: <Navigate to="/dashboard" /> },
-        { path: '*', element: <Navigate to="/dashboard" /> }
+        { path: '/', element: <Navigate to="/404" /> },
+        { path: '*', element: <Navigate to="/404" /> }
       ]
     },
-    { path: '/*', element: <Navigate to="/dashboard" replace /> }
+    { path: '/*', element: <Navigate to="/404" replace /> }
   ]);
 }

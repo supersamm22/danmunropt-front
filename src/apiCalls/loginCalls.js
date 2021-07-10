@@ -1,5 +1,7 @@
+import { BASE_URL } from "src/helpers/loginHelp";
+
 export const signin = (user) => {
-    return fetch(`https://api.danmunropt.com/auth/login`,
+    return fetch(`${BASE_URL}auth/login`,
         {
             method: 'POST',
             headers: {
@@ -13,7 +15,7 @@ export const signin = (user) => {
         })
 };
 export const register = (user) => {
-    return fetch(`https://api.danmunropt.com/auth/register`, {
+    return fetch(`${BASE_URL}auth/register`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',

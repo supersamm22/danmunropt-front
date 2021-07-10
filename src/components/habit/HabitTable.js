@@ -25,14 +25,16 @@ const Habit = [
 ]
 // ----------------------------------------------------------------------
 
-export default function HabitTable() {
+export default function HabitTable({ id }) {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [habits, setHabit] = useState([]);
     useEffect(() => {
         const token_ = isLoggedIn();
-        getHabit(token_.token, token_.user.id).then(data => {
+        setHabit([])
+        setLoading(true)
+        getHabit(token_.token, id).then(data => {
             console.log("data", data)
             if (data && Array.isArray(data) && data.length > 0) {
                 setHabit(data)
@@ -42,7 +44,7 @@ export default function HabitTable() {
                 setLoading(false)
             }
         })
-    }, [])
+    }, [id])
     if (loading) {
         return "loading"
     }

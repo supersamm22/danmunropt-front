@@ -75,18 +75,16 @@ export default function DashboardSidebar({ isOpenSidebar, onCloseSidebar }) {
   var sidebarConfig = []
   if (loginUser.isAdmin) {
     users.forEach(user => {
-      console.log(user)
       if (!user.isAdmin) {
         sidebarConfig.push({
           title: user.name,
-          path: `user/${user._id}`,
+          path: `admin/${user._id}`,
         })
       }
     });
   } else {
     sidebarConfig = userSidebarConfig
   }
-  console.log(sidebarConfig)
   const renderContent = (
     <Scrollbar
       sx={{

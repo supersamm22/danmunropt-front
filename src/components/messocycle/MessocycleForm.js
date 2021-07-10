@@ -47,7 +47,7 @@ function MessocycleForm(props) {
         const parms = {
             warm_up: e.warm_up,
             cool_down: e.cool_down,
-            userId: loginData.user.id,
+            userId: props.id,
             exercises: exercises,
         }
         console.log(parms)
