@@ -27,21 +27,6 @@ import { useEffect, useState } from 'react';
 import MessocycleForm from './MessocycleForm';
 import { getMessocycle } from 'src/apiCalls/reportCalls';
 import { isLoggedIn } from 'src/helpers/loginHelp';
-// components
-//
-
-// ----------------------------------------------------------------------
-
-const TABLE_HEAD = [
-    { id: 'exercise', label: 'Exercise', alignRight: false },
-    { id: 'sets', label: 'Sets', alignRight: false },
-    { id: 'reps', label: 'Reps', alignRight: false },
-    { id: 'load', label: 'Load', alignRight: false },
-    { id: 'rest', label: 'Rest', alignRight: false },
-    { id: 'tempo', label: 'Tempo', alignRight: false },
-    { id: 'notes', label: 'Notes', alignRight: false },
-];
-// ----------------------------------------------------------------------
 
 export default function MessocycleTable() {
     const [open, setOpen] = useState(false)

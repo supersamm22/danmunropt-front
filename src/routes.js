@@ -14,7 +14,7 @@ import NotFound from './pages/Page404';
 import BioFeedback from './pages/BioFeedback';
 import Nutritian from './pages/Nutritian';
 import MessocycleTracker from './pages/MessocycleTracker';
-import HabbitTracker from './pages/HabbitTracker';
+import HabitTracker from './pages/HabitTracker';
 
 // ----------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ export default function Router() {
         { path: 'bio-feedback', element: <BioFeedback /> },
         { path: 'nutritian', element: <Nutritian /> },
         { path: 'messocycle-tracker', element: <MessocycleTracker /> },
-        { path: 'habbit-tracker', element: <HabbitTracker /> }
+        { path: 'habit-tracker', element: <HabitTracker /> }
       ]
     },
     {

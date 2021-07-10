@@ -1,21 +1,16 @@
 import "./page.css"
 import React, { useState, useEffect } from 'react'
-import { getUsers } from "../apiCalls/adminCalls"
 import { isLoggedIn } from "../helpers/loginHelp";
 import ReportTable from "../components/reportTable"
 import { Button, ButtonGroup } from "@material-ui/core";
-import Nutritian from "../components/Nutrition";
-import Messocycle from "src/components/Messocycle";
-import Habbit from "src/components/Habbit";
-import BioFeedback from "src/components/BioFeedback";
-import Scrollbar from "src/components/Scrollbar";
-import HabbitForm from "src/components/habbit/HabbitForm";
-import HabbitTable from "src/components/habbit/HabbitTable";
-import MessocycleForm from "src/components/messocycle/MessocycleForm";
-import MessocycleTable from "src/components/messocycle/MessocycleTable";
-import Report from "src/components/report";
-import NutritionForm from "src/components/Nutrition/NutritionForm";
-import NutritionTable from "src/components/Nutrition/NutritionTable";
+import Scrollbar from "../components/Scrollbar";
+import MessocycleForm from "../components/messocycle/MessocycleForm";
+import MessocycleTable from "../components/messocycle/MessocycleTable";
+import Report from "../components/report";
+import NutritionForm from "../components/Nutrition/NutritionForm";
+import NutritionTable from "../components/Nutrition/NutritionTable";
+import HabitForm from "../components/habit/HabitForm";
+import HabitTable from "../components/habit/HabitTable";
 export default function UserPage() {
 
     const [users, setUsers] = useState([]);
@@ -26,7 +21,7 @@ export default function UserPage() {
     const [bioFeedback, setBioFeedback] = useState(false);
     const [nutrition, setNutrition] = useState(false);
     const [messocycle, setMessocycle] = useState(false);
-    const [habbit, setHabbit] = useState(false);
+    const [habit, setHabit] = useState(false);
 
 
     const userSelect = (user) => {
@@ -82,7 +77,7 @@ export default function UserPage() {
                                         <Button variant="contained" onClick={() => setBioFeedback(true)}>Bio Feedback</Button>
                                         <Button onClick={() => setNutrition(true)}>Nutritian</Button>
                                         <Button onClick={() => setMessocycle(true)}>Messocycle Tracker</Button>
-                                        <Button onClick={() => setHabbit(true)}>Habbit Tracker</Button>
+                                        <Button onClick={() => setHabit(true)}>Habit Tracker</Button>
                                     </ButtonGroup>
                                 </Scrollbar>
                                 {bioFeedback &&
@@ -100,10 +95,10 @@ export default function UserPage() {
                                         <MessocycleForm />
                                         <MessocycleTable />
                                     </>}
-                                {habbit &&
+                                {habit &&
                                     <>
-                                        <HabbitForm />
-                                        <HabbitTable />
+                                        <HabitForm />
+                                        <HabitTable />
                                     </>}
                                 {currentUser && currentUser.reports && currentUser.reports.length === 0
                                     ?

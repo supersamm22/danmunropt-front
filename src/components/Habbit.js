@@ -5,7 +5,7 @@ import { submitComment } from "../apiCalls/reportCalls"
 
 
 //------------
-export default function Habbit({ report, userId }) {
+export default function Habit({ report, userId }) {
     const [text, setText] = useState("");
     const [error, setError] = useState("");
 
@@ -32,7 +32,7 @@ export default function Habbit({ report, userId }) {
     }
     return (
         <div className="card" style={{ width: "100%" }}>
-            <h2>Habbit Tracker</h2>
+            <h2>Habit Tracker</h2>
             {report &&
                 <div className="row">
                     <h1>{new Date(report.report_date).toDateString()}</h1>

@@ -24,8 +24,8 @@ const userSidebarConfig = [
     path: '/messocycle-tracker'
   },
   {
-    title: 'Habbit Tracker',
-    path: '/habbit-tracker'
+    title: 'Habit Tracker',
+    path: '/habit-tracker'
   }
 ];
 
