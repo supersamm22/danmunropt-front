@@ -28,4 +28,4 @@ export const logout = (next) => {
     }
     next()
 }
-export const BASE_URL = "http://localhost:8080/" // https://api.danmunropt.com/
+export const BASE_URL = "https://api.danmunropt.com/" //"http://localhost:8080/" //
