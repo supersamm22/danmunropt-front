@@ -91,8 +91,8 @@ export default function MessocycleTable() {
                 <Card>
                     <Scrollbar>
                         <TableContainer sx={{ minWidth: 800 }}>
-                            {messocycles.map((messocycle) =>
-                                <Table>
+                            {messocycles.map((messocycle, index) =>
+                                <Table key={index}>
                                     <TableHead>
                                         <Typography variant="h6" id="tableTitle" component="div" px={4} py={2}>
                                             User1
@@ -103,11 +103,12 @@ export default function MessocycleTable() {
                                             </Tooltip>
                                         </Typography>
                                     </TableHead>
-                                    <TableRow>
-                                        <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
-                                        <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
-                                    </TableRow>
+
                                     <TableBody>
+                                        <TableRow>
+                                            <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
+                                            <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
+                                        </TableRow>
                                         <TableRow>
                                             <TableCell>Exercise</TableCell>
                                             <TableCell>Sets</TableCell>

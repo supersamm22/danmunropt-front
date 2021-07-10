@@ -17,7 +17,7 @@ import Scrollbar from '../Scrollbar';
 import { UserListHead } from '../_dashboard/user';
 
 const TABLE_HEAD = [
-    { id: 'mealtime', label: 'Meal Time', alignRight: false },
+    { id: 'meal', label: 'Meal Time', alignRight: false },
     { id: 'steak', label: 'Steak', alignRight: false },
     { id: 'calories', label: 'Calories', alignRight: false },
     { id: 'protein', label: 'Protein', alignRight: false },
@@ -59,35 +59,41 @@ export default function NutritionTable() {
     return (
         <>
             <Container className="mt-4">
-                <Card>
-                    <Scrollbar>
-                        <TableContainer sx={{ minWidth: 800 }}>
-                            {nutritions.map((nutrition) =>
-                                <Table>
+                {nutritions.map((nutrition, index) =>
+                    <Card className="mt-4" key={index}>
+                        <Scrollbar>
+                            <TableContainer sx={{ minWidth: 800 }}>
+                                <Table >
                                     <TableHead>
                                         <Typography variant="h6" id="tableTitle" component="div" px={2} py={2}>
                                             Nutritian
                                         </Typography>
                                     </TableHead>
-                                    <TableRow hover>
-                                        <TableCell className="totals" style={{ borderBottom: "none" }}>Wake Up Time:{" "}{nutrition.wake_up}</TableCell>
-                                    </TableRow>
-                                    <UserListHead
-                                        headLabel={TABLE_HEAD}
-                                    />
                                     <TableBody>
+                                        <TableRow hover>
+                                            <TableCell className="totals" style={{ borderBottom: "none" }}>Wake Up Time:{" "}{nutrition.wake_up}</TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell className="totals">Meal Time</TableCell>
+                                            <TableCell className="totals">Steak</TableCell>
+                                            <TableCell className="totals">Calories</TableCell>
+                                            <TableCell className="totals">Protein</TableCell>
+                                            <TableCell className="totals">Carbohydrates</TableCell>
+                                            <TableCell className="totals">Fats</TableCell>
+                                            <TableCell className="totals">Comments</TableCell>
+                                        </TableRow>
                                         {nutrition.meals.map((e, index) => {
                                             return <TableRow
                                                 hover
                                                 tabIndex={-1}
                                                 key={index}>
-                                                <TableCell align="left">{e.mealtime}</TableCell>
+                                                <TableCell align="left">{e.time}</TableCell>
                                                 <TableCell align="left">{e.steak}</TableCell>
                                                 <TableCell align="left">{e.calories}</TableCell>
                                                 <TableCell align="left">{e.protein}</TableCell>
                                                 <TableCell align="left">{e.carbohydrates}</TableCell>
                                                 <TableCell align="left">{e.fats}</TableCell>
-                                                <TableCell align="left">{e.comments}</TableCell>
+                                                <TableCell align="left">{e.comment}</TableCell>
                                             </TableRow>
                                         }
                                         )}
@@ -109,9 +115,6 @@ export default function NutritionTable() {
                                                 <TableCell>{e.carbohydrates_}</TableCell>
                                                 <TableCell>{e.fats_}</TableCell>
                                             </TableRow> */}
-                                        }
-                                        )}
-
 
                                         <Typography variant="h6" id="tableTitle" component="div" px={2} my={2}>
                                             Water and  Alcohol Intake
@@ -132,12 +135,17 @@ export default function NutritionTable() {
                                             <TableCell>Total Alcoholic Cal consumption today:</TableCell>
                                             <TableCell>{nutrition.alcohol_cal}</TableCell>
                                         </TableRow>
+                                        <TableRow hover>
+                                            <TableCell>Daily Comments:</TableCell>
+                                            <TableCell>{nutrition.comment}</TableCell>
+                                        </TableRow>
                                     </TableBody>
                                 </Table>
-                            )}
-                        </TableContainer>
-                    </Scrollbar>
-                </Card>
+                            </TableContainer>
+                        </Scrollbar>
+                    </Card>
+                )}
+
             </Container>
         </>
     );

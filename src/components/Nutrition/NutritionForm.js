@@ -17,8 +17,8 @@ export default function NutritionForm(props) {
         const meals = []
         array.forEach((num) => {
             meals.push({
-                "meal_time": e[num + "_meal_time"], "steak": e[num + "_steak"], "calories": e[num + "_calories"],
-                "protein": e[num + "_protein"], "carbohydrates": e[num + "_carbohydrates"], "fats": e[num + "_fats"], "comments": e[num + "_comments"]
+                "time": e[num + "_time"], "steak": e[num + "_steak"], "calories": e[num + "_calories"],
+                "protein": e[num + "_protein"], "carbohydrates": e[num + "_carbohydrates"], "fats": e[num + "_fats"], "comment": e[num + "_comment"]
             })
         })
         const loginData = isLoggedIn()
@@ -28,11 +28,11 @@ export default function NutritionForm(props) {
             alcohol: e.alcohol,
             alcohol_detail: e.alcohol_detail,
             alcohol_cal: e.alcohol_cal,
-            daily_comments: e.daily_comments,
+            comment: e.comment,
             userId: loginData.user.id,
             meals: meals,
         }
-        console.log(parms)
+        console.log("parms", parms)
         addNutrition(loginData.token, parms).then(data => {
             console.log(data)
         })
@@ -83,7 +83,7 @@ export default function NutritionForm(props) {
                                 <div className="col-md-3 pb-4">
                                     <div className="form-group">
                                         <label className="text-muted">Daily Comments</label>
-                                        <input className="form-control" type="text"{...register(" daily_comments", { required: true })} />
+                                        <input className="form-control" type="text"{...register("comment", { required: true })} />
                                     </div>
                                 </div>
 
@@ -93,7 +93,7 @@ export default function NutritionForm(props) {
                                     <div className="col-lg-2 col-xl-1 col-sm-2">
                                         <div className="form-group ">
                                             <label className="text-muted">Meal Time</label>
-                                            <input className="form-control" type="text" {...register(num + "_meal_time", { required: true })} />
+                                            <input className="form-control" type="text" {...register(num + "_time", { required: true })} />
                                         </div>
                                     </div>
                                     <div className="col-lg-2 col-xl-2 col-sm-2">
@@ -129,7 +129,7 @@ export default function NutritionForm(props) {
                                     <div className="col-lg-2 col-xl-3 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Comment</label>
-                                            <input className="form-control" type="text"  {...register(num + "_comments", { required: true })} />
+                                            <input className="form-control" type="text"  {...register(num + "_comment", { required: true })} />
                                         </div>
                                     </div>
 
