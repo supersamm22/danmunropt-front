@@ -1,5 +1,5 @@
 export const signin = (user) => {
-    return fetch(`http://localhost:8080/auth/login`,
+    return fetch(`https://api.danmunropt.com/auth/login`,
         {
             method: 'POST',
             headers: {
@@ -13,7 +13,7 @@ export const signin = (user) => {
         })
 };
 export const register = (user) => {
-    return fetch(`http://localhost:8080/auth/register`, {
+    return fetch(`https://api.danmunropt.com/auth/register`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',

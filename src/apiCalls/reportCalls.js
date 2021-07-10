@@ -1,6 +1,6 @@
 export const uploadReport = (data, token) => {
     console.log('token: ' + token);
-    return fetch(`http://localhost:8080/report`, {
+    return fetch(`https://api.danmunropt.com/report`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -14,7 +14,7 @@ export const uploadReport = (data, token) => {
 }
 export const lastReport = (token) => {
     console.log('token: ' + token)
-    return fetch(`http://localhost:8080/myreport`, {
+    return fetch(`https://api.danmunropt.com/myreport`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -30,7 +30,7 @@ export const lastReport = (token) => {
 
 export const getMessocycle = (token, id) => {
     console.log('token: ' + token)
-    return fetch(`http://localhost:8080/messocycles?userId=${id}`, {
+    return fetch(`https://api.danmunropt.com/messocycles?userId=${id}`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -45,7 +45,7 @@ export const getMessocycle = (token, id) => {
 }
 
 export const addMesscycle = (token, data) => {
-    return fetch(`http://localhost:8080/messocycles`, {
+    return fetch(`https://api.danmunropt.com/messocycles`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -62,7 +62,7 @@ export const addMesscycle = (token, data) => {
 
 export const getNutrition = (token, id) => {
     console.log('token: ' + token)
-    return fetch(`http://localhost:8080/nutritions?userId=${id}&date=10-07-2021`, {
+    return fetch(`https://api.danmunropt.com/nutritions?userId=${id}&date=10-07-2021`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -78,7 +78,7 @@ export const getNutrition = (token, id) => {
 
 export const addNutrition = (token, data) => {
     data.date = "10-07-2021"
-    return fetch(`http://localhost:8080/nutritions`, {
+    return fetch(`https://api.danmunropt.com/nutritions`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -94,7 +94,7 @@ export const addNutrition = (token, data) => {
 //Habits
 export const getHabit = (token, id) => {
     console.log('token: ' + token)
-    return fetch(`http://localhost:8080/habits?userId=${id}&week=1`, {
+    return fetch(`https://api.danmunropt.com/habits?userId=${id}&week=1`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -110,7 +110,7 @@ export const getHabit = (token, id) => {
 
 export const addHabit = (token, data) => {
     data.week = 1
-    return fetch(`http://localhost:8080/habits`, {
+    return fetch(`https://api.danmunropt.com/habits`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -127,7 +127,7 @@ export const addHabit = (token, data) => {
 
 export const submitComment = (token, data, reportId, userId) => {
 
-    return fetch(`http://localhost:8080/addComment?` + new URLSearchParams({ reportId, userId }), {
+    return fetch(`https://api.danmunropt.com/addComment?` + new URLSearchParams({ reportId, userId }), {
         method: 'POST',
         headers: {
             Accept: 'application/json',

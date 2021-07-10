@@ -1,5 +1,6 @@
 export const getUsers = (token) => {
-    return fetch(`http://localhost:8080/`, {
+    // http://localhost:8080/
+    return fetch(`https://api.danmunropt.com/`, {
         method: "GET",
         headers: {
             Accept: "application/json",
@@ -12,7 +13,7 @@ export const getUsers = (token) => {
         });
 };
 export const checkAdmin = (token) => {
-    return fetch(`http://localhost:8080/isAdmin`, {
+    return fetch(`https://api.danmunropt.com/isAdmin`, {
         method: "GET",
         headers: {
             Accept: "application/json",
