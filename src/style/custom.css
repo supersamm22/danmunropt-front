@@ -68,23 +68,17 @@ a:hover{
     text-align: center;
     border: none;
     color:  #102770;
-    box-shadow: 0 8px 24px 0 rgb(255 235 167 / 30%)
  }
 .daniel-cancel:hover,.daniel-cancel:active,.daniel-cancel:focus{
     background-color: #212b3614;
     outline: none;
 }
-.btn-icon{
-    padding:15px !important;
-    font-size: 20px !important;
- }
-
  .btn-dlt{
     padding:15px !important;
     font-size: 20px !important;
     color: #dc004e !important;
     box-shadow: none !important;
-    background-color: #919eab3d !important;
+    background-color: transparent !important;
  }
  
  .btn-dlt:focus,.btn-dlt:hover,.btn-dlt:active{
@@ -92,7 +86,7 @@ a:hover{
     font-size: 20px !important;
     color: #dc004e !important;
     box-shadow: none !important;
-    background-color: #919eab3d !important;
+    background-color: transparent !important;
  }
 
  .btn-group-outline{  

@@ -92,8 +92,10 @@ export default function AdminTable() {
                                     <TableHead>
                                         <Typography variant="h6" id="tableTitle" component="div" px={4} py={2}>
                                             User1
-                                            <Tooltip title="Delete" >
-                                                <IconButton aria-label="delete">
+                                            <Tooltip title="Delete"
+                                            >
+                                                <IconButton aria-label="delete"
+                                                    className="btn btn-delete">
                                                     <Icon icon={trash2Fill} />
                                                 </IconButton>
                                             </Tooltip>

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import "./reportTable.css"
 import { isLoggedIn } from '../helpers/loginHelp'
 import { submitComment } from "../apiCalls/reportCalls"
 import { Card, Container, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';

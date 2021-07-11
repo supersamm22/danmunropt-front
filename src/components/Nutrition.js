@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import "./reportTable.css"
 import { isLoggedIn } from '../helpers/loginHelp'
 import { submitComment } from "../apiCalls/reportCalls"
 
@@ -32,7 +31,7 @@ export default function Nutritian({ report, userId }) {
     }
     return (
         <div className="card" style={{ width: "100%" }}>
-            <h2>Nutritian</h2>
+            <h2>Nutrition</h2>
             {report &&
                 <div className="row">
                     <h1>{new Date(report.report_date).toDateString()}</h1>

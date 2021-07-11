@@ -78,13 +78,13 @@ function MessocycleForm(props) {
                         <form onSubmit={handleSubmit(submit)}>
                             <div>
                                 <div className="row">
-                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                    <div className="col-lg-2 col-xl-2 col-sm-2">
                                         <div className="form-group ">
                                             <label className="text-muted">Warm Up</label>
                                             <input className="form-control" type="text"{...register("warm_up", { required: true })} />
                                         </div>
                                     </div>
-                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                    <div className="col-lg-2 col-xl-2 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Cool Down</label>
                                             <input className="form-control" type="text"  {...register("cool_down", { required: true })} />
@@ -142,7 +142,8 @@ function MessocycleForm(props) {
                                                     const filterArray = array.filter((e) => e !== num)
                                                     setArray(filterArray)
                                                 }}
-                                                aria-label="delete">
+                                                aria-label="delete"
+                                                className="btn-dlt">
                                                 <Icon icon={trash2Fill} />
                                             </IconButton>
                                         </div>

@@ -1,23 +1,17 @@
 import { Navigate, useRoutes } from 'react-router-dom';
-// layouts
 import DashboardLayout from './layouts/dashboard';
-import LogoOnlyLayout from './layouts/LogoOnlyLayout';
-//
 import Login from './pages/Login';
-import Register from './pages/Register';
 import DashboardApp from './pages/DashboardApp';
 import Products from './pages/Products';
 import Blog from './pages/Blog';
 import UserPage from './pages/UserPage';
 import AdminPage from './pages/AdminPage';
-import NotFound from './pages/Page404';
 import BioFeedback from './pages/BioFeedback';
-import Nutritian from './pages/Nutritian';
+import Nutrition from './pages/Nutrition';
 import MessocycleTracker from './pages/MessocycleTracker';
 import HabitTracker from './pages/HabitTracker';
 import Page404 from './pages/Page404';
 
-// ----------------------------------------------------------------------
 
 export default function Router() {
   return useRoutes([
@@ -34,10 +28,10 @@ export default function Router() {
         { path: '/products', element: <Products /> },
         { path: '/blog', element: <Blog /> },
         { path: '/bio-feedback', element: <BioFeedback /> },
-        { path: '/nutritian', element: <Nutritian /> },
-        { path: '/messocycle-tracker', element: <MessocycleTracker /> },
+        { path: '/nutrition', element: <Nutrition /> },
+        { path: '/mesocycle-tracker', element: <MessocycleTracker /> },
         { path: '/habit-tracker', element: <HabitTracker /> },
-        {path: '/404', element: <Page404/>}
+        { path: '/404', element: <Page404 /> }
       ]
     },
     {

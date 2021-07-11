@@ -102,7 +102,7 @@ export default function MessocycleTable({ id, isUser }) {
                                                         setShow(true)
                                                     }
                                                 }}
-                                                className="btn btn-icon"
+                                                className="btn btn-dlt"
                                             >
                                                 <Icon icon={isUser ? edit2Fill : trash2Fill} />
                                             </IconButton>
@@ -145,9 +145,7 @@ export default function MessocycleTable({ id, isUser }) {
                                         </TableRow>
                                     }
                                     )}
-
                                 </TableBody>
-
                             </Table>
                         </Scrollbar>
                     </Card>

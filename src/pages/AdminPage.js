@@ -123,7 +123,7 @@ export default function UserPage(props) {
                                     setMessocycle(false)
                                     setHabit(false)
                                 }}>
-                                    Nutritian</Button>
+                                    Nutrition</Button>
                                 <Button className={messocycle ? "btn-group-active" : "btn-group-outline"} onClick={() => {
                                     setBioFeedback(false)
                                     setNutrition(false)

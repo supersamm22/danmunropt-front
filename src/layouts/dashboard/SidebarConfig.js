@@ -16,12 +16,12 @@ const userSidebarConfig = [
     // icon: getIcon(pieChart2Fill)
   },
   {
-    title: 'Nutritian',
-    path: '/nutritian'
+    title: 'Nutrition Tracker',
+    path: '/nutrition'
   },
   {
-    title: 'Messocycle Tracker',
-    path: '/messocycle-tracker'
+    title: 'Mesocycle Tracker',
+    path: '/mesocycle-tracker'
   },
   {
     title: 'Habit Tracker',
