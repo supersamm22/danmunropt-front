@@ -35,6 +35,7 @@ function MessocycleForm(props) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [array, setArray] = useState([0, 1]);
+
     const submit = (e) => {
         const exercises = []
         array.forEach((num) => {
@@ -50,9 +51,11 @@ function MessocycleForm(props) {
             userId: props.id,
             exercises: exercises,
         }
-        console.log(parms)
         addMesscycle(loginData.token, parms).then(data => {
-            console.log(data)
+            props.onSave()
+            setTimeout(() => {
+                props.onClose()
+            }, 1500);
         })
     }
 

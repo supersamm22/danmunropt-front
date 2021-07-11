@@ -36,6 +36,9 @@ export default function MessocycleTable({ id }) {
 
 
     useEffect(() => {
+        getmc()
+    }, [id])
+    const getmc = () => {
         const token_ = isLoggedIn();
         setMessocycle([])
         setLoading(true)
@@ -49,21 +52,17 @@ export default function MessocycleTable({ id }) {
                 setLoading(false)
             }
         })
-    }, [id])
+    }
     if (loading) {
         return "loading"
     }
     return (
         <>
-            {
-                open &&
-                <MessocycleForm open={open} onClose={() => { setOpen(false) }} />
-
-            }
+            {open && <MessocycleForm open={open} onClose={() => { setOpen(false) }} onSave={getmc} />}
             <Container>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
                     <Typography variant="h4" gutterBottom>
-                        Admin
+
                     </Typography>
                     <Button
                         variant="contained"
@@ -75,11 +74,10 @@ export default function MessocycleTable({ id }) {
                         Add
                     </Button>
                 </Stack>
-
-                <Card>
-                    <Scrollbar>
-                        <TableContainer sx={{ minWidth: 800 }}>
-                            {messocycles.map((messocycle, index) =>
+                {messocycles.map((messocycle, index) =>
+                    <Card style={{ marginBottom: 16 }}>
+                        <Scrollbar>
+                            <TableContainer sx={{ minWidth: 800 }}>
                                 <Table key={index}>
                                     <TableHead>
                                         <Typography variant="h6" id="tableTitle" component="div" px={4} py={2}>
@@ -129,10 +127,10 @@ export default function MessocycleTable({ id }) {
                                     </TableBody>
 
                                 </Table>
-                            )}
-                        </TableContainer>
-                    </Scrollbar>
-                </Card>
+                            </TableContainer>
+                        </Scrollbar>
+                    </Card>
+                )}
             </Container>
         </>
     );

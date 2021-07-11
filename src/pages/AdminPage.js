@@ -101,12 +101,15 @@ export default function UserPage(props) {
             </Container>
         )
     }
+    if (!users || users.length === 0) {
+        return ("loading")
+    }
     return (
         <div>
             <div>
                 <div className="col-sm-12 no-float mt-5">
                     <div className="container col-lg-12 col-md-12">
-                        <Scrollbar>
+                        <Scrollbar >
                             <ButtonGroup color="primary" aria-label="outlined primary button group">
                                 <Button variant={"outlined"}
                                     onClick={() => { }} disabled>
