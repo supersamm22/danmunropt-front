@@ -176,7 +176,6 @@ function MessocycleForm(props) {
                                     </div>
                                     <div className="col-1">
                                         <Button
-
                                             style={{ marginRight: 12, textAlign: 'right' }}
                                             variant="contained"
                                             type="submit"

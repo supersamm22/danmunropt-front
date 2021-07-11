@@ -27,14 +27,16 @@ import { useEffect, useState } from 'react';
 import MessocycleForm from './MessocycleForm';
 import { getMessocycle } from 'src/apiCalls/reportCalls';
 import { isLoggedIn } from 'src/helpers/loginHelp';
+import DeleteMessocycle from './DeleteMessocycle';
 
 export default function MessocycleTable({ id }) {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [messocycles, setMessocycle] = useState([]);
+    const [show, setShow] = useState(false);
 
-
+    console.log(show)
     useEffect(() => {
         getmc()
     }, [id])
@@ -59,10 +61,10 @@ export default function MessocycleTable({ id }) {
     return (
         <>
             {open && <MessocycleForm open={open} onClose={() => { setOpen(false) }} onSave={getmc} />}
+            {show && <DeleteMessocycle show={show} onClose={() => { setShow(false) }} />}
             <Container>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
                     <Typography variant="h4" gutterBottom>
-
                     </Typography>
                     <Button
                         variant="contained"
@@ -75,59 +77,63 @@ export default function MessocycleTable({ id }) {
                     </Button>
                 </Stack>
                 {messocycles.map((messocycle, index) =>
-                    <Card style={{ marginBottom: 16 }}>
+                    <Card style={{ marginBottom: 16 }} key={index}>
                         <Scrollbar>
-                            <TableContainer sx={{ minWidth: 800 }}>
-                                <Table key={index}>
-                                    <TableHead>
-                                        <Typography variant="h6" id="tableTitle" component="div" px={4} py={2}>
-                                            User1
-                                            <Tooltip title="Delete" >
-                                                <IconButton aria-label="delete">
-                                                    <Icon icon={trash2Fill} />
-                                                </IconButton>
-                                            </Tooltip>
-                                        </Typography>
-                                    </TableHead>
-
-                                    <TableBody>
-                                        <TableRow>
-                                            <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
-                                            <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell>Exercise</TableCell>
-                                            <TableCell>Sets</TableCell>
-                                            <TableCell >Reps</TableCell>
-                                            <TableCell>Load</TableCell>
-                                            <TableCell>Rest</TableCell>
-                                            <TableCell>Tempo</TableCell>
-                                            <TableCell colSpan={8}>Notes</TableCell>
-                                        </TableRow>
-                                        {messocycle.exercises.map((e, index) => {
-                                            return <TableRow
-                                                hover
-                                                tabIndex={-1}
-                                                role="checkbox"
-                                                key={index}
+                            <Typography variant="h6" id="tableTitle" component="div">
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        {/* {messocycles.indexOf(messocycle) + 1} */}
+                                    </div>
+                                    <div className="col-md-6" style={{ textAlign: "end" }}>
+                                        <Tooltip title="Delete" >
+                                            <IconButton aria-label="delete"
+                                                onClick={() => setShow(true)}
                                             >
-                                                <TableCell align="left">{e.exercise}</TableCell>
-                                                <TableCell align="left">{e.sets}</TableCell>
-                                                <TableCell align="left" >{e.reps}</TableCell>
-                                                <TableCell align="left">{e.load}</TableCell>
-                                                <TableCell align="left">{e.rest}</TableCell>
-                                                <TableCell align="left">{e.tempo}</TableCell>
-                                                <TableCell align="left">{e.notes}</TableCell>
-                                            </TableRow>
-                                        }
-                                        )}
-                                        <TableRow>
+                                                <Icon icon={trash2Fill} />
+                                            </IconButton>
+                                        </Tooltip>
+                                    </div>
+                                </div>
+                            </Typography>
+
+                            <Table key={index}>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
+                                        <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell className="totals">Exercise</TableCell>
+                                        <TableCell className="totals">Sets</TableCell>
+                                        <TableCell className="totals">Reps</TableCell>
+                                        <TableCell className="totals">Load</TableCell>
+                                        <TableCell className="totals">Rest</TableCell>
+                                        <TableCell className="totals">Tempo</TableCell>
+                                        <TableCell className="totals">Notes</TableCell>
+                                    </TableRow>
+                                    {messocycle.exercises.map((e, index) => {
+                                        return <TableRow
+                                            hover
+                                            tabIndex={-1}
+                                            role="checkbox"
+                                            key={index}
+                                        >
+                                            <TableCell align="left">{e.exercise}</TableCell>
+                                            <TableCell align="left">{e.sets}</TableCell>
+                                            <TableCell align="left" >{e.reps}</TableCell>
+                                            <TableCell align="left">{e.load}</TableCell>
+                                            <TableCell align="left">{e.rest}</TableCell>
+                                            <TableCell align="left">{e.tempo}</TableCell>
+                                            <TableCell align="left">{e.notes}</TableCell>
                                         </TableRow>
+                                    }
+                                    )}
 
-                                    </TableBody>
+                                </TableBody>
 
-                                </Table>
-                            </TableContainer>
+                            </Table>
                         </Scrollbar>
                     </Card>
                 )}
