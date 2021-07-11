@@ -6,22 +6,13 @@ import { Button, ButtonGroup } from "@material-ui/core";
 import Scrollbar from "../components/Scrollbar";
 import MessocycleForm from "../components/messocycle/MessocycleForm";
 import MessocycleTable from "../components/messocycle/MessocycleTable";
-import Report from "../components/report";
-import NutritionForm from "../components/Nutrition/NutritionForm";
 import NutritionTable from "../components/Nutrition/NutritionTable";
-import HabitForm from "../components/habit/HabitForm";
 import HabitTable from "../components/habit/HabitTable";
-
 import { motion } from 'framer-motion';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-// material
-import { experimentalStyled as styled } from '@material-ui/core/styles';
 import { Box, Typography, Container } from '@material-ui/core';
-// components
 import { MotionContainer, varBounceIn } from '../components/animate';
-import Page from '../components/Page';
 import { getUsers } from "src/apiCalls/adminCalls";
-import { week } from "src/utils/formatTime";
 
 export default function UserPage(props) {
 
@@ -107,8 +98,9 @@ export default function UserPage(props) {
     return (
         <div>
             <div>
-                <div className="col-sm-12 no-float mt-5">
-                    <div className="container col-lg-12 col-md-12">
+                {/* <div className="col-sm-12 no-float mt-5"> */}
+                <div className="container col-lg-12 col-md-12">
+                    <div className="text-center">
                         <Scrollbar >
                             <ButtonGroup color="primary" aria-label="outlined primary button group">
                                 <Button variant={"outlined"}
@@ -145,35 +137,36 @@ export default function UserPage(props) {
                                     Habit Tracker</Button>
                             </ButtonGroup>
                         </Scrollbar>
-                        {bioFeedback &&
-                            <>
-                                {!currentUser || !currentUser.reports || currentUser.reports.length === 0
-                                    ?
-                                    <div className="alert alert-danger self-align-center mt-2" role="alert">
-                                        {currentUser.name} has no report
-                                    </div>
-                                    :
-                                    <>
-                                        <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />
-                                    </>
-                                }
-                            </>}
-                        {nutrition &&
-                            <>
-                                <NutritionTable id={id} />
-                            </>}
-                        {messocycle &&
-                            <>
-                                <MessocycleForm id={id} />
-                                <MessocycleTable id={id} />
-                            </>}
-                        {habit &&
-                            <>
-                                <HabitTable id={id} />
-                            </>}
-
                     </div>
+                    {bioFeedback &&
+                        <>
+                            {!currentUser || !currentUser.reports || currentUser.reports.length === 0
+                                ?
+                                <div className="alert alert-danger self-align-center mt-2" role="alert">
+                                    {currentUser.name} has no report
+                                </div>
+                                :
+                                <>
+                                    <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />
+                                </>
+                            }
+                        </>}
+                    {nutrition &&
+                        <>
+                            <NutritionTable id={id} />
+                        </>}
+                    {messocycle &&
+                        <>
+                            <MessocycleForm id={id} />
+                            <MessocycleTable id={id} />
+                        </>}
+                    {habit &&
+                        <>
+                            <HabitTable id={id} />
+                        </>}
+
                 </div>
+                {/* </div> */}
             </div>
         </div >
     )
