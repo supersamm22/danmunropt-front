@@ -15,16 +15,6 @@ import { isLoggedIn } from '../../helpers/loginHelp';
 import { getHabit } from '../../apiCalls/reportCalls';
 import Scrollbar from '../Scrollbar';
 
-
-const Habit = [
-    { name: "name name name name", point: 5, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 6, saturday: 7, sunday: 8 },
-    { name: "name name name name", point: 5, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 6, saturday: 7, sunday: 8 },
-    { name: "name name name name", point: 5, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 6, saturday: 7, sunday: 8 },
-    { name: "name name name name", point: 5, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 6, saturday: 7, sunday: 8 },
-    { name: "name name name name", point: 5, monday: 1, tuesday: 2, wednesday: 3, thursday: 4, friday: 6, saturday: 7, sunday: 8 }
-]
-// ----------------------------------------------------------------------
-
 export default function HabitTable({ id }) {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(true);
@@ -36,7 +26,6 @@ export default function HabitTable({ id }) {
         setHabit([])
         setLoading(true)
         getHabit(token_.token, id).then(data => {
-            console.log("data", data)
             if (data && Array.isArray(data) && data.length > 0) {
                 setHabit(data)
                 setLoading(false)
@@ -46,9 +35,11 @@ export default function HabitTable({ id }) {
             }
         })
     }, [id])
+
     if (loading) {
         return "loading"
     }
+
     return (
         <>
             <Container className="mt-4">

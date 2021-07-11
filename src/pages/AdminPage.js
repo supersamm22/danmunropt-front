@@ -21,6 +21,7 @@ import { Box, Typography, Container } from '@material-ui/core';
 import { MotionContainer, varBounceIn } from '../components/animate';
 import Page from '../components/Page';
 import { getUsers } from "src/apiCalls/adminCalls";
+import { week } from "src/utils/formatTime";
 
 export default function UserPage(props) {
 
@@ -50,20 +51,13 @@ export default function UserPage(props) {
         if (loginData.user.isAdmin && users.length == 0) {
             getUsers(token).then(data => {
                 if (data) {
-                    console.log(data, data.msg)
                     if (data.msg) {
                         setError(data.msg)
                         setLoading(false)
                     } else {
                         setUsers(data.users)
-                        console.log("1")
                         if (!currentUser.id) {
-                            console.log("2", data.users.length, id)
                             const currentUser_ = data.users.find((e) => e._id === uid) || {}
-                            data.users.forEach(e => {
-                                console.log(e._id, uid)
-
-                            })
                             setCurrentUser(currentUser_)
                         }
                         setLoading(false)
@@ -114,7 +108,10 @@ export default function UserPage(props) {
                     <div className="container col-lg-12 col-md-12">
                         <Scrollbar>
                             <ButtonGroup color="primary" aria-label="outlined primary button group">
-                                <Button variant={bioFeedback ? "contained" : ""}
+                                <Button variant={"outlined"}
+                                    onClick={() => { }} disabled>
+                                    {currentUser.name}</Button>
+                                <Button variant={bioFeedback ? "contained" : "outlined"}
                                     onClick={() => {
                                         setBioFeedback(true)
                                         setNutrition(false)
@@ -122,21 +119,21 @@ export default function UserPage(props) {
                                         setHabit(false)
                                     }}>
                                     Bio Feedback</Button>
-                                <Button variant={nutrition ? "contained" : ""} onClick={() => {
+                                <Button variant={nutrition ? "contained" : "outlined"} onClick={() => {
                                     setBioFeedback(false)
                                     setNutrition(true)
                                     setMessocycle(false)
                                     setHabit(false)
                                 }}>
                                     Nutritian</Button>
-                                <Button variant={messocycle ? "contained" : ""} onClick={() => {
+                                <Button variant={messocycle ? "contained" : "outlined"} onClick={() => {
                                     setBioFeedback(false)
                                     setNutrition(false)
                                     setMessocycle(true)
                                     setHabit(false)
                                 }}>
                                     Messocycle Tracker</Button>
-                                <Button variant={habit ? "contained" : ""} onClick={() => {
+                                <Button variant={habit ? "contained" : "outlined"} onClick={() => {
                                     setBioFeedback(false)
                                     setNutrition(false)
                                     setMessocycle(false)

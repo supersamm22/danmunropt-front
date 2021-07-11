@@ -1,7 +1,7 @@
 import { BASE_URL } from "src/helpers/loginHelp";
+import { fDate, week } from "src/utils/formatTime";
 
 export const uploadReport = (data, token) => {
-    console.log('token: ' + token);
     return fetch(`${BASE_URL}report`, {
         method: 'POST',
         headers: {
@@ -15,7 +15,6 @@ export const uploadReport = (data, token) => {
     });
 }
 export const lastReport = (token) => {
-    console.log('token: ' + token)
     return fetch(`${BASE_URL}myreport`, {
         method: 'GET',
         headers: {
@@ -31,7 +30,6 @@ export const lastReport = (token) => {
 //Messocycle
 
 export const getMessocycle = (token, id) => {
-    console.log('token: ' + token)
     return fetch(`${BASE_URL}messocycles?userId=${id}`, {
         method: 'GET',
         headers: {
@@ -63,8 +61,7 @@ export const addMesscycle = (token, data) => {
 //Nutrition
 
 export const getNutrition = (token, id) => {
-    console.log('token: ' + token)
-    return fetch(`${BASE_URL}nutritions?userId=${id}&date=10-07-2021`, {
+    return fetch(`${BASE_URL}nutritions?userId=${id}&date=${fDate()}`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -79,7 +76,7 @@ export const getNutrition = (token, id) => {
 }
 
 export const addNutrition = (token, data) => {
-    data.date = "10-07-2021"
+    data.date = fDate()
     return fetch(`${BASE_URL}nutritions`, {
         method: 'POST',
         headers: {
@@ -95,8 +92,7 @@ export const addNutrition = (token, data) => {
 
 //Habits
 export const getHabit = (token, id) => {
-    console.log('token: ' + token)
-    return fetch(`${BASE_URL}habits?userId=${id}&week=1`, {
+    return fetch(`${BASE_URL}habits?userId=${id}&week=${week()}`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -111,7 +107,7 @@ export const getHabit = (token, id) => {
 }
 
 export const addHabit = (token, data) => {
-    data.week = 1
+    data.week = week()
     return fetch(`${BASE_URL}habits`, {
         method: 'POST',
         headers: {
