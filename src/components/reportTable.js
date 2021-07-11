@@ -2,11 +2,9 @@ import React, { useState } from 'react'
 import "./reportTable.css"
 import { isLoggedIn } from '../helpers/loginHelp'
 import { submitComment } from "../apiCalls/reportCalls"
-import { Card, Container, Grid, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
+import { Card, Container, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
 import Scrollbar from './Scrollbar';
 
-
-//------------
 export default function ReportTable({ report, userId }) {
     const [text, setText] = useState("");
     const [error, setError] = useState("");
@@ -38,12 +36,12 @@ export default function ReportTable({ report, userId }) {
                 <Scrollbar>
                     {report &&
                         <>
-                            <Typography variant="h6" id="tableTitle" component="div">
-                                {new Date(report.report_date).toDateString()}
+                            <Typography variant="h6" id="tableTitle" component="div" my={2}>
+                                Date:{" "}{new Date(report.report_date).toDateString()}
                             </Typography>
                             <Table>
                                 <TableHead>
-                                    <TableCell className="totals table-heading">Measurments</TableCell>
+                                    <TableRow><TableCell className="totals table-heading">Measurments</TableCell></TableRow>
                                 </TableHead>
                                 <TableBody>
                                     <TableRow>
@@ -60,11 +58,12 @@ export default function ReportTable({ report, userId }) {
                                         <TableCell>{report.bp_systolic}</TableCell>
                                         <TableCell>{report.bp_dystolic}</TableCell>
                                     </TableRow>
+                                    <TableRow><TableCell className="empty"></TableCell></TableRow>
                                 </TableBody>
                             </Table>
                             <Table>
                                 <TableHead >
-                                    <TableCell className="totals table-heading">Nutrition</TableCell>
+                                    <TableRow><TableCell className="totals table-heading">Nutrition</TableCell></TableRow>
                                 </TableHead>
                                 <TableBody>
                                     <TableRow>
@@ -79,6 +78,7 @@ export default function ReportTable({ report, userId }) {
                                         <TableCell>{report.hunger}</TableCell>
                                         <TableCell>{report.satiety}</TableCell>
                                     </TableRow>
+                                    <TableRow><TableCell className="empty"></TableCell></TableRow>
                                 </TableBody>
                             </Table>
 
@@ -101,6 +101,8 @@ export default function ReportTable({ report, userId }) {
                                         <TableCell>{report.training_energy}</TableCell>
                                         <TableCell>{report.daily_steps}</TableCell>
                                     </TableRow>
+                                    <TableRow><TableCell className="empty"></TableCell></TableRow>
+
                                 </TableBody>
                             </Table>
                             <Table>
@@ -117,6 +119,7 @@ export default function ReportTable({ report, userId }) {
                                         <TableCell className="totals">Stress Midday</TableCell>
                                         <TableCell className="totals">Stress Evening</TableCell>
                                     </TableRow>
+                                    <TableRow><TableCell className="empty"></TableCell></TableRow>
                                     <TableRow>
                                         <TableCell>{report.libido_morning}</TableCell>
                                         <TableCell>{report.libido_evening}</TableCell>
@@ -139,14 +142,16 @@ export default function ReportTable({ report, userId }) {
                                         <TableCell>{report.energy_midday}</TableCell>
                                         <TableCell>{report.energy_evening}</TableCell>
                                     </TableRow>
+                                    <TableRow><TableCell className="empty"></TableCell></TableRow>
                                 </TableBody>
                             </Table>
                             <div className="row">
-                                <div className="col-md-6">
-                                    <Typography variant="h6" id="tableTitle" component="div">
+                                <div className="col-md-12">
+                                    <Typography className="totals table-heading" variant="h6" id="tableTitle" component="div">
                                         Admin Comments
                                     </Typography>
-                                    <h4></h4>
+                                </div>
+                                <div className="col-md-6">
                                     {isLoggedIn().user.isAdmin &&
                                         <form onSubmit={addComment}>
                                             <div className="form-group">
@@ -159,7 +164,7 @@ export default function ReportTable({ report, userId }) {
                                                         placeholder="Your Expert Opinion" />
                                                 </div>
                                             </div>
-                                            <div style={{ textAlign: 'right' }}>
+                                            <div style={{ textAlign: 'left' }}>
                                                 <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Add Comment</button>
                                             </div>
                                         </form>
@@ -169,15 +174,25 @@ export default function ReportTable({ report, userId }) {
                                             {error}
                                         </div>
                                     }
-                                    <div className="media-body">
-                                        {report.comments.map((comment, index) => (
-                                            <div key={index}>
-                                                <div className="mar-btm">
-                                                    <h6 className="text-semibold media-heading box-inline">{comment.postedBy}</h6>
-                                                </div>
-                                                <p>{comment.text}</p>
+                                </div>
+                                <div className="col-md-6">
+                                    <div className="row">
+                                        <div>
+                                            <div className="media-body">
+                                                {report.comments.map((comment, index) => (
+                                                    <div key={index} className="card mt-1">
+                                                        <div className="mar-btm">
+                                                            <Typography className="totals table-heading" variant="h6" id="tableTitle" component="div" style={{ borderBottom: "2px solid #f1f3f4", backgroundColor: "#f1f3f4" }}>
+                                                                {comment.postedBy}
+                                                            </Typography>
+                                                        </div>
+                                                        <Typography variant="subtitle2" id="tableTitle" component="h3" px={1} style={{ fontWeight: 200 }}>
+                                                            {comment.text}
+                                                        </Typography>
+                                                    </div>
+                                                ))}
                                             </div>
-                                        ))}
+                                        </div>
                                     </div>
                                 </div>
                             </div>
