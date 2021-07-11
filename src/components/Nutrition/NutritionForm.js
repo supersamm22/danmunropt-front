@@ -39,8 +39,6 @@ export default function NutritionForm(props) {
     if (loading) {
         return "loading"
     }
-    console.log(array)
-    console.log(nutrition)
 
     const submit = (e) => {
         const meals = []
@@ -66,6 +64,7 @@ export default function NutritionForm(props) {
             console.log(data)
         })
     }
+    const total = {}
 
     return (
         <Container className="mt-4">
@@ -119,6 +118,7 @@ export default function NutritionForm(props) {
                             </div>
                             {array.map((num, index) => {
                                 const meal = (nutrition.meals || [])[index] || {}
+                                total.protein = (total.protein || 0) + meal.protein
                                 return (
                                     <div className="row" key={index}>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
@@ -130,7 +130,7 @@ export default function NutritionForm(props) {
                                         </div>
                                         <div className="col-lg-2 col-xl-2 col-sm-2">
                                             <div className="form-group">
-                                                <label className="text-muted">Steak</label>
+                                                <label className="text-muted">Meal</label>
                                                 <input className="form-control" type="text"  {...register(num + "_steak", { required: true, value: meal.steak })} />
                                             </div>
                                         </div>
@@ -179,39 +179,41 @@ export default function NutritionForm(props) {
                                 )
                             }
                             )}
-                            {/* <div className="row">
-                                    <h5 className="mt-4">Daily Totals</h5>
-                                    <div className="col-md-2">
-                                        <div className="form-group">
-                                            <label className="text-muted">Calories</label>
-                                            <input className="form-control" type="text"{...register("total_calories", { required: true })} />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-2">
-                                        <div className="form-group">
-                                            <label className="text-muted">Protein</label>
-                                            <input className="form-control" type="text"{...register("total_protein", { required: true })} />
-                                        </div>
-                                    </div><div className="col-md-2">
-                                        <div className="form-group">
-                                            <label className="text-muted">Carbohydrates</label>
-                                            <input className="form-control" type="text"{...register("total_carbohydrates", { required: true })} />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-2">
-                                        <div className="form-group">
-                                            <label className="text-muted">Fats</label>
-                                            <input className="form-control" type="text"{...register("fats", { required: true })} />
-                                        </div>
-                                    </div>
-                                    <div className="col-md-4 pb-4">
-                                        <div className="form-group">
-                                            <label className="text-muted">Daily Comments</label>
-                                            <textarea className="form-control"  {...register("daily_comments", { required: true })} />
-                                        </div>
+                            <div className="row">
+                                <h5 className="mt-4">Daily Totals</h5>
+                                <div className="col-md-2">
+                                    <div className="form-group">
+                                        <label className="text-muted">Calories</label>
+                                        <input className="form-control " disabled
+                                            type="text" />
                                     </div>
                                 </div>
-                            */}
+                                <div className="col-md-2">
+                                    <div className="form-group">
+                                        <label className="text-muted">Protein</label>
+                                        <input className="form-control" disabled type="text"
+                                            value={total.protein} />
+                                    </div>
+                                </div><div className="col-md-2">
+                                    <div className="form-group">
+                                        <label className="text-muted">Carbohydrates</label>
+                                        <input className="form-control" disabled type="text"{...register("total_carbohydrates", { required: true })} />
+                                    </div>
+                                </div>
+                                <div className="col-md-2">
+                                    <div className="form-group">
+                                        <label className="text-muted">Fats</label>
+                                        <input className="form-control" disabled type="text"{...register("fats", { required: true })} />
+                                    </div>
+                                </div>
+                                <div className="col-md-4 pb-4">
+                                    <div className="form-group">
+                                        <label className="text-muted">Daily Comments</label>
+                                        <textarea className="form-control"  {...register("daily_comments", { required: true })} />
+                                    </div>
+                                </div>
+                            </div>
+
 
                             {/* end of main row */}
                             {loading &&
