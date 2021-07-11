@@ -12,6 +12,8 @@ export default function NutritionForm(props) {
     const { register, handleSubmit, reset } = useForm();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState(false);
+    const [sending, setSending] = useState(false);
     const [array, setArray] = useState([0, 1]);
 
     const [nutrition, setNutrition] = useState({});
@@ -28,7 +30,7 @@ export default function NutritionForm(props) {
                 })
                 s.push(s.length)
                 setArray(s)
-                setNutrition(data[0])
+                // setNutrition(data[0])
                 setLoading(false)
             } else {
                 // setError("Unable to get nutrition data")
@@ -41,6 +43,10 @@ export default function NutritionForm(props) {
     }
 
     const submit = (e) => {
+        console.log("asd")
+        setSending(true)
+        setError("")
+        setSuccess(false)
         const meals = []
         array.forEach((num) => {
             meals.push({
@@ -59,9 +65,16 @@ export default function NutritionForm(props) {
             userId: loginData.user.id,
             meals: meals,
         }
-        console.log("parms", parms)
         addNutrition(loginData.token, parms).then(data => {
-            console.log(data)
+            if (data) {
+                setSending(false)
+                setError("")
+                setSuccess(true)
+            } else {
+                setSending(false)
+                setError("Somthing went wrong")
+                setSuccess(false)
+            }
         })
     }
     const total = {}
@@ -198,19 +211,19 @@ export default function NutritionForm(props) {
                                 </div><div className="col-md-2">
                                     <div className="form-group">
                                         <label className="text-muted">Carbohydrates</label>
-                                        <input className="form-control" disabled type="text"{...register("total_carbohydrates", { required: true })} />
+                                        <input className="form-control" disabled type="text"{...register("total_carbohydrates", { required: false })} />
                                     </div>
                                 </div>
                                 <div className="col-md-2">
                                     <div className="form-group">
                                         <label className="text-muted">Fats</label>
-                                        <input className="form-control" disabled type="text"{...register("fats", { required: true })} />
+                                        <input className="form-control" disabled type="text"{...register("fats", { required: false })} />
                                     </div>
                                 </div>
                                 <div className="col-md-4 pb-4">
                                     <div className="form-group">
                                         <label className="text-muted">Daily Comments</label>
-                                        <textarea className="form-control"  {...register("daily_comments", { required: true })} />
+                                        <input className="form-control" type="text"{...register("daily_comments", { required: false })} />
                                     </div>
                                 </div>
                             </div>
@@ -227,6 +240,11 @@ export default function NutritionForm(props) {
                                     {error}
                                 </div>
                             }
+                            {success &&
+                                <div className="alert alert-success self-align-center m-3" role="alert">
+                                    updated
+                                </div>
+                            }
                         </div>
                         <div className="col-md-12">
                             <div className="row">
@@ -237,12 +255,14 @@ export default function NutritionForm(props) {
                                             setArray(array.filter(() => true))
                                         }}
                                         className="btn"
+                                        disabled={sending}
                                         variant="contained"
                                         type="button"
                                     >Add</Button>
                                 </div>
                                 <div className="col-6" style={{ textAlign: 'right' }}>
                                     <Button
+                                        disabled={sending}
                                         className="btn"
                                         variant="contained"
                                         type="submit"

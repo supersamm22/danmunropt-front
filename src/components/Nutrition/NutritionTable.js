@@ -6,32 +6,13 @@ import {
     TableBody,
     TableCell,
     Container,
-    Typography,
-    TableContainer,
     TableHead,
 } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { getNutrition } from 'src/apiCalls/reportCalls';
 import { isLoggedIn } from 'src/helpers/loginHelp';
 import Scrollbar from '../Scrollbar';
-import { UserListHead } from '../_dashboard/user';
 
-const TABLE_HEAD = [
-    { id: 'meal', label: 'Meal Time', alignRight: false },
-    { id: 'steak', label: 'Steak', alignRight: false },
-    { id: 'calories', label: 'Calories', alignRight: false },
-    { id: 'protein', label: 'Protein', alignRight: false },
-    { id: 'carbohydrates', label: 'Carbohydrates', alignRight: false },
-    { id: 'fats', label: 'Fats', alignRight: false },
-    { id: 'comments', label: 'Comments', alignRight: false },
-
-];
-const Total = [
-    { calories_: "10", protein_: "10", carbohydrates_: "10", fats_: "10" }
-]
-const DATA = [
-    { mealtime: "8:00", steak: "steak", calories: "cal", protein: "pro", carbohydrates: "carbo", fats: "fat", comments: "comments" },
-]
 // ----------------------------------------------------------------------
 
 export default function NutritionTable({ id }) {
@@ -73,7 +54,7 @@ export default function NutritionTable({ id }) {
                                 <TableBody>
                                     <TableRow>
                                         <TableCell className="totals">Meal Time</TableCell>
-                                        <TableCell className="totals">Steak</TableCell>
+                                        <TableCell className="totals">Meal</TableCell>
                                         <TableCell className="totals">Calories</TableCell>
                                         <TableCell className="totals">Protein</TableCell>
                                         <TableCell className="totals">Carbohydrates</TableCell>
