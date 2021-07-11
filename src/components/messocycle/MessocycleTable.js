@@ -96,8 +96,6 @@ export default function MessocycleTable({ id }) {
                                         <TableRow>
                                             <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
                                             <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
-                                            <TableCell className="totals">Cool Down:</TableCell>
-                                            <TableCell>2kg run</TableCell>
                                         </TableRow>
                                         <TableRow>
                                             <TableCell>Exercise</TableCell>

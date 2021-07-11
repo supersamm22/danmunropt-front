@@ -67,9 +67,9 @@ export default function NutritionTable({ id }) {
                             <TableContainer sx={{ minWidth: 800 }}>
                                 <Table >
                                     <TableHead>
-                                        <Typography variant="h6" id="tableTitle" component="div" px={2} py={2}>
-                                            Nutritian
-                                        </Typography>
+                                        <TableRow>
+                                            <TableCell>Nutritian</TableCell>
+                                        </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         <TableRow hover>
@@ -117,10 +117,9 @@ export default function NutritionTable({ id }) {
                                                 <TableCell>{e.carbohydrates_}</TableCell>
                                                 <TableCell>{e.fats_}</TableCell>
                                             </TableRow> */}
-
-                                        <Typography variant="h6" id="tableTitle" component="div" px={2} my={2}>
-                                            Water and  Alcohol Intake
-                                        </Typography>
+                                        <TableRow hover>
+                                            <TableCell className="totals">Water and  Alcohol Intake</TableCell>
+                                        </TableRow>
                                         <TableRow hover>
                                             <TableCell>How many litres of Water did you consume today?</TableCell>
                                             <TableCell>{nutrition.water}</TableCell>

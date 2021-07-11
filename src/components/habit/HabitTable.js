@@ -30,6 +30,7 @@ export default function HabitTable({ id }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [habits, setHabit] = useState([]);
+
     useEffect(() => {
         const token_ = isLoggedIn();
         setHabit([])
@@ -76,7 +77,8 @@ export default function HabitTable({ id }) {
                                         {h.habits.map((e, index) =>
                                             <TableRow
                                                 hover
-                                                tabIndex={-1}>
+                                                tabIndex={-1}
+                                                key={index}>
                                                 <TableCell align="left">{e.name}</TableCell>
                                                 <TableCell align="left">{e.point}</TableCell>
                                                 <TableCell align="left">{e.monday}</TableCell>

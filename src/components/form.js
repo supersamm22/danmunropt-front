@@ -76,7 +76,7 @@ const FeedbackForm = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="text-muted">Medication</label>
-                                    <select class="form-control" {...register("medicaton", { required: true })}>
+                                    <select className="form-control" {...register("medicaton", { required: true })}>
                                         <option value="">Select...</option>
                                         <option value="Compliant">Compliant</option>
                                         <option value="Non-Compliant">Non-Compliant</option>
@@ -86,7 +86,7 @@ const FeedbackForm = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="text-muted">Digestion</label>
-                                    <select class="form-control" {...register("digestion", { required: true })}>
+                                    <select className="form-control" {...register("digestion", { required: true })}>
                                         <option value="">Select...</option>
                                         <option value="Good">Good</option>
                                         <option value="Poor">Poor</option>
@@ -96,7 +96,7 @@ const FeedbackForm = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="text-muted">Hunger/Apetite</label>
-                                    <select class="form-control" {...register("hunger", { required: true })}>
+                                    <select className="form-control" {...register("hunger", { required: true })}>
                                         <option value="">Select...</option>
                                         <option value="Good">Good</option>
                                         <option value="Poor">Poor</option>
@@ -106,7 +106,7 @@ const FeedbackForm = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="text-muted">Satiety</label>
-                                    <select class="form-control" {...register("satiety", { required: true })}>
+                                    <select className="form-control" {...register("satiety", { required: true })}>
                                         <option value="">Select...</option>
                                         <option value="Good">Good</option>
                                         <option value="Poor">Poor</option>
@@ -119,7 +119,7 @@ const FeedbackForm = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="text-muted">Exercise Complience</label>
-                                    <select class="form-control" {...register("exercise_complience", { required: true })}>
+                                    <select className="form-control" {...register("exercise_complience", { required: true })}>
                                         <option value="">Select...</option>
                                         <option value="Good">Good</option>
                                         <option value="Poor">Poor</option>
@@ -130,7 +130,7 @@ const FeedbackForm = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="text-muted">Session Enthusiasm</label>
-                                    <select class="form-control" {...register("session_enthusiasm", { required: true })}>
+                                    <select className="form-control" {...register("session_enthusiasm", { required: true })}>
                                         <option value="">Select...</option>
                                         <option value="Good">Good</option>
                                         <option value="Poor">Poor</option>
@@ -140,7 +140,7 @@ const FeedbackForm = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="text-muted">Training Energy</label>
-                                    <select class="form-control" {...register("training_energy", { required: true })}>
+                                    <select className="form-control" {...register("training_energy", { required: true })}>
                                         <option value="">Select...</option>
                                         <option value="Good">Good</option>
                                         <option value="Poor">Poor</option>
@@ -169,7 +169,7 @@ const FeedbackForm = () => {
                             <div className="col-md-6">
                                 <div className="form-group">
                                     <label className="text-muted">Quality</label>
-                                    <select class="form-control" {...register("sleep_quality", { required: true })}>
+                                    <select className="form-control" {...register("sleep_quality", { required: true })}>
                                         <option value="">Select...</option>
                                         <option value="Good">Good</option>
                                         <option value="Average">Average</option>
@@ -184,7 +184,7 @@ const FeedbackForm = () => {
                                 <div className="form-group">
                                     <div className="form-group">
                                         <label className="text-muted">Morning</label>
-                                        <select class="form-control" {...register("energy_morning", { required: true })}>
+                                        <select className="form-control" {...register("energy_morning", { required: true })}>
                                             <option value="">Select...</option>
                                             <option value="Good">Good</option>
                                             <option value="Average">Average</option>
@@ -197,7 +197,7 @@ const FeedbackForm = () => {
                                 <div className="form-group">
                                     <div className="form-group">
                                         <label className="text-muted">Midday</label>
-                                        <select class="form-control" {...register("energy_midday", { required: true })}>
+                                        <select className="form-control" {...register("energy_midday", { required: true })}>
                                             <option value="">Select...</option>
                                             <option value="Good">Good</option>
                                             <option value="Average">Average</option>
@@ -210,7 +210,7 @@ const FeedbackForm = () => {
                                 <div className="form-group">
                                     <div className="form-group">
                                         <label className="text-muted">Evening</label>
-                                        <select class="form-control" {...register("energy_evening", { required: true })}>
+                                        <select className="form-control" {...register("energy_evening", { required: true })}>
                                             <option value="">Select...</option>
                                             <option value="Good">Good</option>
                                             <option value="Average">Average</option>
@@ -227,7 +227,7 @@ const FeedbackForm = () => {
                                 <div className="form-group">
                                     <div className="form-group">
                                         <label className="text-muted">Morning</label>
-                                        <select class="form-control" {...register("libido_morning", { required: true })}>
+                                        <select className="form-control" {...register("libido_morning", { required: true })}>
                                             <option value="">Select...</option>
                                             <option value="High">High</option>
                                             <option value="Low">Low</option>
@@ -240,7 +240,7 @@ const FeedbackForm = () => {
                                 <div className="form-group">
                                     <div className="form-group">
                                         <label className="text-muted">Evening</label>
-                                        <select class="form-control" {...register("libido_evening", { required: true })}>
+                                        <select className="form-control" {...register("libido_evening", { required: true })}>
                                             <option value="">Select...</option>
                                             <option value="High">High</option>
                                             <option value="Low">Low</option>
@@ -256,7 +256,7 @@ const FeedbackForm = () => {
                                 <div className="form-group">
                                     <div className="form-group">
                                         <label className="text-muted">Morning</label>
-                                        <select class="form-control" {...register("stress_morning", { required: true })}>
+                                        <select className="form-control" {...register("stress_morning", { required: true })}>
                                             <option value="">Select...</option>
                                             <option value="High">High</option>
                                             <option value="Low">Low</option>
@@ -269,7 +269,7 @@ const FeedbackForm = () => {
                                 <div className="form-group">
                                     <div className="form-group">
                                         <label className="text-muted">Midday</label>
-                                        <select class="form-control" {...register("stress_midday", { required: true })}>
+                                        <select className="form-control" {...register("stress_midday", { required: true })}>
                                             <option value="">Select...</option>
                                             <option value="High">High</option>
                                             <option value="Low">Low</option>
@@ -282,7 +282,7 @@ const FeedbackForm = () => {
                                 <div className="form-group">
                                     <div className="form-group">
                                         <label className="text-muted">Evening</label>
-                                        <select class="form-control" {...register("stress_evening", { required: true })}>
+                                        <select className="form-control" {...register("stress_evening", { required: true })}>
                                             <option value="">Select...</option>
                                             <option value="High">High</option>
                                             <option value="Low">Low</option>

@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import "./reportTable.css"
 import { isLoggedIn } from '../helpers/loginHelp'
 import { submitComment } from "../apiCalls/reportCalls"
+import { Card, Container, Grid, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
+import Scrollbar from './Scrollbar';
 
 
 //------------
@@ -31,148 +33,158 @@ export default function ReportTable({ report, userId }) {
 
     }
     return (
-        <div className="card" style={{ width: "100%" }}>
-            {report &&
-                <div className="row">
-                    <h1>{new Date(report.report_date).toDateString()}</h1>
-                    <div className="col-md-6">
-                        <h4>Measurments</h4>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Morning Weight</th>
-                                    <th scope="col">Waist Circumference</th>
-                                    <th scope="col">Resting Heartbeat</th>
-                                    <th scope="col">BP:Systolic</th>
-                                    <th scope="col">BP:Dystolic</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{report.morning_weight}</td>
-                                    <td>{report.waist_circumference}</td>
-                                    <td>{report.resting_heart_rate}</td>
-                                    <td>{report.bp_systolic}</td>
-                                    <td>{report.bp_dystolic}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h4>Nutrition</h4>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Supliment</th>
-                                    <th scope="col">Digestion</th>
-                                    <th scope="col">Hunger/Apetite</th>
-                                    <th scope="col">Satiety</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{report.medicaton}</td>
-                                    <td>{report.digestion}</td>
-                                    <td>{report.hunger}</td>
-                                    <td>{report.satiety}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h4>Exercise</h4>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Exercise Complience</th>
-                                    <th scope="col">Session Enthusiasm</th>
-                                    <th scope="col">Training Energy</th>
-                                    <th scope="col">Daily Steps</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{report.exercise_complience}</td>
-                                    <td>{report.session_enthusiasm}</td>
-                                    <td>{report.training_energy}</td>
-                                    <td>{report.daily_steps}</td>
+        <Container className="mt-4">
+            <Card className="mt-4">
+                <Scrollbar>
+                    {report &&
+                        <>
+                            <Typography variant="h6" id="tableTitle" component="div">
+                                {new Date(report.report_date).toDateString()}
+                            </Typography>
+                            <Table>
+                                <TableHead>
+                                    <TableCell className="totals table-heading">Measurments</TableCell>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell className="totals">Morning Weight</TableCell>
+                                        <TableCell className="totals">Waist Circumference</TableCell>
+                                        <TableCell className="totals">Resting Heartbeat</TableCell>
+                                        <TableCell className="totals">BP:Systolic</TableCell>
+                                        <TableCell className="totals">BP:Dystolic</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>{report.morning_weight}</TableCell>
+                                        <TableCell>{report.waist_circumference}</TableCell>
+                                        <TableCell>{report.resting_heart_rate}</TableCell>
+                                        <TableCell>{report.bp_systolic}</TableCell>
+                                        <TableCell>{report.bp_dystolic}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                            <Table>
+                                <TableHead >
+                                    <TableCell className="totals table-heading">Nutrition</TableCell>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell className="totals">Supliment</TableCell>
+                                        <TableCell className="totals">Digestion</TableCell>
+                                        <TableCell className="totals">Hunger/Apetite</TableCell>
+                                        <TableCell className="totals">Satiety</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>{report.medicaton}</TableCell>
+                                        <TableCell>{report.digestion}</TableCell>
+                                        <TableCell>{report.hunger}</TableCell>
+                                        <TableCell>{report.satiety}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div className="col-md-6">
-                        <h4>LifeStyle</h4>
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Libido Morning</th>
-                                    <th scope="col">Libido Evening</th>
-                                    <th scope="col">Stress Morning</th>
-                                    <th scope="col">Stress Midday</th>
-                                    <th scope="col">Stress Evening</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{report.libido_morning}</td>
-                                    <td>{report.libido_evening}</td>
-                                    <td>{report.stress_morning}</td>
-                                    <td>{report.stress_midday}</td>
-                                    <td>{report.stress_evening}</td>
-                                </tr>
-                            </tbody>
-                            <thead>
-                                <tr>
-                                    <th scope="col">Sleep Duration</th>
-                                    <th scope="col">Sleep Quality</th>
-                                    <th scope="col">Energy Morning</th>
-                                    <th scope="col">Energy Midday</th>
-                                    <th scope="col">Energy Evening</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{report.sleep_duration}</td>
-                                    <td>{report.sleep_quality}</td>
-                                    <td>{report.energy_morning}</td>
-                                    <td>{report.energy_midday}</td>
-                                    <td>{report.energy_evening}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div>
-                            <h4>Admin Comments</h4>
-                            {isLoggedIn().user.isAdmin &&
-                                <form onSubmit={addComment}>
-                                    <div className="form-group">
-                                        <div class="input-group mb-3">
-                                            <input type="text"
-                                                value={text}
-                                                onChange={e => { setText(e.target.value); setError("") }}
-                                                class="form-control"
-                                                placeholder="Your Expert Opinion" />
-                                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add Comment</button>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell className="totals table-heading">Exercise</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell className="totals">Exercise Complience</TableCell>
+                                        <TableCell className="totals">Session Enthusiasm</TableCell>
+                                        <TableCell className="totals">Training Energy</TableCell>
+                                        <TableCell className="totals">Daily Steps</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>{report.exercise_complience}</TableCell>
+                                        <TableCell>{report.session_enthusiasm}</TableCell>
+                                        <TableCell>{report.training_energy}</TableCell>
+                                        <TableCell>{report.daily_steps}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                            <Table>
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell className="totals table-heading">LifeStyle</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell className="totals">Libido Morning</TableCell>
+                                        <TableCell className="totals">Libido Evening</TableCell>
+                                        <TableCell className="totals">Stress Morning</TableCell>
+                                        <TableCell className="totals">Stress Midday</TableCell>
+                                        <TableCell className="totals">Stress Evening</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>{report.libido_morning}</TableCell>
+                                        <TableCell>{report.libido_evening}</TableCell>
+                                        <TableCell>{report.stress_morning}</TableCell>
+                                        <TableCell>{report.stress_midday}</TableCell>
+                                        <TableCell>{report.stress_evening}</TableCell>
+                                    </TableRow>
+                                    <TableRow><TableCell className="empty"></TableCell></TableRow>
+                                    <TableRow>
+                                        <TableCell className="totals">Sleep Duration</TableCell>
+                                        <TableCell className="totals">Sleep Quality</TableCell>
+                                        <TableCell className="totals">Energy Morning</TableCell>
+                                        <TableCell className="totals">Energy Midday</TableCell>
+                                        <TableCell className="totals">Energy Evening</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>{report.sleep_duration}</TableCell>
+                                        <TableCell>{report.sleep_quality}</TableCell>
+                                        <TableCell>{report.energy_morning}</TableCell>
+                                        <TableCell>{report.energy_midday}</TableCell>
+                                        <TableCell>{report.energy_evening}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                            <div className="row">
+                                <div className="col-md-6">
+                                    <Typography variant="h6" id="tableTitle" component="div">
+                                        Admin Comments
+                                    </Typography>
+                                    <h4></h4>
+                                    {isLoggedIn().user.isAdmin &&
+                                        <form onSubmit={addComment}>
+                                            <div className="form-group">
+                                                <div className="input-group mb-3">
+                                                    <textarea type="text"
+                                                        rows={4}
+                                                        value={text}
+                                                        onChange={e => { setText(e.target.value); setError("") }}
+                                                        className="form-control"
+                                                        placeholder="Your Expert Opinion" />
+                                                </div>
+                                            </div>
+                                            <div style={{ textAlign: 'right' }}>
+                                                <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Add Comment</button>
+                                            </div>
+                                        </form>
+                                    }
+                                    {error &&
+                                        <div className="alert alert-danger self-align-center" role="alert">
+                                            {error}
                                         </div>
+                                    }
+                                    <div className="media-body">
+                                        {report.comments.map((comment, index) => (
+                                            <div key={index}>
+                                                <div className="mar-btm">
+                                                    <h6 className="text-semibold media-heading box-inline">{comment.postedBy}</h6>
+                                                </div>
+                                                <p>{comment.text}</p>
+                                            </div>
+                                        ))}
                                     </div>
-                                </form>
-                            }
-                            {error &&
-                                <div className="alert alert-danger self-align-center" role="alert">
-                                    {error}
                                 </div>
-                            }
-                            <div className="media-body">
-                                {report.comments.map((comment, key) => (
-                                    <>
-                                        <div className="mar-btm">
-                                            <h6 className="text-semibold media-heading box-inline">{comment.postedBy}</h6>
-                                        </div>
-                                        <p>{comment.text}</p>
-                                    </>
-                                ))}
                             </div>
-                        </div>
-                    </div>
-                </div>
-            }
-        </div>
+                        </>
+                    }
+                </Scrollbar>
+            </Card>
+        </Container >
     )
 }

@@ -144,13 +144,13 @@ export default function Nutritian({ report, userId }) {
                             {isLoggedIn().user.isAdmin &&
                                 <form onSubmit={addComment}>
                                     <div className="form-group">
-                                        <div class="input-group mb-3">
+                                        <div className="input-group mb-3">
                                             <input type="text"
                                                 value={text}
                                                 onChange={e => { setText(e.target.value); setError("") }}
-                                                class="form-control"
+                                                className="form-control"
                                                 placeholder="Your Expert Opinion" />
-                                            <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Add Comment</button>
+                                            <button className="btn btn-outline-secondary" type="submit" id="button-addon2">Add Comment</button>
                                         </div>
                                     </div>
                                 </form>

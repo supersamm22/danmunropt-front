@@ -64,9 +64,16 @@ a:hover{
 .css-66mibm-MuiButtonBase-root-MuiTableSortLabel-root{
     font-size: 12px;
 }
-   
+.table-heading{
+    font-size: 16px !important;
+    padding: 4px !important;
+}   
+
+.empty{
+    border: none !important;
+}
 @media only screen and (min-device-width : 320px) and (max-device-width : 768px) {
 .modal_{
     width: 80% !important;
-}
+ }
 }

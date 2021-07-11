@@ -25,7 +25,6 @@ import Page from '../Page';
 import { UserListHead } from '../_dashboard/user';
 import Scrollbar from '../Scrollbar';
 import { useState } from 'react';
-import AdminModal from './AdminModal';
 // components
 //
 

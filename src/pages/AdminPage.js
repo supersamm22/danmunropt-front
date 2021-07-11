@@ -149,7 +149,7 @@ export default function UserPage(props) {
                             <>
                                 {!currentUser || !currentUser.reports || currentUser.reports.length === 0
                                     ?
-                                    <div className="alert alert-danger self-align-center" role="alert">
+                                    <div className="alert alert-danger self-align-center mt-2" role="alert">
                                         {currentUser.name} has no report
                                     </div>
                                     :
