@@ -1,3 +1,4 @@
+import { Card, Container } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 //-------
 import { lastReport } from "../apiCalls/reportCalls"
@@ -30,8 +31,8 @@ const Report = () => {
     }, [])
 
     return (
-        <div className="container">
-            <h2 className="mt-2">Previous Report</h2>
+        <Container className="mt-4 mb-4">
+            <h2 className="mt-2 text-center" >Previous Report</h2>
             {loading ?
                 <div className="alert alert-primary self-align-center" role="alert">
                     Uploading Report....
@@ -45,7 +46,8 @@ const Report = () => {
                         <ReportTable report={report} />
                     </div>
             }
-        </div>
+
+        </Container>
     );
 };
 

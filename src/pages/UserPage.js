@@ -10,12 +10,12 @@ export default function UserPage() {
                 <div className="col-sm-12 no-float">
                     <div className="container" >
                         <div className="row" >
-                            <div className="col align-self-center m-5">
+                            <div className="col-12">
                                 <FeedbackForm />
                             </div>
                         </div>
-                        <div className="row mt-5" >
-                            <div className="col align-self-center m-5">
+                        <div className="row" >
+                            <div className="col-12">
                                 <Report />
                             </div>
                         </div>
