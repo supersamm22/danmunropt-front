@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { addNutrition, getNutrition } from '../../apiCalls/reportCalls';
 import { isLoggedIn } from "../../helpers/loginHelp"
+import NutritionTable from './NutritionTable';
 
 export default function NutritionForm(props) {
 
@@ -70,7 +71,6 @@ export default function NutritionForm(props) {
         <Container className="mt-4">
             <Card>
                 <Container>
-                    <h4 className="mt-2">Nutrition</h4>
                     <form onSubmit={handleSubmit(submit)} >
                         <div>
                             <div className="row">
@@ -84,13 +84,13 @@ export default function NutritionForm(props) {
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Water Intake</label>
-                                        <input className="form-control" type="text"  {...register("water", { required: true })} />
+                                        <input className="form-control" type="text"  {...register("water", { required: true, value: nutrition.water })} />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Did you consume Alcohol today</label>
-                                        <select className="form-control" {...register("alcohol", { required: true })}>
+                                        <select className="form-control" {...register("alcohol", { required: true, value: NutritionTable.alcohol })}>
                                             <option value="">Select...</option>
                                             <option value="Compliant">Yes</option>
                                             <option value="Non-Compliant">No</option>
@@ -100,19 +100,19 @@ export default function NutritionForm(props) {
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Please detail what you consumed</label>
-                                        <input className="form-control" type="text"  {...register("alcohol_datail", { required: true })} />
+                                        <input className="form-control" type="text"  {...register("alcohol_datail", { required: true, value: nutrition.alcohol_detail })} />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Total Alcoholic Cal consumption today</label>
-                                        <input className="form-control" type="text"  {...register("alcohol_cal", { required: true })} />
+                                        <input className="form-control" type="text"  {...register("alcohol_cal", { required: true, value: nutrition.alcohol_cal })} />
                                     </div>
                                 </div>
                                 <div className="col-md-3 pb-4">
                                     <div className="form-group">
                                         <label className="text-muted">Daily Comments</label>
-                                        <input className="form-control" type="text"{...register("comment", { required: true })} />
+                                        <input className="form-control" type="text"{...register("comment", { required: true, value: nutrition.comment })} />
                                     </div>
                                 </div>
 
@@ -131,37 +131,37 @@ export default function NutritionForm(props) {
                                         <div className="col-lg-2 col-xl-2 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Steak</label>
-                                                <input className="form-control" type="text"  {...register(num + "_steak", { required: true })} />
+                                                <input className="form-control" type="text"  {...register(num + "_steak", { required: true, value: meal.steak })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Calories</label>
-                                                <input className="form-control" type="number" {...register(num + "_calories", { required: true })} />
+                                                <input className="form-control" type="number" {...register(num + "_calories", { required: true, value: meal.calories })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Protein</label>
-                                                <input className="form-control" type="number"  {...register(num + "_protein", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_protein", { required: true, value: meal.protein })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-2 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Carbohydrates</label>
-                                                <input className="form-control" type="number"  {...register(num + "_carbohydrates", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_carbohydrates", { required: true, value: meal.carbohydrates })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Fats</label>
-                                                <input className="form-control" type="number"  {...register(num + "_fats", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_fats", { required: true, value: meal.fats })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-3 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Comment</label>
-                                                <input className="form-control" type="text"  {...register(num + "_comment", { required: true })} />
+                                                <input className="form-control" type="text"  {...register(num + "_comment", { required: true, value: meal.comment })} />
                                             </div>
                                         </div>
 

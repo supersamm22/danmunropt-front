@@ -64,44 +64,39 @@ export default function NutritionTable({ id }) {
                 {nutritions.map((nutrition, index) =>
                     <Card className="mt-4" key={index}>
                         <Scrollbar>
-                            <TableContainer sx={{ minWidth: 800 }}>
-                                <Table >
-                                    <TableHead>
-                                        <TableRow>
-                                            <TableCell>Nutritian</TableCell>
+                            <Table >
+                                <TableHead>
+                                    <TableRow>
+                                        <TableCell>Wake Up Time:{" "}{nutrition.wake_up}</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell className="totals">Meal Time</TableCell>
+                                        <TableCell className="totals">Steak</TableCell>
+                                        <TableCell className="totals">Calories</TableCell>
+                                        <TableCell className="totals">Protein</TableCell>
+                                        <TableCell className="totals">Carbohydrates</TableCell>
+                                        <TableCell className="totals">Fats</TableCell>
+                                        <TableCell className="totals">Comments</TableCell>
+                                    </TableRow>
+                                    {nutrition.meals.map((e, index) => {
+                                        return <TableRow
+                                            tabIndex={-1}
+                                            key={index}>
+                                            <TableCell align="left">{e.time}</TableCell>
+                                            <TableCell align="left">{e.steak}</TableCell>
+                                            <TableCell align="left">{e.calories}</TableCell>
+                                            <TableCell align="left">{e.protein}</TableCell>
+                                            <TableCell align="left">{e.carbohydrates}</TableCell>
+                                            <TableCell align="left">{e.fats}</TableCell>
+                                            <TableCell align="left">{e.comment}</TableCell>
                                         </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        <TableRow hover>
-                                            <TableCell className="totals" style={{ borderBottom: "none" }}>Wake Up Time:{" "}{nutrition.wake_up}</TableCell>
-                                        </TableRow>
-                                        <TableRow>
-                                            <TableCell className="totals">Meal Time</TableCell>
-                                            <TableCell className="totals">Steak</TableCell>
-                                            <TableCell className="totals">Calories</TableCell>
-                                            <TableCell className="totals">Protein</TableCell>
-                                            <TableCell className="totals">Carbohydrates</TableCell>
-                                            <TableCell className="totals">Fats</TableCell>
-                                            <TableCell className="totals">Comments</TableCell>
-                                        </TableRow>
-                                        {nutrition.meals.map((e, index) => {
-                                            return <TableRow
-                                                hover
-                                                tabIndex={-1}
-                                                key={index}>
-                                                <TableCell align="left">{e.time}</TableCell>
-                                                <TableCell align="left">{e.steak}</TableCell>
-                                                <TableCell align="left">{e.calories}</TableCell>
-                                                <TableCell align="left">{e.protein}</TableCell>
-                                                <TableCell align="left">{e.carbohydrates}</TableCell>
-                                                <TableCell align="left">{e.fats}</TableCell>
-                                                <TableCell align="left">{e.comment}</TableCell>
-                                            </TableRow>
-                                        }
-                                        )}
 
+                                    }
+                                    )}
 
-                                        {/* <Typography variant="h6" id="tableTitle" component="div" px={2} my={2}>
+                                    {/* <Typography variant="h6" id="tableTitle" component="div" px={2} my={2}>
                                             Daily Totals
                                         </Typography>
                                         <TableRow >
@@ -111,38 +106,44 @@ export default function NutritionTable({ id }) {
                                             <TableCell className="totals">Fats</TableCell>
                                         </TableRow>
                                         {Total.map((e, index) => {
-                                            return <TableRow key={index} hover>
+                                            return <TableRow key={index} >
                                                 <TableCell>{e.calories_}</TableCell>
                                                 <TableCell>{e.protein_}</TableCell>
                                                 <TableCell>{e.carbohydrates_}</TableCell>
                                                 <TableCell>{e.fats_}</TableCell>
                                             </TableRow> */}
-                                        <TableRow hover>
-                                            <TableCell className="totals">Water and  Alcohol Intake</TableCell>
-                                        </TableRow>
-                                        <TableRow hover>
-                                            <TableCell>How many litres of Water did you consume today?</TableCell>
-                                            <TableCell>{nutrition.water}</TableCell>
-                                        </TableRow>
-                                        <TableRow hover>
-                                            <TableCell>Did you consume any Alcohol today? (Yes/No)</TableCell>
-                                            <TableCell>{nutrition.alcohol}</TableCell>
-                                        </TableRow>
-                                        <TableRow hover>
-                                            <TableCell>If Yes - please detail what you consumed:</TableCell>
-                                            <TableCell>{nutrition.alcohol_datail}</TableCell>
-                                        </TableRow>
-                                        <TableRow hover>
-                                            <TableCell>Total Alcoholic Cal consumption today:</TableCell>
-                                            <TableCell>{nutrition.alcohol_cal}</TableCell>
-                                        </TableRow>
-                                        <TableRow hover>
-                                            <TableCell>Daily Comments:</TableCell>
-                                            <TableCell>{nutrition.comment}</TableCell>
-                                        </TableRow>
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
+                                </TableBody>
+                            </Table>
+                            <Table>
+                                <TableHead>
+                                    <TableRow><TableCell className="empty"></TableCell></TableRow>
+                                    <TableRow >
+                                        <TableCell className="totals table-heading">Water and  Alcohol Intake</TableCell>
+                                    </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    <TableRow >
+                                        <TableCell className="totals">How many litres of Water did you consume today?</TableCell>
+                                        <TableCell>{nutrition.water}</TableCell>
+                                    </TableRow>
+                                    <TableRow >
+                                        <TableCell className="totals">Did you consume any Alcohol today? (Yes/No)</TableCell>
+                                        <TableCell>{nutrition.alcohol}</TableCell>
+                                    </TableRow>
+                                    <TableRow >
+                                        <TableCell className="totals">If Yes - please detail what you consumed:</TableCell>
+                                        <TableCell>{nutrition.alcohol_datail}</TableCell>
+                                    </TableRow>
+                                    <TableRow >
+                                        <TableCell className="totals">Total Alcoholic Cal consumption today:</TableCell>
+                                        <TableCell>{nutrition.alcohol_cal}</TableCell>
+                                    </TableRow>
+                                    <TableRow >
+                                        <TableCell className="totals">Daily Comments:</TableCell>
+                                        <TableCell>{nutrition.comment}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
                         </Scrollbar>
                     </Card>
                 )}
