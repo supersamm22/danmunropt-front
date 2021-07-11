@@ -6,7 +6,7 @@ import Page from "../components/Page"
 export default function MessocycleTracker() {
     return (
         <Page title="MessocycleTracker">
-            <MessocycleTable id={isLoggedIn().user.id} />
+            <MessocycleTable id={isLoggedIn().user.id} isUser={true} />
         </Page>
     )
 }

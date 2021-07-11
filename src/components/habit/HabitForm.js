@@ -1,10 +1,10 @@
 import { Button, Card, Container, IconButton } from '@material-ui/core';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import trash2Fill from '@iconify/icons-eva/trash-2-fill';
 import Icon from '@iconify/react';
 import { isLoggedIn } from '../../helpers/loginHelp';
-import { addHabit } from '../../apiCalls/reportCalls';
+import { addHabit, getHabit } from '../../apiCalls/reportCalls';
 
 
 export default function HabitForm(props) {
@@ -13,6 +13,23 @@ export default function HabitForm(props) {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [array, setArray] = useState([0, 1]);
+    const [habit, setHabit] = useState({});
+
+    useEffect(() => {
+        const token_ = isLoggedIn();
+        setHabit({})
+        setLoading(true)
+        getHabit(token_.token, token_.user.id).then(data => {
+            if (data && Array.isArray(data) && data.length > 0) {
+                setHabit(data[0])
+                setLoading(false)
+            } else {
+                setLoading(false)
+            }
+        })
+    }, [props])
+
+
     const submit = (e) => {
         const habits = []
         array.forEach((num) => {
@@ -41,7 +58,7 @@ export default function HabitForm(props) {
                         <div>
                             {array.map((num, index) =>
                                 <div className="row" key={index}>
-                                    <div className="col-lg-2 col-xl-3 col-sm-2">
+                                    <div className="col lg-8 md-4">
                                         <div className="form-group ">
                                             <label className="text-muted">Habit</label>
                                             <input className="form-control" type="text"{...register(num + "_name", { required: true })} />
@@ -122,7 +139,7 @@ export default function HabitForm(props) {
                         </div>
                         <div className="col-md-12">
                             <div className="row">
-                                <div className="col-11">
+                                <div className="col md-6">
                                     <Button
                                         onClick={() => {
                                             array.push(Math.floor(Math.random() * 100))
@@ -133,9 +150,9 @@ export default function HabitForm(props) {
                                         type="button"
                                     >Add</Button>
                                 </div>
-                                <div className="col-1">
+                                <div className="col lg-6" style={{ textAlign: 'end' }}>
                                     <Button
-                                        style={{ marginRight: 12, textAlign: 'right' }}
+
                                         variant="contained"
                                         type="submit"
                                     >Save</Button>

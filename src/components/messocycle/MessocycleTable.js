@@ -2,6 +2,7 @@ import { Icon } from '@iconify/react';
 import plusFill from '@iconify/icons-eva/plus-fill';
 import { Link as RouterLink } from 'react-router-dom';
 import trash2Fill from '@iconify/icons-eva/trash-2-fill';
+import edit2Fill from '@iconify/icons-eva/edit-2-fill';
 
 // material
 import {
@@ -29,7 +30,7 @@ import { getMessocycle } from 'src/apiCalls/reportCalls';
 import { isLoggedIn } from 'src/helpers/loginHelp';
 import DeleteMessocycle from './DeleteMessocycle';
 
-export default function MessocycleTable({ id }) {
+export default function MessocycleTable({ id, isUser }) {
     const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
@@ -47,7 +48,13 @@ export default function MessocycleTable({ id }) {
 
         getMessocycle(token_.token, id).then(data => {
             if (data && Array.isArray(data) && data.length > 0) {
-                setMessocycle(data)
+                if (isUser) {
+                    const a = []
+                    a.push(data[0])
+                    setMessocycle(a)
+                } else {
+                    setMessocycle(data)
+                }
                 setLoading(false)
             } else {
                 setError("Unable to get messocycle data")
@@ -85,11 +92,17 @@ export default function MessocycleTable({ id }) {
                                         {/* {messocycles.indexOf(messocycle) + 1} */}
                                     </div>
                                     <div className="col-md-6" style={{ textAlign: "end" }}>
-                                        <Tooltip title="Delete" >
+                                        <Tooltip title={isUser ? "Edit" : "Delete"} >
                                             <IconButton aria-label="delete"
-                                                onClick={() => setShow(true)}
+                                                onClick={() => {
+                                                    if (isUser) {
+
+                                                    } else {
+                                                        setShow(true)
+                                                    }
+                                                }}
                                             >
-                                                <Icon icon={trash2Fill} />
+                                                <Icon icon={isUser ? edit2Fill : trash2Fill} />
                                             </IconButton>
                                         </Tooltip>
                                     </div>
