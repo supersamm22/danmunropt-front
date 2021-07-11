@@ -163,28 +163,29 @@ function MessocycleForm(props) {
                             }
                             <div className="col-md-12">
                                 <div className="row">
-                                    <div className="col-10">
+                                    <div className="col-md-6 col-lg-9">
                                         <Button
                                             onClick={() => {
                                                 array.push(Math.floor(Math.random() * 100))
                                                 setArray(array.filter(() => true))
                                             }}
-                                            style={{}}
+                                            className="btn"
                                             variant="contained"
                                             type="button"
                                         >Add</Button>
                                     </div>
-                                    <div className="col-1">
+                                    <div className="col-md-6 col-lg-3">
                                         <Button
-                                            style={{ marginRight: 12, textAlign: 'right' }}
+                                            style={{ marginRight: 4 }}
                                             variant="contained"
                                             type="submit"
+                                            className="btn"
                                         >Save</Button>
-                                    </div>
-                                    <div className="col-1">
                                         <Button
+                                            style={{ textAlign: 'left' }}
                                             variant="link"
                                             onClick={props.onClose}
+                                            className="daniel-cancel"
                                         >Close</Button>
                                     </div>
                                 </div>

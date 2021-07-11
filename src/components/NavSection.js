@@ -142,7 +142,7 @@ function NavItem({ item, active }) {
         ...(isActiveRoot && activeRootStyle)
       }}
     >
-      <ListItemIconStyle>{icon && icon}</ListItemIconStyle>
+      {/* <ListItemIconStyle>{icon && icon}</ListItemIconStyle> */}
       <ListItemText disableTypography primary={title} />
       {info && info}
     </ListItemStyle>

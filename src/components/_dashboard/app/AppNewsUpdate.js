@@ -75,6 +75,7 @@ export default function AppNewsUpdate() {
       <Box sx={{ p: 2, textAlign: 'right' }}>
         <Button
           to="#"
+          className="btn"
           size="small"
           color="inherit"
           component={RouterLink}

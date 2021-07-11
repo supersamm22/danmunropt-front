@@ -50,6 +50,7 @@ export default function UserTable() {
                         component={RouterLink}
                         to="#"
                         startIcon={<Icon icon={plusFill} />}
+                        className="btn"
                     >
                         Add
                     </Button>

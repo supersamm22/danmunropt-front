@@ -171,6 +171,7 @@ export default function NutritionForm(props) {
                                                     const filterArray = array.filter((e) => e !== num)
                                                     setArray(filterArray)
                                                 }}
+                                                className="btn btn-dlt"
                                                 aria-label="delete">
                                                 <Icon icon={trash2Fill} />
                                             </IconButton>
@@ -227,21 +228,20 @@ export default function NutritionForm(props) {
                         </div>
                         <div className="col-md-12">
                             <div className="row">
-                                <div className="col-11">
+                                <div className="col-6">
                                     <Button
                                         onClick={() => {
                                             array.push(Math.floor(Math.random() * 100))
                                             setArray(array.filter(() => true))
                                         }}
-                                        style={{}}
+                                        className="btn"
                                         variant="contained"
                                         type="button"
                                     >Add</Button>
                                 </div>
-                                <div className="col-1">
+                                <div className="col-6" style={{ textAlign: 'right' }}>
                                     <Button
-
-                                        style={{ marginRight: 12, textAlign: 'right' }}
+                                        className="btn"
                                         variant="contained"
                                         type="submit"
                                     >Save</Button>

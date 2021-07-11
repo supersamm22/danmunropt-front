@@ -119,6 +119,7 @@ export default function AccountPopover() {
                 window.location = "/"
               })
             }}
+            className="btn"
           >
             Logout
           </Button>

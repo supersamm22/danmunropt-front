@@ -78,7 +78,7 @@ export default function Searchbar() {
               }
               sx={{ mr: 1, fontWeight: 'fontWeightBold' }}
             />
-            <Button variant="contained" onClick={handleClose}>
+            <Button variant="contained" onClick={handleClose} className="btn">
               Search
             </Button>
           </SearchbarStyle>

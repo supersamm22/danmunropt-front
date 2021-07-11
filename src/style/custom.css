@@ -53,7 +53,114 @@ a:hover{
     display: flex !important;
     justify-content: flex-end !important;
 }
+.daniel-cancel{
+    border-radius: 4px;
+    height: 44px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: all 200ms linear;
+    padding: 0 30px;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: none;
+    color:  #102770;
+    box-shadow: 0 8px 24px 0 rgb(255 235 167 / 30%)
+ }
+.daniel-cancel:hover,.daniel-cancel:active,.daniel-cancel:focus{
+    background-color: #212b3614;
+    outline: none;
+}
+.btn-icon{
+    padding:15px !important;
+    font-size: 20px !important;
+ }
 
+ .btn-dlt{
+    padding:15px !important;
+    font-size: 20px !important;
+    color: #dc004e !important;
+    box-shadow: none !important;
+    background-color: #919eab3d !important;
+ }
+ 
+ .btn-dlt:focus,.btn-dlt:hover,.btn-dlt:active{
+    padding:15px !important;
+    font-size: 20px !important;
+    color: #dc004e !important;
+    box-shadow: none !important;
+    background-color: #919eab3d !important;
+ }
+
+ .btn-group-outline{  
+  height: 44px !important;
+  font-size: 0.875rem !important;
+  outline: 0px;
+  font-weight: 700 !important;
+  -webkit-transition : all 200ms linear !important;
+  transition: all 200ms linear !important;
+  padding: 5px 15px !important;
+  letter-spacing: 1px !important;
+  display: -webkit-inline-flex !important;
+  display: -ms-inline-flexbox !important;
+  display: inline-flex 1 !important;
+  -webkit-align-items: center !important;
+  -moz-align-items: center !important;
+  -ms-align-items: center !important;
+  align-items: center !important;
+  -webkit-justify-content: center !important;
+  -moz-justify-content: center !important;
+  -ms-justify-content: center !important;
+  justify-content: center !important;
+  -ms-flex-pack: center !important;
+  text-align: center !important;
+  border: 1px solid #37C6F4 !important;
+  color: #37C6F4 !important;
+  box-shadow: 0 8px 24px 0 rgba(255,235,167,.2) !important;
+}
+
+.btn-group-active{  
+  height: 44px !important;
+  font-size: 0.875rem !important;
+  outline: 0px;
+  font-weight: 700 !important;
+  -webkit-transition : all 200ms linear !important;
+  transition: all 200ms linear !important;
+  padding: 5px 15px !important;
+  letter-spacing: 1px !important;
+  display: -webkit-inline-flex !important;
+  display: -ms-inline-flexbox !important;
+  display: inline-flex 1 !important;
+  -webkit-align-items: center !important;
+  -moz-align-items: center !important;
+  -ms-align-items: center !important;
+  align-items: center !important;
+  -webkit-justify-content: center !important;
+  -moz-justify-content: center !important;
+  -ms-justify-content: center !important;
+  justify-content: center !important;
+  -ms-flex-pack: center !important;
+  text-align: center !important;
+  border: 1px solid transparent !important;
+  color: #102770 !important;
+  background-color: #37C6F4;
+  box-shadow: 0 8px 24px 0 rgba(255,235,167,.2) !important;
+}
+.btn-group-outline:focus,.btn-group-active:focus{
+  outline: none !important;
+}
+
+.btn-group-active:hover,.btn-group-outline:hover{
+    background-color: #102770 !important;
+    color: #37C6F4 !important;
+}
+
+.css-18xrjjr-MuiButtonBase-root-MuiListItem-root:before{
+    background-color: #37C6F4 !important;
+}
 .css-1s562cl-MuiTableCell-root{
     color: #212B36 !important;
     font-size: 0.875 !important;

@@ -79,6 +79,7 @@ export default function MessocycleTable({ id, isUser }) {
                         to="#"
                         startIcon={<Icon icon={plusFill} />}
                         onClick={() => setOpen(true)}
+                        className="btn"
                     >
                         Add
                     </Button>
@@ -101,6 +102,7 @@ export default function MessocycleTable({ id, isUser }) {
                                                         setShow(true)
                                                     }
                                                 }}
+                                                className="btn btn-icon"
                                             >
                                                 <Icon icon={isUser ? edit2Fill : trash2Fill} />
                                             </IconButton>

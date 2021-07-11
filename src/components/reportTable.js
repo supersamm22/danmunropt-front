@@ -179,7 +179,7 @@ export default function ReportTable({ report, userId }) {
                                         <div className="row">
                                             <div>
                                                 <div className="media-body">
-                                                    {report.comments.map((comment, index) => (
+                                                    {(report.comments && Array.isArray(report.comments) && report.comments.length > 0) ? report.comments.map((comment, index) => (
                                                         <div key={index} className="card mt-1">
                                                             <div className="mar-btm">
                                                                 <Typography className="totals table-heading" variant="h6" id="tableTitle" component="div" style={{ borderBottom: "2px solid #f1f3f4", backgroundColor: "#f1f3f4" }}>
@@ -190,7 +190,9 @@ export default function ReportTable({ report, userId }) {
                                                                 {comment.text}
                                                             </Typography>
                                                         </div>
-                                                    ))}
+                                                    )) :
+                                                        "No Comments"
+                                                    }
                                                 </div>
                                             </div>
                                         </div>

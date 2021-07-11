@@ -58,7 +58,7 @@ export default function HabitForm(props) {
                         <div>
                             {array.map((num, index) =>
                                 <div className="row" key={index}>
-                                    <div className="col lg-8 md-4">
+                                    <div className="col-lg-3 col-md-4">
                                         <div className="form-group ">
                                             <label className="text-muted">Habit</label>
                                             <input className="form-control" type="text"{...register(num + "_name", { required: true })} />
@@ -119,6 +119,7 @@ export default function HabitForm(props) {
                                                 setArray(filterArray)
                                             }}
                                             aria-label="delete"
+                                            className="btn btn-dlt"
                                         >
                                             <Icon icon={trash2Fill} />
                                         </IconButton>
@@ -139,7 +140,7 @@ export default function HabitForm(props) {
                         </div>
                         <div className="col-md-12">
                             <div className="row">
-                                <div className="col md-6">
+                                <div className="col-6">
                                     <Button
                                         onClick={() => {
                                             array.push(Math.floor(Math.random() * 100))
@@ -148,12 +149,13 @@ export default function HabitForm(props) {
                                         style={{}}
                                         variant="contained"
                                         type="button"
+                                        className="btn"
                                     >Add</Button>
                                 </div>
-                                <div className="col lg-6" style={{ textAlign: 'end' }}>
+                                <div className="col-6" style={{ textAlign: 'end' }}>
                                     <Button
-
-                                        variant="contained"
+                                        className="btn"
+                                        variant="link"
                                         type="submit"
                                     >Save</Button>
                                 </div>

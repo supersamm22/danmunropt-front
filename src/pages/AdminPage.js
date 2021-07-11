@@ -99,36 +99,39 @@ export default function UserPage(props) {
         <div>
             <div>
                 {/* <div className="col-sm-12 no-float mt-5"> */}
-                <div className="container col-lg-12 col-md-12">
+                <div className="container col-lg-12 col-md-12 ">
                     <div className="text-center">
                         <Scrollbar >
                             <ButtonGroup color="primary" aria-label="outlined primary button group">
-                                <Button variant={"outlined"}
-                                    onClick={() => { }} disabled>
+                                <Button
+                                    className="btn"
+                                    onClick={() => { }} disabled
+                                    style={{ color: "#102770" }}>
                                     {currentUser.name}</Button>
-                                <Button variant={bioFeedback ? "contained" : "outlined"}
+                                <Button
                                     onClick={() => {
                                         setBioFeedback(true)
                                         setNutrition(false)
                                         setMessocycle(false)
                                         setHabit(false)
-                                    }}>
+                                    }}
+                                    className={bioFeedback ? "btn-group-active" : "btn-group-outline"}>
                                     Bio Feedback</Button>
-                                <Button variant={nutrition ? "contained" : "outlined"} onClick={() => {
+                                <Button className={nutrition ? "btn-group-active" : "btn-group-outline"} onClick={() => {
                                     setBioFeedback(false)
                                     setNutrition(true)
                                     setMessocycle(false)
                                     setHabit(false)
                                 }}>
                                     Nutritian</Button>
-                                <Button variant={messocycle ? "contained" : "outlined"} onClick={() => {
+                                <Button className={messocycle ? "btn-group-active" : "btn-group-outline"} onClick={() => {
                                     setBioFeedback(false)
                                     setNutrition(false)
                                     setMessocycle(true)
                                     setHabit(false)
                                 }}>
                                     Messocycle Tracker</Button>
-                                <Button variant={habit ? "contained" : "outlined"} onClick={() => {
+                                <Button className={habit ? "btn-group-active" : "btn-group-outline"} onClick={() => {
                                     setBioFeedback(false)
                                     setNutrition(false)
                                     setMessocycle(false)

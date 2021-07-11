@@ -78,6 +78,7 @@ export default function AdminTable() {
                             to="#"
                             startIcon={<Icon icon={plusFill} />}
                             onClick={() => setOpen(true)}
+                            className="btn"
                         >
                             Add
                         </Button>
