@@ -14,12 +14,6 @@
 	<path fill="#262262" d="M109.336,49.302c0,0-1.787,24.315-26.913,24.002C82.423,73.304,115.453,88.002,109.336,49.302z"/>
 	<path fill="#262262" d="M87.674,34.027c0,0,12.847,20.721-7.665,35.237C80.009,69.265,115.37,61.741,87.674,34.027z"/>
 
-	<animateTransform attributeName="transform"
-                  attributeType="XML"
-                  type="rotate"
-                  from="0 75 75"
-                  to="360 75 75"
-                  dur="3s"
-                  repeatCount="indefinite"/>
+
 </g>
 </svg>
