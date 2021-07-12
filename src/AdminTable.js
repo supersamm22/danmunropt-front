@@ -109,7 +109,6 @@ export default function AdminTable() {
 
                                         {DATA.map((e, index) => {
                                             return <TableRow
-                                                hover
                                                 tabIndex={-1}
                                                 role="checkbox"
                                                 key={index}

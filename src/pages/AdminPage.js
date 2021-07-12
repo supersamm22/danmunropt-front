@@ -4,7 +4,6 @@ import { isLoggedIn } from "../helpers/loginHelp";
 import ReportTable from "../components/reportTable"
 import { Button, ButtonGroup } from "@material-ui/core";
 import Scrollbar from "../components/Scrollbar";
-import MessocycleForm from "../components/messocycle/MessocycleForm";
 import MessocycleTable from "../components/messocycle/MessocycleTable";
 import NutritionTable from "../components/Nutrition/NutritionTable";
 import HabitTable from "../components/habit/HabitTable";
@@ -13,6 +12,8 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Box, Typography, Container } from '@material-ui/core';
 import { MotionContainer, varBounceIn } from '../components/animate';
 import { getUsers } from "src/apiCalls/adminCalls";
+import Loading from "src/components/Loading";
+import NoData from "src/components/NoData";
 
 export default function UserPage(props) {
 
@@ -93,7 +94,7 @@ export default function UserPage(props) {
         )
     }
     if (!users || users.length === 0) {
-        return ("loading")
+        return (<Loading />)
     }
     console.log("adminpage", id)
     return (
@@ -146,28 +147,16 @@ export default function UserPage(props) {
                         <>
                             {!currentUser || !currentUser.reports || currentUser.reports.length === 0
                                 ?
-                                <div className="alert alert-danger self-align-center mt-2" role="alert">
-                                    {currentUser.name} has no report
-                                </div>
+                                <NoData />
                                 :
                                 <Container>
                                     <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />
                                 </Container>
                             }
                         </>}
-                    {nutrition &&
-                        <>
-                            <NutritionTable id={id} />
-                        </>}
-                    {messocycle &&
-                        <>
-                            {/* <MessocycleForm id={id} /> */}
-                            <MessocycleTable id={id} />
-                        </>}
-                    {habit &&
-                        <>
-                            <HabitTable id={id} />
-                        </>}
+                    {nutrition && <NutritionTable id={id} />}
+                    {messocycle && <MessocycleTable id={id} />}
+                    {habit && <HabitTable id={id} />}
 
                 </div>
                 {/* </div> */}

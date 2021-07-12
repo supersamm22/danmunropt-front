@@ -64,7 +64,6 @@ function MessocycleForm(props) {
             }, 1500);
         })
     }
-    console.log("id", props.id)
 
     return (
         <Modal
@@ -104,43 +103,43 @@ function MessocycleForm(props) {
                                         <div className="col-lg-3 col-xl-3 col-sm-4">
                                             <div className="form-group ">
                                                 <label className="text-muted">Exercise</label>
-                                                <input className="form-control" type="text" {...register(num + "_exercise", { required: true })} />
+                                                <input className="form-control" type="text" {...register(num + "_exercise", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Sets</label>
-                                                <input className="form-control" type="text"  {...register(num + "_sets", { required: true })} />
+                                                <input className="form-control" type="text"  {...register(num + "_sets", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Reps</label>
-                                                <input className="form-control" type="number" {...register(num + "_reps", { required: true })} />
+                                                <input className="form-control" type="number" {...register(num + "_reps", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Load</label>
-                                                <input className="form-control" type="number"  {...register(num + "_load", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_load", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Rest</label>
-                                                <input className="form-control" type="number"  {...register(num + "_rest", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_rest", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Tempo</label>
-                                                <input className="form-control" type="text"  {...register(num + "_tempo", { required: true })} />
+                                                <input className="form-control" type="text"  {...register(num + "_tempo", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-3 col-xl-3 col-sm-4">
                                             <div className="form-group">
                                                 <label className="text-muted">Notes</label>
-                                                <input className="form-control" type="text"{...register(num + "_notes", { required: true })} />
+                                                <input className="form-control" type="text"{...register(num + "_notes", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-3 col-xl-1 col-sm-4">
@@ -171,7 +170,7 @@ function MessocycleForm(props) {
                             }
                             <div className="col-md-12">
                                 <div className="row">
-                                    <div className="col-md-6 col-lg-9">
+                                    <div className="col-md-6 col-lg-9 mt-2">
                                         <Button
                                             onClick={() => {
                                                 array.push(Math.floor(Math.random() * 100))

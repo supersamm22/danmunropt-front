@@ -5,6 +5,7 @@ import trash2Fill from '@iconify/icons-eva/trash-2-fill';
 import Icon from '@iconify/react';
 import { isLoggedIn } from '../../helpers/loginHelp';
 import { addHabit, getHabit } from '../../apiCalls/reportCalls';
+import Loading from '../Loading';
 
 
 export default function HabitForm(props) {
@@ -73,7 +74,7 @@ export default function HabitForm(props) {
         })
     }
     if (loading) {
-        return "loading..."
+        return <Loading />
     }
     const total = {
         monday: 0, tuesday: 0, wednesday: 0, thursday: 0, friday: 0, saturday: 0, sunday: 0

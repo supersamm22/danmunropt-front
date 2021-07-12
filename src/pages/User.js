@@ -176,7 +176,6 @@ export default function User() {
 
                       return (
                         <TableRow
-                          hover
                           key={id}
                           tabIndex={-1}
                           role="checkbox"

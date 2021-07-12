@@ -35,6 +35,7 @@ export default function ReportTable({ report, userId }) {
                 <div>
                     {report &&
                         <>
+                            <h4 className="mt-2">Bio Feedback</h4>
                             <Typography variant="h6" id="tableTitle" component="div" my={2}>
                                 Date:{" "}{new Date(report.report_date).toDateString()}
                             </Typography>

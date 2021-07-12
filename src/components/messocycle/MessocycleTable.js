@@ -25,6 +25,7 @@ import MessocycleForm from './MessocycleForm';
 import { getMessocycle } from 'src/apiCalls/reportCalls';
 import { isLoggedIn } from 'src/helpers/loginHelp';
 import DeleteMessocycle from './DeleteMessocycle';
+import Loading from '../Loading';
 
 export default function MessocycleTable({ id, isUser }) {
     const [open, setOpen] = useState(false)
@@ -59,7 +60,7 @@ export default function MessocycleTable({ id, isUser }) {
         })
     }
     if (loading) {
-        return "loading"
+        return <Loading />
     }
     return (
         <>
@@ -89,7 +90,7 @@ export default function MessocycleTable({ id, isUser }) {
                             <Typography variant="h6" id="tableTitle" component="div">
                                 <div className="row">
                                     <div className="col-md-6">
-                                        {/* {messocycles.indexOf(messocycle) + 1} */}
+                                        <h4 className="mt-2">Mesocycle</h4>
                                     </div>
                                     <div className="col-md-6" style={{ textAlign: "end" }}>
                                         <Tooltip title={isUser ? "Edit" : "Delete"} >
@@ -129,7 +130,6 @@ export default function MessocycleTable({ id, isUser }) {
                                     </TableRow>
                                     {messocycle.exercises.map((e, index) => {
                                         return <TableRow
-                                            hover
                                             tabIndex={-1}
                                             role="checkbox"
                                             key={index}

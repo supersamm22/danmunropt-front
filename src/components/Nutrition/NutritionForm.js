@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { addNutrition, getNutrition } from '../../apiCalls/reportCalls';
 import { isLoggedIn } from "../../helpers/loginHelp"
 import NutritionTable from './NutritionTable';
+import Loading from '../Loading';
 
 export default function NutritionForm(props) {
 
@@ -37,10 +38,6 @@ export default function NutritionForm(props) {
             }
         })
     }, [props])
-    if (loading) {
-        return "loading"
-    }
-
     const submit = (e) => {
         console.log("asd")
         setSending(true)
@@ -83,7 +80,9 @@ export default function NutritionForm(props) {
     const total = {
         calories: 0, protein: 0, carbohydrates: 0, fats: 0
     }
-
+    if (loading) {
+        return <Loading />
+    }
     return (
         <Container className="mt-4">
             <Card>
@@ -99,7 +98,7 @@ export default function NutritionForm(props) {
                                             type="time"  {...register("wake_up", { required: false, value: nutrition.wake_up })} />
                                     </div>
                                 </div>
-                                <div className="col-lg-2 col-xl-2 col-sm-2">
+                                <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Water Intake</label>
                                         <input className="form-control" type="text"  {...register("water", { required: false, value: nutrition.water })} />
@@ -127,7 +126,7 @@ export default function NutritionForm(props) {
                                         <input className="form-control" type="text"  {...register("alcohol_cal", { required: false, value: nutrition.alcohol_cal })} />
                                     </div>
                                 </div>
-                                <div className="col-lg-2 col-xl-2 col-sm-2">
+                                <div className="col-lg-2 col-xl-3 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Daily Comments</label>
                                         <input className="form-control" type="text"{...register("comment", { required: false, value: nutrition.comment })} />

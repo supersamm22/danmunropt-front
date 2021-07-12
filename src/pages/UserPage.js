@@ -4,6 +4,7 @@ import FeedbackForm from "../components/form"
 import Report from "../components/report"
 
 export default function UserPage() {
+
     return (
         <div>
             <div className="row " style={{ height: "100vh" }}>

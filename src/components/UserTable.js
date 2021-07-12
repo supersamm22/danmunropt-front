@@ -72,7 +72,6 @@ export default function UserTable() {
                                 />
                                 <TableBody>
                                     <TableRow
-                                        hover
                                         tabIndex={-1}
                                         role="checkbox"
                                     >

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 //-------
 import { lastReport } from "../apiCalls/reportCalls"
 import { isLoggedIn } from "../helpers/loginHelp"
+import Loading from './Loading';
 import Page from './Page';
 import ReportTable from "./reportTable"
 
@@ -36,9 +37,7 @@ const Report = () => {
             <Container className="mt-4 mb-4">
                 <h2 className="mt-2 text-center" >Previous Report</h2>
                 {loading ?
-                    <div className="alert alert-primary self-align-center" role="alert">
-                        Uploading Report....
-                    </div>
+                    <Loading />
                     :
                     error ?
                         <div className="alert alert-danger self-align-center" role="alert">

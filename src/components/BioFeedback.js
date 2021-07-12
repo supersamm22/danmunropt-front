@@ -131,7 +131,7 @@ export default function BioFeedback({ report, userId }) {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    <TableRow hover
+                                    <TableRow
                                         tabIndex={-1}>
                                         <TableCell>{report.sleep_duration}</TableCell>
                                         <TableCell>{report.sleep_quality}</TableCell>

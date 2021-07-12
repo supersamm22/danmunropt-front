@@ -6,14 +6,15 @@ import {
     TableBody,
     TableCell,
     Container,
-    Typography,
     TableContainer,
     TableHead,
+    Typography,
 } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { isLoggedIn } from '../../helpers/loginHelp';
 import { getHabit } from '../../apiCalls/reportCalls';
 import Scrollbar from '../Scrollbar';
+import Loading from '../Loading';
 
 export default function HabitTable({ id }) {
     const [loading, setLoading] = useState(true);
@@ -36,7 +37,7 @@ export default function HabitTable({ id }) {
     }, [id])
 
     if (loading) {
-        return "loading"
+        return <Loading />
     }
 
     return (
@@ -46,11 +47,11 @@ export default function HabitTable({ id }) {
                     <Scrollbar>
                         <TableContainer sx={{ minWidth: 800 }}>
                             {habits.map((h, index) => {
-                                return <Table>
+                                return <Table key={index}>
                                     <TableHead>
-                                        {/* <Typography variant="h6" id="tableTitle" component="div" px={2} py={2}>
-                                            Habit
-                                        </Typography> */}
+                                        <TableRow>
+                                            <TableCell style={{ fontWeight: 600, fontSize: "1.5rem" }}>Habit</TableCell>
+                                        </TableRow>
                                     </TableHead>
                                     <TableBody>
                                         <TableRow>
@@ -66,7 +67,6 @@ export default function HabitTable({ id }) {
                                         </TableRow>
                                         {h.habits.map((e, index) =>
                                             <TableRow
-                                                hover
                                                 tabIndex={-1}
                                                 key={index}>
                                                 <TableCell align="left">{e.name}</TableCell>
@@ -80,7 +80,7 @@ export default function HabitTable({ id }) {
                                                 <TableCell align="left">{e.sunday}</TableCell>
                                             </TableRow>
                                         )}
-                                        <TableRow hover>
+                                        <TableRow>
                                             <TableCell className="totals">MInimal Points to win the day</TableCell>
                                             <TableCell>5</TableCell>
                                             <TableCell>False</TableCell>
@@ -91,7 +91,7 @@ export default function HabitTable({ id }) {
                                             <TableCell>False</TableCell>
                                             <TableCell>False</TableCell>
                                         </TableRow>
-                                        <TableRow hover>
+                                        <TableRow>
                                             <TableCell className="totals">Weekly habit Success</TableCell>
                                             <TableCell>56</TableCell>
                                         </TableRow>
