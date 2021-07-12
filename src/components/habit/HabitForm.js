@@ -14,6 +14,8 @@ export default function HabitForm(props) {
     const [error, setError] = useState("");
     const [array, setArray] = useState([]);
     const [habit, setHabit] = useState({});
+    const [success, setSuccess] = useState(false);
+    const [sending, setSending] = useState(false);
 
     useEffect(() => {
         const token_ = isLoggedIn();
@@ -38,6 +40,9 @@ export default function HabitForm(props) {
 
 
     const submit = (e) => {
+        setSending(true)
+        setError("")
+        setSuccess(false)
         const habits = []
         array.forEach((num) => {
             habits.push({
@@ -51,9 +56,16 @@ export default function HabitForm(props) {
             userId: loginData.user.id,
             habits: habits,
         }
-        console.log(parms)
         addHabit(loginData.token, parms).then(data => {
-            console.log(data)
+            if (data) {
+                setSending(false)
+                setError("")
+                setSuccess(true)
+            } else {
+                setSending(false)
+                setError("Something went wrong")
+                setSuccess(false)
+            }
         })
     }
     const total = {
@@ -151,14 +163,14 @@ export default function HabitForm(props) {
                             </div>
 
                             {/* end of main row */}
-                            {loading &&
-                                <div className="alert alert-primary self-align-center m-3 " role="alert">
-                                    Uploading Report....
+                            {error &&
+                                <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#dc004e" }}>
+                                    {error}
                                 </div>
                             }
-                            {error &&
-                                <div className="alert alert-danger self-align-center m-3" role="alert">
-                                    {error}
+                            {success &&
+                                <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#102770" }}>
+                                    Updated Successfully
                                 </div>
                             }
                         </div>
@@ -170,7 +182,7 @@ export default function HabitForm(props) {
                                             array.push(Math.floor(Math.random() * 100))
                                             setArray(array.filter(() => true))
                                         }}
-                                        style={{}}
+                                        disabled={sending}
                                         variant="contained"
                                         type="button"
                                         className="btn"
@@ -181,6 +193,7 @@ export default function HabitForm(props) {
                                         className="btn"
                                         variant="link"
                                         type="submit"
+                                        disabled={sending}
                                     >Save</Button>
                                 </div>
                             </div>

@@ -10,19 +10,15 @@ import {
     Table,
     Stack,
     Button,
-    Checkbox,
     TableRow,
     TableBody,
     TableCell,
     Container,
     Typography,
-    TableContainer,
     TableHead,
     Tooltip,
-    TablePagination,
     IconButton,
 } from '@material-ui/core';
-import { UserListHead } from '../_dashboard/user';
 import Scrollbar from '../Scrollbar';
 import { useEffect, useState } from 'react';
 import MessocycleForm from './MessocycleForm';
@@ -104,7 +100,7 @@ export default function MessocycleTable({ id, isUser }) {
                                                         setShow(true)
                                                     }
                                                 }}
-                                                className="btn btn-dlt"
+                                                className="btn btn-icon"
                                             >
                                                 <Icon icon={isUser ? edit2Fill : trash2Fill} />
                                             </IconButton>

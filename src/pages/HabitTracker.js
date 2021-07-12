@@ -4,8 +4,8 @@ import Page from "../components/Page"
 
 export default function HabitTracker() {
     return (
-        <Page title="HabitTracker">
-            <HabitForm/>
+        <Page title="Daniel Munro | Habit Tracker">
+            <HabitForm />
         </Page>
     )
 }

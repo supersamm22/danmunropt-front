@@ -9,26 +9,35 @@ const FeedbackForm = () => {
     const { register, handleSubmit, reset } = useForm();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [success, setSuccess] = useState(false);
+    const [sending, setSending] = useState(false);
 
 
 
     const onSubmit = (data) => {
         setError("")
-        const token = isLoggedIn().token;
         setLoading(true)
+        setSending(true)
+        setSuccess(false)
+        console.log("1", sending)
+        const token = isLoggedIn().token;
         const report = { data };
         uploadReport(report, token).then(data => {
             if (data) {
                 if (data.msg) {
                     setLoading(false)
                     setError(data.msg)
+                    setSending(false)
                 } else {
                     reset()
                     setLoading(false)
+                    setSending(false)
                 }
             } else {
                 setError("Unable to connect to database")
                 setLoading(false)
+                setSending(false)
+                setSuccess(false)
             }
         })
     }
@@ -157,11 +166,11 @@ const FeedbackForm = () => {
                                 </div>
                             </div>
                             {/* end of left side and start of right side */}
-                            <div className="col-md-6">
+                            <div className="col-md-6 pl-20">
                                 <h4 className="mt-2">Lifestyle</h4>
                                 <div className="row">
                                     <h5 className="mt-4">Sleep</h5>
-                                    <div className="col-md-6">
+                                    <div className="col-md-6 pl-16">
                                         <div className="form-group">
                                             <label className="text-muted">Duration</label>
                                             <input className="form-control" type="text" {...register("sleep_duration", { required: true })} />
@@ -181,7 +190,7 @@ const FeedbackForm = () => {
                                 </div>
                                 <h5 className="mt-4">Energy</h5>
                                 <div className="row">
-                                    <div className="col-md-4">
+                                    <div className="col-md-4 pl-16">
                                         <div className="form-group">
                                             <div className="form-group">
                                                 <label className="text-muted">Morning</label>
@@ -224,7 +233,6 @@ const FeedbackForm = () => {
                                 <h5 className="mt-4">Libido</h5>
                                 <div className="row">
                                     <div className="col-md-6">
-
                                         <div className="form-group">
                                             <div className="form-group">
                                                 <label className="text-muted">Morning</label>
@@ -294,25 +302,30 @@ const FeedbackForm = () => {
                                     </div>
                                 </div>
                                 <div className="col-md-12 m-2 text-center">
-                                    <button className="btn btn-raised btn-primary m-2" type="submit" >Add Bio Feedback</button>
+                                    <button className="btn btn-raised btn-primary m-2" type="submit" disabled={sending}>Add Bio Feedback</button>
                                 </div>
                             </div>
                             {/* end of main row */}
                             {loading &&
-                                <div className="alert alert-primary self-align-center m-3 " role="alert">
-                                    Uploading Report....
+                                <div className="alert alert-primary text-center m-3 " role="alert">
+                                    Adding Bio Feedback....
                                 </div>
                             }
                             {error &&
-                                <div className="alert alert-danger self-align-center m-3" role="alert">
+                                <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#dc004e" }}>
                                     {error}
+                                </div>
+                            }
+                            {success &&
+                                <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#102770" }}>
+                                    Add Bio Feedback Succesfully
                                 </div>
                             }
                         </div>
                     </form>
                 </Container>
             </Card>
-        </Container>
+        </Container >
     );
 };
 

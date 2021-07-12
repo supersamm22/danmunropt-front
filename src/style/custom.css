@@ -1,3 +1,58 @@
+.col-lg-1,
+.col-lg-2,
+.col-lg-3,
+.col-lg-4,
+.col-lg-5,
+.col-lg-6,
+.col-lg-7,
+.col-lg-8,
+.col-lg-9,
+.col-lg-10,
+.col-lg-11,
+.col-lg-12,
+.col-md-1,
+.col-md-2,
+.col-md-3,
+.col-md-4,
+.col-md-5,
+.col-md-6,
+.col-md-7,
+.col-md-8,
+.col-md-9,
+.col-md-10,
+.col-md-11,
+.col-md-12,
+.col-sm-1,
+.col-sm-2,
+.col-sm-3,
+.col-sm-4,
+.col-sm-5,
+.col-sm-6,
+.col-sm-7,
+.col-sm-8,
+.col-sm-9,
+.col-sm-10,
+.col-sm-11,
+.col-sm-12,
+.col-xs-1,
+.col-xs-2,
+.col-xs-3,
+.col-xs-4,
+.col-xs-5,
+.col-xs-6,
+.col-xs-7,
+.col-xs-8,
+.col-xs-9,
+.col-xs-10,
+.col-xs-11,
+.col-xs-12 {
+    padding-right: 4px !important;
+    padding-left:4px !important;
+}
+.pl-20{
+    padding-left: 20px !important;
+}
+
 a:hover{
     color: #fff !important;
 }
@@ -73,7 +128,7 @@ a:hover{
     background-color: #212b3614;
     outline: none;
 }
- .btn-dlt{
+.btn-dlt{
     padding:15px !important;
     font-size: 20px !important;
     color: #dc004e !important;
@@ -81,7 +136,7 @@ a:hover{
     background-color: transparent !important;
  }
  
- .btn-dlt:focus,.btn-dlt:hover,.btn-dlt:active{
+.btn-dlt:focus,.btn-dlt:hover,.btn-dlt:active{
     padding:15px !important;
     font-size: 20px !important;
     color: #dc004e !important;
@@ -89,7 +144,7 @@ a:hover{
     background-color: transparent !important;
  }
 
- .btn-group-outline{  
+.btn-group-outline{  
   height: 44px !important;
   font-size: 0.875rem !important;
   outline: 0px;
@@ -143,13 +198,29 @@ a:hover{
   background-color: #37C6F4;
   box-shadow: 0 8px 24px 0 rgba(255,235,167,.2) !important;
 }
-.btn-group-outline:focus,.btn-group-active:focus{
+.btn-group-outline:focus,
+.btn-group-active:focus,
+.btn-icon:focus{
   outline: none !important;
 }
 
 .btn-group-active:hover,.btn-group-outline:hover{
     background-color: #102770 !important;
     color: #37C6F4 !important;
+}
+
+.btn-icon{
+   padding:15px !important;
+   font-size: 20px !important;
+   color: #102770 !important;
+   background-color: transparent !important;
+}
+.btn-icon:hover{
+   padding:15px !important;
+   font-size: 20px !important;
+   color: #37C6F4 !important;
+   background-color: transparent !important;
+   box-shadow: none !important;
 }
 
 .css-18xrjjr-MuiButtonBase-root-MuiListItem-root:before{
@@ -187,4 +258,7 @@ a:hover{
 .modal_{
     width: 80% !important;
  }
+.pl-20{
+    padding-left: 4px !important;
+} 
 }
