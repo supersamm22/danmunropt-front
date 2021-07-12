@@ -31,12 +31,18 @@ const useStyles = makeStyles((theme) => ({
 function MessocycleForm(props) {
     const classes = useStyles();
     const rootRef = React.useRef(null);
-    const { register, handleSubmit, reset, } = useForm();
+    const { register, handleSubmit } = useForm();
     const [loading, setLoading] = useState(false);
+    const [success, setSuccess] = useState(false);
+    const [sending, setSending] = useState(false);
     const [error, setError] = useState("");
     const [array, setArray] = useState([0, 1]);
 
+
     const submit = (e) => {
+        setSending(true)
+        setError("")
+        setSuccess(false)
         const exercises = []
         array.forEach((num) => {
             exercises.push({
@@ -172,6 +178,7 @@ function MessocycleForm(props) {
                                             }}
                                             className="btn"
                                             variant="contained"
+                                            disabled={sending}
                                             type="button"
                                         >Add</Button>
                                     </div>
@@ -180,6 +187,7 @@ function MessocycleForm(props) {
                                             style={{ marginRight: 4 }}
                                             variant="contained"
                                             type="submit"
+                                            disabled={sending}
                                             className="btn"
                                         >Save</Button>
                                         <Button

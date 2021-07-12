@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 //-------
 import { lastReport } from "../apiCalls/reportCalls"
 import { isLoggedIn } from "../helpers/loginHelp"
+import Page from './Page';
 import ReportTable from "./reportTable"
 
 const Report = () => {
@@ -31,23 +32,25 @@ const Report = () => {
     }, [])
 
     return (
-        <Container className="mt-4 mb-4">
-            <h2 className="mt-2 text-center" >Previous Report</h2>
-            {loading ?
-                <div className="alert alert-primary self-align-center" role="alert">
-                    Uploading Report....
-                </div>
-                :
-                error ?
-                    <div className="alert alert-danger self-align-center" role="alert">
-                        {error}
-                    </div> :
-                    <div>
-                        <ReportTable report={report} />
+        <Page title="Daniel Munro | Bio Feedback">
+            <Container className="mt-4 mb-4">
+                <h2 className="mt-2 text-center" >Previous Report</h2>
+                {loading ?
+                    <div className="alert alert-primary self-align-center" role="alert">
+                        Uploading Report....
                     </div>
-            }
+                    :
+                    error ?
+                        <div className="alert alert-danger self-align-center" role="alert">
+                            {error}
+                        </div> :
+                        <div>
+                            <ReportTable report={report} />
+                        </div>
+                }
 
-        </Container>
+            </Container>
+        </Page>
     );
 };
 

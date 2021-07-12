@@ -16,7 +16,6 @@ import { getHabit } from '../../apiCalls/reportCalls';
 import Scrollbar from '../Scrollbar';
 
 export default function HabitTable({ id }) {
-    const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [habits, setHabit] = useState([]);
@@ -49,9 +48,9 @@ export default function HabitTable({ id }) {
                             {habits.map((h, index) => {
                                 return <Table>
                                     <TableHead>
-                                        <Typography variant="h6" id="tableTitle" component="div" px={2} py={2}>
+                                        {/* <Typography variant="h6" id="tableTitle" component="div" px={2} py={2}>
                                             Habit
-                                        </Typography>
+                                        </Typography> */}
                                     </TableHead>
                                     <TableBody>
                                         <TableRow>

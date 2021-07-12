@@ -15,7 +15,6 @@ export default function NutritionForm(props) {
     const [success, setSuccess] = useState(false);
     const [sending, setSending] = useState(false);
     const [array, setArray] = useState([0, 1]);
-
     const [nutrition, setNutrition] = useState({});
 
     useEffect(() => {
@@ -30,7 +29,7 @@ export default function NutritionForm(props) {
                 })
                 s.push(s.length)
                 setArray(s)
-                // setNutrition(data[0])
+                setNutrition(data[0])
                 setLoading(false)
             } else {
                 // setError("Unable to get nutrition data")
@@ -72,7 +71,7 @@ export default function NutritionForm(props) {
                 setSuccess(true)
             } else {
                 setSending(false)
-                setError("Somthing went wrong")
+                setError("Something went wrong")
                 setSuccess(false)
             }
         })
@@ -231,18 +230,18 @@ export default function NutritionForm(props) {
 
                             {/* end of main row */}
                             {loading &&
-                                <div className="alert alert-primary self-align-center m-3 " role="alert">
-                                    Uploading Report....
+                                <div className="alert alert-primary text-center m-3 " role="alert">
+                                    Uploading Nutrition....
                                 </div>
                             }
-                            {error &&
-                                <div className="alert alert-danger self-align-center m-3" role="alert">
-                                    {error}
-                                </div>
+
+                            {error && <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#dc004e" }}>
+                                {error}
+                            </div>
                             }
                             {success &&
-                                <div className="alert alert-success self-align-center m-3" role="alert">
-                                    updated
+                                <div className="alert alert-success text-center m-3" role="alert" style={{ color: "#102770" }}>
+                                    Updated Succesfully
                                 </div>
                             }
                         </div>
@@ -275,6 +274,6 @@ export default function NutritionForm(props) {
                     </form >
                 </Container>
             </Card>
-        </Container>
+        </Container >
     );
 }

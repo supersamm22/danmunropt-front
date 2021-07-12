@@ -3,7 +3,7 @@ import Page from "../components/Page"
 
 export default function BioFeedback() {
     return (
-        <Page title="Bio Feedback">
+        <Page title="Daniel Munro | Bio Feedback">
             <div>BioFeedback</div>
         </Page>
     )
