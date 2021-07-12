@@ -1,4 +1,3 @@
-import "./page.css"
 import React, { useState, useEffect } from 'react'
 import { isLoggedIn } from "../helpers/loginHelp";
 import ReportTable from "../components/reportTable"

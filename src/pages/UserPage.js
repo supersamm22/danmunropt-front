@@ -1,4 +1,3 @@
-import "./page.css"
 import React from 'react'
 import FeedbackForm from "../components/form"
 import Report from "../components/report"
