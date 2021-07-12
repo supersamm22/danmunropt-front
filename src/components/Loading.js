@@ -21,8 +21,8 @@ export default function Loading() {
                         </Typography>
                         <Box
                             component="img"
-                            src="/static/preloader.svg"
-                            sx={{ height: 260, mx: 'auto', my: { xs: 5, sm: 10 } }}
+                            src="/preloader.jpg"
+                        // sx={{ height: 260, mx: 'auto', my: { xs: 5, sm: 10 } }}
                         />
                     </motion.div>
                 </Box>
