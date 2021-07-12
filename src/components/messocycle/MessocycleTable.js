@@ -36,7 +36,7 @@ export default function MessocycleTable({ id, isUser }) {
     const [error, setError] = useState("");
     const [messocycles, setMessocycle] = useState([]);
     const [show, setShow] = useState(false);
-
+    const [edit, setEdit] = useState(false);
     console.log(show)
     useEffect(() => {
         getmc()
@@ -67,22 +67,24 @@ export default function MessocycleTable({ id, isUser }) {
     }
     return (
         <>
+            {edit && <MessocycleForm messocycle={messocycles[0]} open={edit} onClose={() => { setEdit(false) }} onSave={getmc} />}
             {open && <MessocycleForm open={open} onClose={() => { setOpen(false) }} onSave={getmc} />}
             {show && <DeleteMessocycle show={show} onClose={() => { setShow(false) }} />}
             <Container>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
                     <Typography variant="h4" gutterBottom>
                     </Typography>
-                    <Button
-                        variant="contained"
-                        component={RouterLink}
-                        to="#"
-                        startIcon={<Icon icon={plusFill} />}
-                        onClick={() => setOpen(true)}
-                        className="btn"
-                    >
-                        Add
-                    </Button>
+                    {!isUser &&
+                        <Button
+                            variant="contained"
+                            component={RouterLink}
+                            to="#"
+                            startIcon={<Icon icon={plusFill} />}
+                            onClick={() => setOpen(true)}
+                            className="btn"
+                        >
+                            Add
+                        </Button>}
                 </Stack>
                 {messocycles.map((messocycle, index) =>
                     <Card style={{ marginBottom: 16 }} key={index}>
@@ -97,7 +99,7 @@ export default function MessocycleTable({ id, isUser }) {
                                             <IconButton aria-label="delete"
                                                 onClick={() => {
                                                     if (isUser) {
-
+                                                        setEdit(true)
                                                     } else {
                                                         setShow(true)
                                                     }

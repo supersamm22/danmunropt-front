@@ -81,13 +81,13 @@ function MessocycleForm(props) {
                                     <div className="col-lg-2 col-xl-2 col-sm-2">
                                         <div className="form-group ">
                                             <label className="text-muted">Warm Up</label>
-                                            <input className="form-control" type="text"{...register("warm_up", { required: true })} />
+                                            <input className="form-control" type="text"{...register("warm_up", { required: false })} />
                                         </div>
                                     </div>
                                     <div className="col-lg-2 col-xl-2 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Cool Down</label>
-                                            <input className="form-control" type="text"  {...register("cool_down", { required: true })} />
+                                            <input className="form-control" type="text"  {...register("cool_down", { required: false })} />
                                         </div>
                                     </div>
 

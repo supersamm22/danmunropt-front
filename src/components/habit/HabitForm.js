@@ -12,7 +12,7 @@ export default function HabitForm(props) {
     const { register, handleSubmit, reset } = useForm();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const [array, setArray] = useState([0]);
+    const [array, setArray] = useState([]);
     const [habit, setHabit] = useState({});
 
     useEffect(() => {
@@ -26,12 +26,11 @@ export default function HabitForm(props) {
                     s.push(index)
                 })
                 s.push(s.length)
-                console.log(s)
-                setArray(s)
-
                 setHabit(data[0])
+                setArray(s)
                 setLoading(false)
             } else {
+                setArray([0])
                 setLoading(false)
             }
         })
@@ -57,8 +56,9 @@ export default function HabitForm(props) {
             console.log(data)
         })
     }
-    console.log(array)
-
+    const total = {
+        monday: 0
+    }
     return (
         <Container className="mt-4">
             <Card>
@@ -67,64 +67,64 @@ export default function HabitForm(props) {
                     <form onSubmit={handleSubmit(submit)}>
                         <div>
                             {array.map((num, index) => {
-                                const h = (habit.habits || [])[index] || {}
-                                console.log("h", h.name)
+                                const hb = (habit.habits || [])[index] || {}
+                                total.monday = total.monday + (hb.monday || 0)
                                 return (
                                     <div className="row" key={index}>
                                         <div className="col lg-8 md-4">
                                             <div className="form-group ">
                                                 <label className="text-muted">Habit</label>
                                                 <input className="form-control"
-                                                    type="text"{...register(num + "_name", { required: true, value: h.name || "" })} />
+                                                    type="text"{...register(num + "_name", { required: false, value: hb.name || "" })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group ">
                                                 <label className="text-muted">Points</label>
                                                 <input className="form-control"
-                                                    type="text"{...register(num + "_points", { required: true, value: h.points })} />
+                                                    type="text"{...register(num + "_points", { required: false, value: hb.points || 0 })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group ">
                                                 <label className="text-muted">Monday</label>
-                                                <input className="form-control" type="number" {...register(num + "_monday", { required: true })} />
+                                                <input className="form-control" type="number" {...register(num + "_monday", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Tuesday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_tuesday", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_tuesday", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Wednesday</label>
-                                                <input className="form-control" type="number" {...register(num + "_wednesday", { required: true })} />
+                                                <input className="form-control" type="number" {...register(num + "_wednesday", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Thursday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_thursday", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_thursday", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Friday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_friday", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_friday", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Saturday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_saturday", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_saturday", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Sunday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_sunday", { required: true })} />
+                                                <input className="form-control" type="number"  {...register(num + "_sunday", { required: false })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-3 col-xl-1 col-sm-4 pb-4">
@@ -141,6 +141,15 @@ export default function HabitForm(props) {
                                         </div>
                                     </div>)
                             })}
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    <label className="text-muted">Monday</label>
+                                    <input className="form-control" type="number"
+                                        value={total.monday} disabled
+                                        {...register("t_monday", { required: false })} />
+                                </div>
+                            </div>
+
                             {/* end of main row */}
                             {loading &&
                                 <div className="alert alert-primary self-align-center m-3 " role="alert">
