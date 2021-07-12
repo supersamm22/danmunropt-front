@@ -46,7 +46,7 @@ export default function HabitTable({ id }) {
             <Container className="mt-4">
                 {(habits && Array.isArray(habits) && habits.length > 0) ?
                     habits.map((h, index) => {
-                        return <Card key={index}>
+                        return <Card key={index} className="card-padding">
                             <Scrollbar>
                                 <TableContainer sx={{ minWidth: 800 }}>
                                     <Table>

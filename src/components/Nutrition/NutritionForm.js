@@ -7,6 +7,7 @@ import { addNutrition, getNutrition } from '../../apiCalls/reportCalls';
 import { isLoggedIn } from "../../helpers/loginHelp"
 import NutritionTable from './NutritionTable';
 import Loading from '../Loading';
+import { fDate } from 'src/utils/formatTime';
 
 export default function NutritionForm(props) {
 
@@ -85,9 +86,9 @@ export default function NutritionForm(props) {
     }
     return (
         <Container className="mt-4">
-            <Card>
+            <Card className="card-padding">
                 <Container>
-                    <h4 className="mt-2">Nutrition</h4>
+                    <h4 className="mt-2">Nutrition <span style={{ fontSize: 16 }}>{nutrition.date || fDate()}</span></h4>
                     <form onSubmit={handleSubmit(submit)} >
                         <div>
                             <div className="row">

@@ -12,6 +12,7 @@ import { array } from 'prop-types';
 import { useEffect, useState } from 'react';
 import { getNutrition } from 'src/apiCalls/reportCalls';
 import { isLoggedIn } from 'src/helpers/loginHelp';
+import { fDate } from 'src/utils/formatTime';
 import Loading from '../Loading';
 import NoData from '../NoData';
 import Scrollbar from '../Scrollbar';
@@ -47,15 +48,15 @@ export default function NutritionTable({ id }) {
             <Container className="mt-4">
                 {(nutritions && Array.isArray(nutritions) && nutritions.length > 0) ?
                     nutritions.map((nutrition, index) =>
-                        <Card className="mt-4" key={index}>
+                        <Card className="mt-4 card-padding" key={index}>
                             <Scrollbar>
                                 <Table >
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell style={{ fontWeight: 600, fontSize: "1.5rem" }}>Nutrition</TableCell>
+                                            <TableCell style={{ fontWeight: 600, fontSize: "1.5rem", padding: 8, borderBottom: "none" }}>Nutrition{" "}<span style={{ fontSize: 16 }}>{nutrition.date || fDate()}</span></TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Wake Up Time:{" "}{nutrition.wake_up}</TableCell>
+                                            <TableCell style={{ padding: 0 }} colSpan={4}>Wake Up Time:{" "}{nutrition.wake_up}</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>

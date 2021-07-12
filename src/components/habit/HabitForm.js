@@ -91,179 +91,177 @@ export default function HabitForm(props) {
     })
     return (
         <Container className="mt-4">
-            <Card>
-                <Container>
-                    <h4 className="mt-2">Habit</h4>
-                    <form onSubmit={handleSubmit(submit)}>
-                        <div>
-                            {array.map((num, index) => {
-                                const hb = (habit.habits || [])[index] || {}
-                                return (
-                                    <div className="row row-height" key={index}>
-                                        <div className="col-lg-3 md-4">
-                                            <div className="form-group ">
-                                                <label className="text-muted">Habit</label>
-                                                <input className="form-control"
-                                                    type="text"{...register(num + "_name", { required: false, value: hb.name || "" })} />
-                                            </div>
+            <Card className="card-padding">
+                <h4 className="mt-2">Habit</h4>
+                <form onSubmit={handleSubmit(submit)}>
+                    <div>
+                        {array.map((num, index) => {
+                            const hb = (habit.habits || [])[index] || {}
+                            return (
+                                <div className="row row-height" key={index}>
+                                    <div className="col-lg-3 md-4">
+                                        <div className="form-group ">
+                                            <label className="text-muted">Habit</label>
+                                            <input className="form-control"
+                                                type="text"{...register(num + "_name", { required: false, value: hb.name || "" })} />
                                         </div>
-                                        <div className="col-lg-2 col-xl-1 col-sm-2">
-                                            <div className="form-group ">
-                                                <label className="text-muted">Points</label>
-                                                <input className="form-control"
-                                                    type="text"{...register(num + "_points", { required: false, value: hb.points })} />
-                                            </div>
+                                    </div>
+                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                        <div className="form-group ">
+                                            <label className="text-muted">Points</label>
+                                            <input className="form-control"
+                                                type="text"{...register(num + "_points", { required: false, value: hb.points })} />
                                         </div>
-                                        <div className="col-lg-2 col-xl-1 col-sm-2">
-                                            <div className="form-group ">
-                                                <label className="text-muted">Monday</label>
-                                                <input className="form-control" type="number" {...register(num + "_monday", { required: false, value: hb.monday })} />
-                                            </div>
+                                    </div>
+                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                        <div className="form-group ">
+                                            <label className="text-muted">Monday</label>
+                                            <input className="form-control" type="number" {...register(num + "_monday", { required: false, value: hb.monday })} />
                                         </div>
-                                        <div className="col-lg-2 col-xl-1 col-sm-2">
-                                            <div className="form-group">
-                                                <label className="text-muted">Tuesday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_tuesday", { required: false, value: hb.tuesday })} />
-                                            </div>
+                                    </div>
+                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                        <div className="form-group">
+                                            <label className="text-muted">Tuesday</label>
+                                            <input className="form-control" type="number"  {...register(num + "_tuesday", { required: false, value: hb.tuesday })} />
                                         </div>
-                                        <div className="col-lg-2 col-xl-1 col-sm-2">
-                                            <div className="form-group">
-                                                <label className="text-muted">Wednesday</label>
-                                                <input className="form-control" type="number" {...register(num + "_wednesday", { required: false, value: hb.wednesday })} />
-                                            </div>
+                                    </div>
+                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                        <div className="form-group">
+                                            <label className="text-muted">Wednesday</label>
+                                            <input className="form-control" type="number" {...register(num + "_wednesday", { required: false, value: hb.wednesday })} />
                                         </div>
-                                        <div className="col-lg-2 col-xl-1 col-sm-2">
-                                            <div className="form-group">
-                                                <label className="text-muted">Thursday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_thursday", { required: false, value: hb.thursday })} />
-                                            </div>
+                                    </div>
+                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                        <div className="form-group">
+                                            <label className="text-muted">Thursday</label>
+                                            <input className="form-control" type="number"  {...register(num + "_thursday", { required: false, value: hb.thursday })} />
                                         </div>
-                                        <div className="col-lg-2 col-xl-1 col-sm-2">
-                                            <div className="form-group">
-                                                <label className="text-muted">Friday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_friday", { required: false, value: hb.friday })} />
-                                            </div>
+                                    </div>
+                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                        <div className="form-group">
+                                            <label className="text-muted">Friday</label>
+                                            <input className="form-control" type="number"  {...register(num + "_friday", { required: false, value: hb.friday })} />
                                         </div>
-                                        <div className="col-lg-2 col-xl-1 col-sm-2">
-                                            <div className="form-group">
-                                                <label className="text-muted">Saturday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_saturday", { required: false, value: hb.saturday })} />
-                                            </div>
+                                    </div>
+                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                        <div className="form-group">
+                                            <label className="text-muted">Saturday</label>
+                                            <input className="form-control" type="number"  {...register(num + "_saturday", { required: false, value: hb.saturday })} />
                                         </div>
-                                        <div className="col-lg-2 col-xl-1 col-sm-2">
-                                            <div className="form-group">
-                                                <label className="text-muted">Sunday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_sunday", { required: false, value: hb.sunday })} />
-                                            </div>
+                                    </div>
+                                    <div className="col-lg-2 col-xl-1 col-sm-2">
+                                        <div className="form-group">
+                                            <label className="text-muted">Sunday</label>
+                                            <input className="form-control" type="number"  {...register(num + "_sunday", { required: false, value: hb.sunday })} />
                                         </div>
-                                        <div className="col-lg-3 col-xl-1 col-sm-4">
-                                            <IconButton sx={{ mt: 2, color: 'text.primary' }}
-                                                onClick={() => {
-                                                    const filterArray = array.filter((e) => e !== num)
-                                                    setArray(filterArray)
-                                                }}
-                                                aria-label="delete"
-                                                className="btn btn-dlt"
-                                            >
-                                                <Icon icon={trash2Fill} />
-                                            </IconButton>
-                                        </div>
-                                    </div>)
-                            })}
-                            <div className="row">
-                                <div className="col-lg-2 col-xl-3 col-sm-2">
-                                    <Button
-                                        onClick={() => {
-                                            array.push(Math.floor(Math.random() * 100))
-                                            setArray(array.filter(() => true))
-                                        }}
-                                        disabled={sending}
-                                        variant="contained"
-                                        type="button"
-                                        className="btn mt-2"
-                                    >Add Habit</Button>
-                                </div>
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
-                                    {/* <div className="form-group ">
+                                    </div>
+                                    <div className="col-lg-3 col-xl-1 col-sm-4">
+                                        <IconButton sx={{ mt: 2, color: 'text.primary' }}
+                                            onClick={() => {
+                                                const filterArray = array.filter((e) => e !== num)
+                                                setArray(filterArray)
+                                            }}
+                                            aria-label="delete"
+                                            className="btn btn-dlt"
+                                        >
+                                            <Icon icon={trash2Fill} />
+                                        </IconButton>
+                                    </div>
+                                </div>)
+                        })}
+                        <div className="row">
+                            <div className="col-lg-2 col-xl-3 col-sm-2">
+                                <Button
+                                    onClick={() => {
+                                        array.push(Math.floor(Math.random() * 100))
+                                        setArray(array.filter(() => true))
+                                    }}
+                                    disabled={sending}
+                                    variant="contained"
+                                    type="button"
+                                    className="btn mt-2"
+                                >Add Habit</Button>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                {/* <div className="form-group ">
                                         <label className="text-muted">Points</label>
                                         <input className="form-control" type="number"
                                             value={total.points} disabled
                                             {...register("t_points", { required: false })} />
                                     </div> */}
-                                </div>
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
-                                    <div className="form-group ">
-                                        <label className="text-muted">Monday</label>
-                                        <input className="form-control" type="number"
-                                            value={total.monday} disabled />
-                                    </div>
-                                </div>
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
-                                    <div className="form-group ">
-                                        <label className="text-muted">Tuesday</label>
-                                        <input className="form-control" type="number"
-                                            value={total.tuesday} disabled />
-                                    </div>
-                                </div>
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
-                                    <div className="form-group ">
-                                        <label className="text-muted">Wednesday</label>
-                                        <input className="form-control" type="number"
-                                            value={total.wednesday} disabled />
-                                    </div>
-                                </div>
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
-                                    <div className="form-group ">
-                                        <label className="text-muted">Thursday</label>
-                                        <input className="form-control" type="number"
-                                            value={total.thursday} disabled />
-                                    </div>
-                                </div>
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
-                                    <div className="form-group ">
-                                        <label className="text-muted">Friday</label>
-                                        <input className="form-control" type="number"
-                                            value={total.friday} disabled />
-                                    </div>
-                                </div>
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
-                                    <div className="form-group ">
-                                        <label className="text-muted">Saturday</label>
-                                        <input className="form-control" type="number"
-                                            value={total.saturday} disabled />
-                                    </div>
-                                </div>
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
-                                    <div className="form-group ">
-                                        <label className="text-muted">Sunday</label>
-                                        <input className="form-control" type="number"
-                                            value={total.sunday} disabled />
-                                    </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    <label className="text-muted">Monday</label>
+                                    <input className="form-control" type="number"
+                                        value={total.monday} disabled />
                                 </div>
                             </div>
-                            {/* end of main row */}
-                            {error &&
-                                <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#dc004e" }}>
-                                    {error}
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    <label className="text-muted">Tuesday</label>
+                                    <input className="form-control" type="number"
+                                        value={total.tuesday} disabled />
                                 </div>
-                            }
-                            {success &&
-                                <div className="alert alert-success text-center m-3" role="alert" style={{ color: "#102770" }}>
-                                    Updated Successfully
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    <label className="text-muted">Wednesday</label>
+                                    <input className="form-control" type="number"
+                                        value={total.wednesday} disabled />
                                 </div>
-                            }
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    <label className="text-muted">Thursday</label>
+                                    <input className="form-control" type="number"
+                                        value={total.thursday} disabled />
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    <label className="text-muted">Friday</label>
+                                    <input className="form-control" type="number"
+                                        value={total.friday} disabled />
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    <label className="text-muted">Saturday</label>
+                                    <input className="form-control" type="number"
+                                        value={total.saturday} disabled />
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    <label className="text-muted">Sunday</label>
+                                    <input className="form-control" type="number"
+                                        value={total.sunday} disabled />
+                                </div>
+                            </div>
                         </div>
-                        <div className="col-md-12 m-3" style={{ textAlign: 'end' }}>
-                            <Button
-                                className="btn mt-2"
-                                variant="link"
-                                type="submit"
-                                disabled={sending}
-                            >Save</Button>
-                        </div>
+                        {/* end of main row */}
+                        {error &&
+                            <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#dc004e" }}>
+                                {error}
+                            </div>
+                        }
+                        {success &&
+                            <div className="alert alert-success text-center m-3" role="alert" style={{ color: "#102770" }}>
+                                Updated Successfully
+                            </div>
+                        }
+                    </div>
+                    <div className="col-md-12 m-3" style={{ textAlign: 'end' }}>
+                        <Button
+                            className="btn mt-2"
+                            variant="link"
+                            type="submit"
+                            disabled={sending}
+                        >Save</Button>
+                    </div>
 
-                    </form >
-                </Container>
+                </form >
             </Card>
         </Container>
     );

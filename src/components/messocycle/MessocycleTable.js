@@ -87,14 +87,14 @@ export default function MessocycleTable({ id, isUser }) {
                 </Stack>
                 {(messocycles && Array.isArray(messocycles) && messocycles.length > 0) ?
                     messocycles.map((messocycle, index) =>
-                        <Card style={{ marginBottom: 16 }} key={index}>
+                        <Card style={{ marginBottom: 16 }} key={index} className="card-padding">
                             <Scrollbar>
                                 <Typography variant="h6" id="tableTitle" component="div">
                                     <div className="row">
-                                        <div className="col-md-6">
-                                            <h4 className="mt-2">Mesocycle</h4>
+                                        <div className="col-md-6 col-6">
+                                            <h4>Mesocycle</h4>
                                         </div>
-                                        <div className="col-md-6" style={{ textAlign: "end" }}>
+                                        <div className="col-md-6 col-6" style={{ textAlign: "end" }}>
                                             <Tooltip title={isUser ? "Edit" : "Delete"} >
                                                 <IconButton aria-label="delete"
                                                     onClick={() => {
@@ -116,8 +116,8 @@ export default function MessocycleTable({ id, isUser }) {
                                 <Table key={index}>
                                     <TableHead>
                                         <TableRow>
-                                            <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
-                                            <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
+                                            <TableCell className="totals" colSpan={2}>Warm Up:{" "}{messocycle.warm_up}</TableCell>
+                                            <TableCell className="totals" colSpan={4}>Cool Down:{" "}{messocycle.cool_down}</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>

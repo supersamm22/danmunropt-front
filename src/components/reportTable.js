@@ -30,7 +30,7 @@ export default function ReportTable({ report, userId }) {
 
     }
     return (
-        <Card className="mt-4">
+        <Card className="mt-4 card-padding">
             <Scrollbar>
                 <div>
                     {report &&
