@@ -247,7 +247,7 @@ export default function HabitForm(props) {
                                 </div>
                             }
                             {success &&
-                                <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#102770" }}>
+                                <div className="alert alert-success text-center m-3" role="alert" style={{ color: "#102770" }}>
                                     Updated Successfully
                                 </div>
                             }

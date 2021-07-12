@@ -48,10 +48,14 @@ export default function NutritionForm(props) {
         setSuccess(false)
         const meals = []
         array.forEach((num) => {
-            meals.push({
+            const newM = {
                 "time": e[num + "_time"], "steak": e[num + "_steak"], "calories": e[num + "_calories"],
                 "protein": e[num + "_protein"], "carbohydrates": e[num + "_carbohydrates"], "fats": e[num + "_fats"], "comment": e[num + "_comment"]
-            })
+            }
+            const { time, steak, calories, protein, carbohydrates, fats, comment } = newM
+            if (time, (steak || calories || protein || carbohydrates || fats || comment)) {
+                meals.push(newM)
+            }
         })
         const loginData = isLoggedIn()
         const parms = {
@@ -76,7 +80,9 @@ export default function NutritionForm(props) {
             }
         })
     }
-    const total = {}
+    const total = {
+        calories: 0, protein: 0, carbohydrates: 0, fats: 0
+    }
 
     return (
         <Container className="mt-4">
@@ -90,19 +96,19 @@ export default function NutritionForm(props) {
                                     <div className="form-group ">
                                         <label className="text-muted">Wake Up</label>
                                         <input className="form-control"
-                                            type="text"{...register("wake_up", { required: true, value: nutrition.wake_up })} />
+                                            type="time"  {...register("wake_up", { required: false, value: nutrition.wake_up })} />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Water Intake</label>
-                                        <input className="form-control" type="text"  {...register("water", { required: true, value: nutrition.water })} />
+                                        <input className="form-control" type="text"  {...register("water", { required: false, value: nutrition.water })} />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
-                                        <label className="text-muted">Did you consume Alcohol today</label>
-                                        <select className="form-control" {...register("alcohol", { required: true, value: NutritionTable.alcohol })}>
+                                        <label className="text-muted">Consumed Alcohol</label>
+                                        <select className="form-control" {...register("alcohol", { required: false, value: NutritionTable.alcohol })}>
                                             <option value="">Select...</option>
                                             <option value="Compliant">Yes</option>
                                             <option value="Non-Compliant">No</option>
@@ -111,70 +117,72 @@ export default function NutritionForm(props) {
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
-                                        <label className="text-muted">Please detail what you consumed</label>
-                                        <input className="form-control" type="text"  {...register("alcohol_datail", { required: true, value: nutrition.alcohol_detail })} />
+                                        <label className="text-muted">consumed details</label>
+                                        <input className="form-control" type="text"  {...register("alcohol_datail", { required: false, value: nutrition.alcohol_detail })} />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
-                                        <label className="text-muted">Total Alcoholic Cal consumption today</label>
-                                        <input className="form-control" type="text"  {...register("alcohol_cal", { required: true, value: nutrition.alcohol_cal })} />
+                                        <label className="text-muted">Total Alcoholic Cal</label>
+                                        <input className="form-control" type="text"  {...register("alcohol_cal", { required: false, value: nutrition.alcohol_cal })} />
                                     </div>
                                 </div>
-                                <div className="col-md-3">
+                                <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Daily Comments</label>
-                                        <input className="form-control" type="text"{...register("comment", { required: true, value: nutrition.comment })} />
+                                        <input className="form-control" type="text"{...register("comment", { required: false, value: nutrition.comment })} />
                                     </div>
                                 </div>
-
                             </div>
                             {array.map((num, index) => {
                                 const meal = (nutrition.meals || [])[index] || {}
-                                total.protein = (total.protein || 0) + meal.protein
+                                total.protein = total.protein || 0 + (meal.protein || 0)
+                                total.calories = total.calories || 0 + (meal.calories || 0)
+                                total.carbohydrates = total.carbohydrates || 0 + (meal.carbohydrates || 0)
+                                total.fats = total.fats || 0 + (meal.fats || 0)
                                 return (
                                     <div className="row" key={index}>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group ">
                                                 <label className="text-muted">Meal Time</label>
                                                 <input className="form-control"
-                                                    type="text" {...register(num + "_time", { required: true, value: meal.time })} />
+                                                    type="time" {...register(num + "_time", { required: false, value: meal.time })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-2 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Meal</label>
-                                                <input className="form-control" type="text"  {...register(num + "_steak", { required: true, value: meal.steak })} />
+                                                <input className="form-control" type="text"  {...register(num + "_steak", { required: false, value: meal.steak })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Calories</label>
-                                                <input className="form-control" type="number" {...register(num + "_calories", { required: true, value: meal.calories })} />
+                                                <input className="form-control" type="number" {...register(num + "_calories", { required: false, value: meal.calories })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Protein</label>
-                                                <input className="form-control" type="number"  {...register(num + "_protein", { required: true, value: meal.protein })} />
+                                                <input className="form-control" type="number"  {...register(num + "_protein", { required: false, value: meal.protein })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-2 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Carbohydrates</label>
-                                                <input className="form-control" type="number"  {...register(num + "_carbohydrates", { required: true, value: meal.carbohydrates })} />
+                                                <input className="form-control" type="number"  {...register(num + "_carbohydrates", { required: false, value: meal.carbohydrates })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Fats</label>
-                                                <input className="form-control" type="number"  {...register(num + "_fats", { required: true, value: meal.fats })} />
+                                                <input className="form-control" type="number"  {...register(num + "_fats", { required: false, value: meal.fats })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-3 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Comment</label>
-                                                <input className="form-control" type="text"  {...register(num + "_comment", { required: true, value: meal.comment })} />
+                                                <input className="form-control" type="text"  {...register(num + "_comment", { required: false, value: meal.comment })} />
                                             </div>
                                         </div>
 
@@ -194,36 +202,43 @@ export default function NutritionForm(props) {
                             }
                             )}
                             <div className="row">
-                                <h5 className="mt-4">Daily Totals</h5>
-                                <div className="col-md-2">
+                                <div className="col-lg-2 col-xl-3 col-sm-2 mt-3">
+                                    <Button
+                                        onClick={() => {
+                                            array.push(Math.floor(Math.random() * 100))
+                                            setArray(array.filter(() => true))
+                                        }}
+                                        className="btn"
+                                        disabled={sending}
+                                        variant="contained"
+                                        type="button"
+                                    >Add Nutrition</Button>
+                                </div>
+                                <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Calories</label>
                                         <input className="form-control " disabled
-                                            type="text" />
+                                            type="number" value={total.calories} />
                                     </div>
                                 </div>
-                                <div className="col-md-2">
+                                <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Protein</label>
-                                        <input className="form-control" disabled type="text"
+                                        <input className="form-control" disabled type="number"
                                             value={total.protein} />
                                     </div>
-                                </div><div className="col-md-2">
+                                </div><div className="col-lg-2 col-xl-2 col-sm-22">
                                     <div className="form-group">
                                         <label className="text-muted">Carbohydrates</label>
-                                        <input className="form-control" disabled type="text"{...register("total_carbohydrates", { required: false })} />
+                                        <input className="form-control" disabled
+                                            type="number" value={total.carbohydrates} />
                                     </div>
                                 </div>
-                                <div className="col-md-2">
+                                <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Fats</label>
-                                        <input className="form-control" disabled type="text"{...register("fats", { required: false })} />
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="form-group">
-                                        <label className="text-muted">Daily Comments</label>
-                                        <input className="form-control" type="text"{...register("daily_comments", { required: false })} />
+                                        <input className="form-control" disabled
+                                            type="number" value={total.fats} />
                                     </div>
                                 </div>
                             </div>
@@ -248,19 +263,7 @@ export default function NutritionForm(props) {
                         </div>
                         {/* <div className="col-md-12"> */}
                         <div className="row">
-                            <div className="col-6 p-0  mt-2">
-                                <Button
-                                    onClick={() => {
-                                        array.push(Math.floor(Math.random() * 100))
-                                        setArray(array.filter(() => true))
-                                    }}
-                                    className="btn"
-                                    disabled={sending}
-                                    variant="contained"
-                                    type="button"
-                                >Add Nutrition</Button>
-                            </div>
-                            <div className="col-6 mt-2 p-0" style={{ textAlign: 'right' }}>
+                            <div className="col-12 mt-2 p-0" style={{ textAlign: 'right' }}>
                                 <Button
                                     disabled={sending}
                                     className="btn"
