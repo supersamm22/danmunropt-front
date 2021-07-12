@@ -1,4 +1,4 @@
-import { Button, Card, Container, IconButton } from '@material-ui/core';
+import { Button, Card, CircularProgress, Container, IconButton } from '@material-ui/core';
 import React, { useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
 import trash2Fill from '@iconify/icons-eva/trash-2-fill';
@@ -45,11 +45,15 @@ export default function HabitForm(props) {
         setSuccess(false)
         const habits = []
         array.forEach((num) => {
-            habits.push({
+            const newH = {
                 "name": e[num + "_name"], "points": e[num + "_points"], "monday": e[num + "_monday"], "tuesday": e[num + "_tuesday"],
                 "wednesday": e[num + "_wednesday"], "thursday": e[num + "_thursday"], "friday": e[num + "_friday"],
                 "saturday": e[num + "_saturday"], "sunday": e[num + "_sunday"]
-            })
+            }
+            const { name, points, monday, tuesday, wednesday, thursday, friday, saturday, sunday } = newH
+            if (name && (points || monday || tuesday || wednesday || thursday || friday || saturday || sunday)) {
+                habits.push(newH)
+            }
         })
         const loginData = isLoggedIn()
         const parms = {
@@ -68,9 +72,22 @@ export default function HabitForm(props) {
             }
         })
     }
+    if (loading) {
+        return "loading..."
+    }
     const total = {
         monday: 0, tuesday: 0, wednesday: 0, thursday: 0, friday: 0, saturday: 0, sunday: 0
     }
+    array.forEach((num, index) => {
+        const hb = (habit.habits || [])[index] || {}
+        total.monday = total.monday + (hb.monday || 0)
+        total.tuesday = total.tuesday + (hb.tuesday || 0)
+        total.wednesday = total.wednesday + (hb.wednesday || 0)
+        total.thursday = total.thursday + (hb.thursday || 0)
+        total.friday = total.friday + (hb.friday || 0)
+        total.saturday = total.saturday + (hb.saturday || 0)
+        total.sunday = total.sunday + (hb.sunday || 0)
+    })
     return (
         <Container className="mt-4">
             <Card>
@@ -80,16 +97,9 @@ export default function HabitForm(props) {
                         <div>
                             {array.map((num, index) => {
                                 const hb = (habit.habits || [])[index] || {}
-                                total.monday = total.monday + (hb.monday || 0)
-                                total.tuesday = total.tuesday + (hb.tuesday || 0)
-                                total.wednesday = total.wednesday + (hb.wednesday || 0)
-                                total.thursday = total.thursday + (hb.thursday || 0)
-                                total.friday = total.friday + (hb.friday || 0)
-                                total.saturday = total.saturday + (hb.saturday || 0)
-                                total.sunday = total.sunday + (hb.sunday || 0)
                                 return (
-                                    <div className="row" key={index}>
-                                        <div className="col lg-8 md-4">
+                                    <div className="row row-height" key={index}>
+                                        <div className="col-lg-3 md-4">
                                             <div className="form-group ">
                                                 <label className="text-muted">Habit</label>
                                                 <input className="form-control"
@@ -100,52 +110,52 @@ export default function HabitForm(props) {
                                             <div className="form-group ">
                                                 <label className="text-muted">Points</label>
                                                 <input className="form-control"
-                                                    type="text"{...register(num + "_points", { required: false, value: hb.points || 0 })} />
+                                                    type="text"{...register(num + "_points", { required: false, value: hb.points })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group ">
                                                 <label className="text-muted">Monday</label>
-                                                <input className="form-control" type="number" {...register(num + "_monday", { required: false, value: hb.monday || 0 })} />
+                                                <input className="form-control" type="number" {...register(num + "_monday", { required: false, value: hb.monday })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Tuesday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_tuesday", { required: false, value: hb.tuesday || 0 })} />
+                                                <input className="form-control" type="number"  {...register(num + "_tuesday", { required: false, value: hb.tuesday })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Wednesday</label>
-                                                <input className="form-control" type="number" {...register(num + "_wednesday", { required: false, value: hb.wednesday || 0 })} />
+                                                <input className="form-control" type="number" {...register(num + "_wednesday", { required: false, value: hb.wednesday })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Thursday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_thursday", { required: false, value: hb.thursday || 0 })} />
+                                                <input className="form-control" type="number"  {...register(num + "_thursday", { required: false, value: hb.thursday })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Friday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_friday", { required: false, value: hb.friday || 0 })} />
+                                                <input className="form-control" type="number"  {...register(num + "_friday", { required: false, value: hb.friday })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Saturday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_saturday", { required: false, value: hb.saturday || 0 })} />
+                                                <input className="form-control" type="number"  {...register(num + "_saturday", { required: false, value: hb.saturday })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Sunday</label>
-                                                <input className="form-control" type="number"  {...register(num + "_sunday", { required: false, value: hb.sunday || 0 })} />
+                                                <input className="form-control" type="number"  {...register(num + "_sunday", { required: false, value: hb.sunday })} />
                                             </div>
                                         </div>
-                                        <div className="col-lg-3 col-xl-1 col-sm-4 pb-4">
+                                        <div className="col-lg-3 col-xl-1 col-sm-4">
                                             <IconButton sx={{ mt: 2, color: 'text.primary' }}
                                                 onClick={() => {
                                                     const filterArray = array.filter((e) => e !== num)
@@ -160,57 +170,73 @@ export default function HabitForm(props) {
                                     </div>)
                             })}
                             <div className="row">
+                                <div className="col-lg-2 col-xl-3 col-sm-2">
+                                    <Button
+                                        onClick={() => {
+                                            array.push(Math.floor(Math.random() * 100))
+                                            setArray(array.filter(() => true))
+                                        }}
+                                        disabled={sending}
+                                        variant="contained"
+                                        type="button"
+                                        className="btn mt-2"
+                                    >Add Habit</Button>
+                                </div>
+                                <div className="col-lg-2 col-xl-1 col-sm-2">
+                                    {/* <div className="form-group ">
+                                        <label className="text-muted">Points</label>
+                                        <input className="form-control" type="number"
+                                            value={total.points} disabled
+                                            {...register("t_points", { required: false })} />
+                                    </div> */}
+                                </div>
                                 <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group ">
                                         <label className="text-muted">Monday</label>
                                         <input className="form-control" type="number"
-                                            value={total.monday} disabled
-                                            {...register("t_monday", { required: false })} />
+                                            value={total.monday} disabled />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group ">
                                         <label className="text-muted">Tuesday</label>
                                         <input className="form-control" type="number"
-                                            value={total.tuesday} disabled
-                                            {...register("t_tuesday", { required: false })} />
+                                            value={total.tuesday} disabled />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group ">
                                         <label className="text-muted">Wednesday</label>
                                         <input className="form-control" type="number"
-                                            value={total.wednesday} disabled
-                                            {...register("t_tuesday", { required: false })} />
+                                            value={total.wednesday} disabled />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group ">
                                         <label className="text-muted">Thursday</label>
                                         <input className="form-control" type="number"
-                                            value={total.thursday} disabled
-                                            {...register("t_thursday", { required: false })} />
-                                    </div><div className="col-lg-2 col-xl-1 col-sm-2">
-                                        <div className="form-group ">
-                                            <label className="text-muted">Friday</label>
-                                            <input className="form-control" type="number"
-                                                value={total.friday} disabled
-                                                {...register("t_friday", { required: false })} />
-                                        </div>
+                                            value={total.thursday} disabled />
                                     </div>
-                                </div><div className="col-lg-2 col-xl-1 col-sm-2">
+                                </div>
+                                <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group ">
-                                        <label className="text-muted">Tuesday</label>
+                                        <label className="text-muted">Friday</label>
                                         <input className="form-control" type="number"
-                                            value={total.tuesday} disabled
-                                            {...register("t_tuesday", { required: false })} />
+                                            value={total.friday} disabled />
                                     </div>
-                                </div><div className="col-lg-2 col-xl-1 col-sm-2">
+                                </div>
+                                <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group ">
-                                        <label className="text-muted">Tuesday</label>
+                                        <label className="text-muted">Saturday</label>
                                         <input className="form-control" type="number"
-                                            value={total.tuesday} disabled
-                                            {...register("t_tuesday", { required: false })} />
+                                            value={total.saturday} disabled />
+                                    </div>
+                                </div>
+                                <div className="col-lg-2 col-xl-1 col-sm-2">
+                                    <div className="form-group ">
+                                        <label className="text-muted">Sunday</label>
+                                        <input className="form-control" type="number"
+                                            value={total.sunday} disabled />
                                     </div>
                                 </div>
                             </div>
@@ -226,29 +252,13 @@ export default function HabitForm(props) {
                                 </div>
                             }
                         </div>
-                        <div className="col-md-12">
-                            <div className="row">
-                                <div className="col-6">
-                                    <Button
-                                        onClick={() => {
-                                            array.push(Math.floor(Math.random() * 100))
-                                            setArray(array.filter(() => true))
-                                        }}
-                                        disabled={sending}
-                                        variant="contained"
-                                        type="button"
-                                        className="btn mt-2"
-                                    >Add</Button>
-                                </div>
-                                <div className="col-6" style={{ textAlign: 'end' }}>
-                                    <Button
-                                        className="btn mt-2"
-                                        variant="link"
-                                        type="submit"
-                                        disabled={sending}
-                                    >Save</Button>
-                                </div>
-                            </div>
+                        <div className="col-md-12 m-3" style={{ textAlign: 'end' }}>
+                            <Button
+                                className="btn mt-2"
+                                variant="link"
+                                type="submit"
+                                disabled={sending}
+                            >Save</Button>
                         </div>
 
                     </form >

@@ -80,7 +80,7 @@ function MessocycleForm(props) {
             <div className="modal_">
                 <div className="row">
                     <div className="col-lg-12 col-md-12">
-                        <h4>Add</h4>
+                        <h4>Add Mesocycle</h4>
                         <form onSubmit={handleSubmit(submit)}>
                             <div>
                                 <div className="row">
@@ -136,13 +136,13 @@ function MessocycleForm(props) {
                                                 <input className="form-control" type="text"  {...register(num + "_tempo", { required: true })} />
                                             </div>
                                         </div>
-                                        <div className="col-lg-3 col-xl-3 col-sm-4 pb-4">
+                                        <div className="col-lg-3 col-xl-3 col-sm-4">
                                             <div className="form-group">
                                                 <label className="text-muted">Notes</label>
                                                 <input className="form-control" type="text"{...register(num + "_notes", { required: true })} />
                                             </div>
                                         </div>
-                                        <div className="col-lg-3 col-xl-1 col-sm-4 pb-4">
+                                        <div className="col-lg-3 col-xl-1 col-sm-4">
                                             <IconButton sx={{ mt: 2, color: 'text.primary' }}
                                                 onClick={() => {
                                                     const filterArray = array.filter((e) => e !== num)
@@ -180,7 +180,7 @@ function MessocycleForm(props) {
                                             variant="contained"
                                             disabled={sending}
                                             type="button"
-                                        >Add</Button>
+                                        >Add Mesocycle</Button>
                                     </div>
                                     <div className="col-md-6 col-lg-3">
                                         <Button

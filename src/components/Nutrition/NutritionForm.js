@@ -82,6 +82,7 @@ export default function NutritionForm(props) {
         <Container className="mt-4">
             <Card>
                 <Container>
+                    <h4 className="mt-2">Nutrition</h4>
                     <form onSubmit={handleSubmit(submit)} >
                         <div>
                             <div className="row">
@@ -120,7 +121,7 @@ export default function NutritionForm(props) {
                                         <input className="form-control" type="text"  {...register("alcohol_cal", { required: true, value: nutrition.alcohol_cal })} />
                                     </div>
                                 </div>
-                                <div className="col-md-3 pb-4">
+                                <div className="col-md-3">
                                     <div className="form-group">
                                         <label className="text-muted">Daily Comments</label>
                                         <input className="form-control" type="text"{...register("comment", { required: true, value: nutrition.comment })} />
@@ -177,7 +178,7 @@ export default function NutritionForm(props) {
                                             </div>
                                         </div>
 
-                                        <div className="col-lg-3 col-xl-1 col-sm-4 pb-4">
+                                        <div className="col-lg-3 col-xl-1 col-sm-4">
                                             <IconButton sx={{ mt: 2, color: 'text.primary' }}
                                                 onClick={() => {
                                                     const filterArray = array.filter((e) => e !== num)
@@ -219,7 +220,7 @@ export default function NutritionForm(props) {
                                         <input className="form-control" disabled type="text"{...register("fats", { required: false })} />
                                     </div>
                                 </div>
-                                <div className="col-md-4 pb-4">
+                                <div className="col-md-4">
                                     <div className="form-group">
                                         <label className="text-muted">Daily Comments</label>
                                         <input className="form-control" type="text"{...register("daily_comments", { required: false })} />
@@ -245,31 +246,31 @@ export default function NutritionForm(props) {
                                 </div>
                             }
                         </div>
-                        <div className="col-md-12">
-                            <div className="row">
-                                <div className="col-6">
-                                    <Button
-                                        onClick={() => {
-                                            array.push(Math.floor(Math.random() * 100))
-                                            setArray(array.filter(() => true))
-                                        }}
-                                        className="btn"
-                                        disabled={sending}
-                                        variant="contained"
-                                        type="button"
-                                    >Add</Button>
-                                </div>
-                                <div className="col-6" style={{ textAlign: 'right' }}>
-                                    <Button
-                                        disabled={sending}
-                                        className="btn"
-                                        variant="contained"
-                                        type="submit"
-                                    >Save</Button>
-                                </div>
-
+                        {/* <div className="col-md-12"> */}
+                        <div className="row">
+                            <div className="col-6 p-0  mt-2">
+                                <Button
+                                    onClick={() => {
+                                        array.push(Math.floor(Math.random() * 100))
+                                        setArray(array.filter(() => true))
+                                    }}
+                                    className="btn"
+                                    disabled={sending}
+                                    variant="contained"
+                                    type="button"
+                                >Add Nutrition</Button>
                             </div>
+                            <div className="col-6 mt-2 p-0" style={{ textAlign: 'right' }}>
+                                <Button
+                                    disabled={sending}
+                                    className="btn"
+                                    variant="contained"
+                                    type="submit"
+                                >Save</Button>
+                            </div>
+
                         </div>
+                        {/* </div> */}
 
                     </form >
                 </Container>

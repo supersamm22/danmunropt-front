@@ -149,9 +149,9 @@ export default function UserPage(props) {
                                     {currentUser.name} has no report
                                 </div>
                                 :
-                                <>
+                                <Container>
                                     <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />
-                                </>
+                                </Container>
                             }
                         </>}
                     {nutrition &&

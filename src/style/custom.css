@@ -254,11 +254,18 @@ a:hover{
 .empty{
     border: none !important;
 }
+
+.row-height{
+ height: 60px !important
+}
 @media only screen and (min-device-width : 320px) and (max-device-width : 768px) {
 .modal_{
     width: 80% !important;
  }
 .pl-20{
     padding-left: 4px !important;
-} 
+ }
+.row-height{
+    height: auto !important;
+}  
 }
