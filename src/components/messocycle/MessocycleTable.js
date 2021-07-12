@@ -53,7 +53,7 @@ export default function MessocycleTable({ id, isUser }) {
                 }
                 setLoading(false)
             } else {
-                setError("Unable to get messocycle data")
+                setError("Unable to get mesocycle data")
                 setLoading(false)
             }
         })
@@ -63,8 +63,9 @@ export default function MessocycleTable({ id, isUser }) {
     }
     return (
         <>
-            {edit && <MessocycleForm messocycle={messocycles[0]} open={edit} onClose={() => { setEdit(false) }} onSave={getmc} />}
-            {open && <MessocycleForm open={open} onClose={() => { setOpen(false) }} onSave={getmc} />}
+            {edit && <MessocycleForm messocycle={messocycles[0]} open={edit}
+                onClose={() => { setEdit(false) }} onSave={getmc} />}
+            {open && <MessocycleForm open={open} onClose={() => { setOpen(false) }} id={id} onSave={getmc} />}
             {show && <DeleteMessocycle show={show} onClose={() => { setShow(false) }} />}
             <Container>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>

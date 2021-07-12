@@ -95,6 +95,7 @@ export default function UserPage(props) {
     if (!users || users.length === 0) {
         return ("loading")
     }
+    console.log("adminpage", id)
     return (
         <div>
             <div>
@@ -160,7 +161,7 @@ export default function UserPage(props) {
                         </>}
                     {messocycle &&
                         <>
-                            <MessocycleForm id={id} />
+                            {/* <MessocycleForm id={id} /> */}
                             <MessocycleTable id={id} />
                         </>}
                     {habit &&

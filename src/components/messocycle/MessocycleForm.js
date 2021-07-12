@@ -54,7 +54,7 @@ function MessocycleForm(props) {
         const parms = {
             warm_up: e.warm_up,
             cool_down: e.cool_down,
-            userId: props.id || loginData.user.id,
+            userId: props.id,
             exercises: exercises,
         }
         addMesscycle(loginData.token, parms).then(data => {
@@ -64,6 +64,7 @@ function MessocycleForm(props) {
             }, 1500);
         })
     }
+    console.log("id", props.id)
 
     return (
         <Modal
