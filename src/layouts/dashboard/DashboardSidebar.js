@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 // material
 import { experimentalStyled as styled } from '@material-ui/core/styles';
-import { Box, Link, Button, Drawer, Typography, Avatar, Stack } from '@material-ui/core';
+import { Box, Drawer } from '@material-ui/core';
 // components
 import Logo from '../../components/Logo';
 import Scrollbar from '../../components/Scrollbar';
@@ -11,8 +11,6 @@ import NavSection from '../../components/NavSection';
 import { MHidden } from '../../components/@material-extend';
 //
 import userSidebarConfig from './SidebarConfig';
-import account from '../../_mocks_/account';
-import { useFormState } from 'react-hook-form';
 import { isLoggedIn } from 'src/helpers/loginHelp';
 import { getUsers } from 'src/apiCalls/adminCalls';
 

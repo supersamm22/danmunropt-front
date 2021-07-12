@@ -7,7 +7,6 @@ import { Grid, Button, Container, Stack, Typography } from '@material-ui/core';
 import Page from '../components/Page';
 import { BlogPostCard, BlogPostsSort, BlogPostsSearch } from '../components/_dashboard/blog';
 //
-import POSTS from '../_mocks_/blog';
 
 // ----------------------------------------------------------------------
 
