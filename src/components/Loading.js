@@ -8,16 +8,17 @@ import { motion } from 'framer-motion';
 export default function Loading() {
     return (
         <Container>
-            <MotionContainer initial="initial" open>
-                <Box sx={{ maxWidth: 480, margin: 'auto', textAlign: 'center' }}>
+            <MotionContainer initial="initial" open style={{
+                display: 'flex', marginTop: 20,
+                justifyContent: "center", alignItems: 'center'
+            }}>
+                <Box sx={{
+                    maxWidth: 480, margin: 'auto', textAlign: "center"
+                }}>
                     <motion.div variants={varBounceIn}>
-                        <Typography variant="h3" paragraph>
+                        <Typography variant="h3" paragraph style={{ color: "#102770" }}>
                             Loading
                         </Typography>
-                    </motion.div>
-
-
-                    <motion.div variants={varBounceIn}>
                         <Box
                             component="img"
                             src="/static/preloader.svg"

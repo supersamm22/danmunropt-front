@@ -26,6 +26,7 @@ import { getMessocycle } from 'src/apiCalls/reportCalls';
 import { isLoggedIn } from 'src/helpers/loginHelp';
 import DeleteMessocycle from './DeleteMessocycle';
 import Loading from '../Loading';
+import NoData from '../NoData';
 
 export default function MessocycleTable({ id, isUser }) {
     const [open, setOpen] = useState(false)
@@ -84,71 +85,74 @@ export default function MessocycleTable({ id, isUser }) {
                             Add
                         </Button>}
                 </Stack>
-                {messocycles.map((messocycle, index) =>
-                    <Card style={{ marginBottom: 16 }} key={index}>
-                        <Scrollbar>
-                            <Typography variant="h6" id="tableTitle" component="div">
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <h4 className="mt-2">Mesocycle</h4>
+                {(messocycles && Array.isArray(messocycles) && messocycles.length > 0) ?
+                    messocycles.map((messocycle, index) =>
+                        <Card style={{ marginBottom: 16 }} key={index}>
+                            <Scrollbar>
+                                <Typography variant="h6" id="tableTitle" component="div">
+                                    <div className="row">
+                                        <div className="col-md-6">
+                                            <h4 className="mt-2">Mesocycle</h4>
+                                        </div>
+                                        <div className="col-md-6" style={{ textAlign: "end" }}>
+                                            <Tooltip title={isUser ? "Edit" : "Delete"} >
+                                                <IconButton aria-label="delete"
+                                                    onClick={() => {
+                                                        if (isUser) {
+                                                            setEdit(true)
+                                                        } else {
+                                                            setShow(true)
+                                                        }
+                                                    }}
+                                                    className="btn btn-icon"
+                                                >
+                                                    <Icon icon={isUser ? edit2Fill : trash2Fill} />
+                                                </IconButton>
+                                            </Tooltip>
+                                        </div>
                                     </div>
-                                    <div className="col-md-6" style={{ textAlign: "end" }}>
-                                        <Tooltip title={isUser ? "Edit" : "Delete"} >
-                                            <IconButton aria-label="delete"
-                                                onClick={() => {
-                                                    if (isUser) {
-                                                        setEdit(true)
-                                                    } else {
-                                                        setShow(true)
-                                                    }
-                                                }}
-                                                className="btn btn-icon"
-                                            >
-                                                <Icon icon={isUser ? edit2Fill : trash2Fill} />
-                                            </IconButton>
-                                        </Tooltip>
-                                    </div>
-                                </div>
-                            </Typography>
+                                </Typography>
 
-                            <Table key={index}>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
-                                        <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    <TableRow>
-                                        <TableCell className="totals">Exercise</TableCell>
-                                        <TableCell className="totals">Sets</TableCell>
-                                        <TableCell className="totals">Reps</TableCell>
-                                        <TableCell className="totals">Load</TableCell>
-                                        <TableCell className="totals">Rest</TableCell>
-                                        <TableCell className="totals">Tempo</TableCell>
-                                        <TableCell className="totals">Notes</TableCell>
-                                    </TableRow>
-                                    {messocycle.exercises.map((e, index) => {
-                                        return <TableRow
-                                            tabIndex={-1}
-                                            role="checkbox"
-                                            key={index}
-                                        >
-                                            <TableCell align="left">{e.exercise}</TableCell>
-                                            <TableCell align="left">{e.sets}</TableCell>
-                                            <TableCell align="left" >{e.reps}</TableCell>
-                                            <TableCell align="left">{e.load}</TableCell>
-                                            <TableCell align="left">{e.rest}</TableCell>
-                                            <TableCell align="left">{e.tempo}</TableCell>
-                                            <TableCell align="left">{e.notes}</TableCell>
+                                <Table key={index}>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell className="totals">Warm Up:{" "}{messocycle.warm_up}</TableCell>
+                                            <TableCell className="totals">Cool Down:{" "}{messocycle.cool_down}</TableCell>
                                         </TableRow>
-                                    }
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </Scrollbar>
-                    </Card>
-                )}
+                                    </TableHead>
+                                    <TableBody>
+                                        <TableRow>
+                                            <TableCell className="totals">Exercise</TableCell>
+                                            <TableCell className="totals">Sets</TableCell>
+                                            <TableCell className="totals">Reps</TableCell>
+                                            <TableCell className="totals">Load</TableCell>
+                                            <TableCell className="totals">Rest</TableCell>
+                                            <TableCell className="totals">Tempo</TableCell>
+                                            <TableCell className="totals">Notes</TableCell>
+                                        </TableRow>
+                                        {messocycle.exercises.map((e, index) => {
+                                            return <TableRow
+                                                tabIndex={-1}
+                                                role="checkbox"
+                                                key={index}
+                                            >
+                                                <TableCell align="left">{e.exercise}</TableCell>
+                                                <TableCell align="left">{e.sets}</TableCell>
+                                                <TableCell align="left" >{e.reps}</TableCell>
+                                                <TableCell align="left">{e.load}</TableCell>
+                                                <TableCell align="left">{e.rest}</TableCell>
+                                                <TableCell align="left">{e.tempo}</TableCell>
+                                                <TableCell align="left">{e.notes}</TableCell>
+                                            </TableRow>
+                                        }
+                                        )}
+                                    </TableBody>
+                                </Table>
+                            </Scrollbar>
+                        </Card>
+                    ) :
+                    <NoData />
+                }
             </Container>
         </>
     );

@@ -15,7 +15,7 @@ export default function NoData() {
                     maxWidth: 480, margin: 'auto', textAlign: "center"
                 }}>
                     <motion.div variants={varBounceIn}>
-                        <Typography variant="h3" paragraph>
+                        <Typography variant="h3" paragraph style={{ color: "#102770" }}>
                             No Data
                         </Typography>
                         <Box
