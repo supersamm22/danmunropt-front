@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from '@material-ui/core/Modal';
 import { makeStyles } from '@material-ui/styles';
 import { Button, IconButton } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import trash2Fill from '@iconify/icons-eva/trash-2-fill';
 import { isLoggedIn } from 'src/helpers/loginHelp';
-import { addMesscycle } from 'src/apiCalls/reportCalls';
+import { addMesscycle, editMesscycle } from 'src/apiCalls/reportCalls';
 import Icon from '@iconify/react';
 
 const useStyles = makeStyles((theme) => ({
@@ -32,37 +32,69 @@ function MessocycleForm(props) {
     const classes = useStyles();
     const rootRef = React.useRef(null);
     const { register, handleSubmit } = useForm();
-    const [loading, setLoading] = useState(false);
     const [success, setSuccess] = useState(false);
     const [sending, setSending] = useState(false);
     const [error, setError] = useState("");
-    const [array, setArray] = useState([0, 1]);
+    const [array, setArray] = useState([]);
+    const { messocycle = {} } = props
 
-
+    useEffect(() => {
+        const a = [];
+        (messocycle.exercises || []).forEach((e, index) => {
+            a.push(index)
+        })
+        a.push(a.length)
+        setArray(a)
+    }, [props])
     const submit = (e) => {
         setSending(true)
         setError("")
         setSuccess(false)
         const exercises = []
         array.forEach((num) => {
-            exercises.push({
+            const new_ = {
                 "exercise": e[num + "_exercise"], "sets": e[num + "_sets"], "reps": e[num + "_reps"],
                 "load": e[num + "_load"], "rest": e[num + "_rest"], "tempo": e[num + "_tempo"], "notes": e[num + "_notes"]
-            })
+            }
+            if (new_.exercise) {
+                exercises.push(new_)
+            }
         })
         const loginData = isLoggedIn()
-        const parms = {
-            warm_up: e.warm_up,
-            cool_down: e.cool_down,
-            userId: props.id,
-            exercises: exercises,
+        if (messocycle._id) {
+            messocycle.warm_up = e.warm_up
+            messocycle.cool_down = e.cool_down
+            messocycle.exercises = exercises
+
+            editMesscycle(loginData.token, messocycle).then(data => {
+                if (data) {
+                    setSuccess(true)
+                    props.onSave()
+                    props.onClose()
+                } else {
+                    setSending(false)
+                    setError("Something went wrong")
+                }
+            })
+
+        } else {
+            const parms = {
+                warm_up: e.warm_up,
+                cool_down: e.cool_down,
+                userId: props.id,
+                exercises: exercises,
+            }
+            addMesscycle(loginData.token, parms).then(data => {
+                if (data) {
+                    setSuccess(true)
+                    props.onSave()
+                    props.onClose()
+                } else {
+                    setSending(false)
+                    setError("Something went wrong")
+                }
+            })
         }
-        addMesscycle(loginData.token, parms).then(data => {
-            props.onSave()
-            setTimeout(() => {
-                props.onClose()
-            }, 1500);
-        })
     }
 
     return (
@@ -80,66 +112,76 @@ function MessocycleForm(props) {
             <div className="modal_">
                 <div className="row">
                     <div className="col-lg-12 col-md-12">
-                        <h4>Add Mesocycle</h4>
+                        <h4>{messocycle._id ? "Edit" : "Add"} Mesocycle</h4>
                         <form onSubmit={handleSubmit(submit)}>
                             <div>
                                 <div className="row">
                                     <div className="col-lg-2 col-xl-2 col-sm-2">
                                         <div className="form-group ">
                                             <label className="text-muted">Warm Up</label>
-                                            <input className="form-control" type="text"{...register("warm_up", { required: false })} />
+                                            <input className="form-control" type="text"{...register("warm_up",
+                                                { required: false, value: messocycle.warm_up })} />
                                         </div>
                                     </div>
                                     <div className="col-lg-2 col-xl-2 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Cool Down</label>
-                                            <input className="form-control" type="text"  {...register("cool_down", { required: false })} />
+                                            <input className="form-control" type="text"  {...register("cool_down",
+                                                { required: false, value: messocycle.cool_down })} />
                                         </div>
                                     </div>
 
                                 </div>
-                                {array.map((num, index) =>
-                                    <div className="row" key={index}>
+                                {array.map((num, index) => {
+                                    const exercise = ((messocycle.exercises || [])[index] || {})
+                                    return <div className="row" key={index}>
                                         <div className="col-lg-3 col-xl-3 col-sm-4">
                                             <div className="form-group ">
                                                 <label className="text-muted">Exercise</label>
-                                                <input className="form-control" type="text" {...register(num + "_exercise", { required: false })} />
+                                                <input className="form-control" type="text" {...register(num + "_exercise",
+                                                    { required: false, value: exercise.exercise })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Sets</label>
-                                                <input className="form-control" type="text"  {...register(num + "_sets", { required: false })} />
+                                                <input className="form-control" type="text"  {...register(num + "_sets",
+                                                    { required: false, value: exercise.sets })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Reps</label>
-                                                <input className="form-control" type="number" {...register(num + "_reps", { required: false })} />
+                                                <input className="form-control" type="number" {...register(num + "_reps",
+                                                    { required: false, value: exercise.reps })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Load</label>
-                                                <input className="form-control" type="number"  {...register(num + "_load", { required: false })} />
+                                                <input className="form-control" type="number"  {...register(num + "_load",
+                                                    { required: false, value: exercise.load })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Rest</label>
-                                                <input className="form-control" type="number"  {...register(num + "_rest", { required: false })} />
+                                                <input className="form-control" type="number"  {...register(num + "_rest",
+                                                    { required: false, value: exercise.rest })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-1 col-sm-2">
                                             <div className="form-group">
                                                 <label className="text-muted">Tempo</label>
-                                                <input className="form-control" type="text"  {...register(num + "_tempo", { required: false })} />
+                                                <input className="form-control" type="text"  {...register(num + "_tempo",
+                                                    { required: false, value: exercise.tempo })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-3 col-xl-3 col-sm-4">
                                             <div className="form-group">
                                                 <label className="text-muted">Notes</label>
-                                                <input className="form-control" type="text"{...register(num + "_notes", { required: false })} />
+                                                <input className="form-control" type="text"{...register(num + "_notes",
+                                                    { required: false, value: exercise.notes })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-3 col-xl-1 col-sm-4">
@@ -154,18 +196,17 @@ function MessocycleForm(props) {
                                             </IconButton>
                                         </div>
                                     </div>
-                                )}
+                                })}
                             </div>
 
-                            {/* end of main row */}
-                            {loading &&
-                                <div className="alert alert-primary self-align-center m-3 " role="alert">
-                                    Uploading Report....
-                                </div>
-                            }
                             {error &&
                                 <div className="alert alert-danger self-align-center m-3" role="alert">
                                     {error}
+                                </div>
+                            }
+                            {success &&
+                                <div className="alert alert-danger self-align-center m-3" role="alert">
+                                    {"Mesocycle added"}
                                 </div>
                             }
                             <div className="col-md-12">

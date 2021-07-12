@@ -57,6 +57,19 @@ export const addMesscycle = (token, data) => {
         .then(response => { return response.json() })
         .catch(err => { console.log(err) })
 }
+export const editMesscycle = (token, data) => {
+    return fetch(`${BASE_URL}messocycles`, {
+        method: 'PUT',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => { return response.json() })
+        .catch(err => { console.log(err) })
+}
 
 //Nutrition
 
@@ -122,9 +135,7 @@ export const addHabit = (token, data) => {
 }
 
 //Submit Comment
-
 export const submitComment = (token, data, reportId, userId) => {
-
     return fetch(`${BASE_URL}addComment?` + new URLSearchParams({ reportId, userId }), {
         method: 'POST',
         headers: {
@@ -133,6 +144,19 @@ export const submitComment = (token, data, reportId, userId) => {
             Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(data)
+    })
+        .then(response => { return response.json() })
+        .catch(err => { console.log(err) })
+}
+export const deleteMeso = (token, _id) => {
+    return fetch(`${BASE_URL}messocycles`, {
+        method: 'DELETE',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify({ _id })
     })
         .then(response => { return response.json() })
         .catch(err => { console.log(err) })

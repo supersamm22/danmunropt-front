@@ -33,9 +33,8 @@ export default function MessocycleTable({ id, isUser }) {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [messocycles, setMessocycle] = useState([]);
-    const [show, setShow] = useState(false);
+    const [deleteId, setDelete] = useState(null);
     const [edit, setEdit] = useState(false);
-    console.log(show)
     useEffect(() => {
         getmc()
     }, [id])
@@ -68,7 +67,8 @@ export default function MessocycleTable({ id, isUser }) {
             {edit && <MessocycleForm messocycle={messocycles[0]} open={edit}
                 onClose={() => { setEdit(false) }} onSave={getmc} />}
             {open && <MessocycleForm open={open} onClose={() => { setOpen(false) }} id={id} onSave={getmc} />}
-            {show && <DeleteMessocycle show={show} onClose={() => { setShow(false) }} />}
+            {deleteId && <DeleteMessocycle show={deleteId} id={deleteId}
+                onClose={() => { setDelete(null) }} onSave={getmc} />}
             <Container>
                 <Stack direction="row" alignItems="center" justifyContent="space-between" mb={2}>
                     <Typography variant="h4" gutterBottom>
@@ -101,7 +101,7 @@ export default function MessocycleTable({ id, isUser }) {
                                                         if (isUser) {
                                                             setEdit(true)
                                                         } else {
-                                                            setShow(true)
+                                                            setDelete(messocycle._id)
                                                         }
                                                     }}
                                                     className="btn btn-icon"
