@@ -130,7 +130,7 @@ export default function UserPage(props) {
                                     setMessocycle(true)
                                     setHabit(false)
                                 }}>
-                                    Messocycle Tracker</Button>
+                                    Mesocycle Tracker</Button>
                                 <Button className={habit ? "btn-group-active" : "btn-group-outline"} onClick={() => {
                                     setBioFeedback(false)
                                     setNutrition(false)

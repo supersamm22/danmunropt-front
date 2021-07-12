@@ -145,7 +145,7 @@ export default function ReportTable({ report, userId }) {
                                     </TableBody>
                                 </Table>
                                 <div className="row">
-                                    <div className="col-md-12">
+                                    <div className="col-md-12 pl-20">
                                         <Typography className="totals table-heading" variant="h6" id="tableTitle" component="div">
                                             Admin Comments
                                         </Typography>
@@ -181,7 +181,7 @@ export default function ReportTable({ report, userId }) {
                                                     {(report.comments && Array.isArray(report.comments) && report.comments.length > 0) ? report.comments.map((comment, index) => (
                                                         <div key={index} className="card mt-1">
                                                             <div className="mar-btm">
-                                                                <Typography className="totals table-heading" variant="h6" id="tableTitle" component="div" style={{ borderBottom: "2px solid #f1f3f4", backgroundColor: "#f1f3f4" }}>
+                                                                <Typography className="totals table-heading" variant="h6" id="tableTitle" component="div" style={{ borderBottom: "2px solid #f1f3f4", backgroundColor: "#f1f3f4", paddingLeft: 4 }}>
                                                                     {comment.postedBy}
                                                                 </Typography>
                                                             </div>
@@ -190,7 +190,10 @@ export default function ReportTable({ report, userId }) {
                                                             </Typography>
                                                         </div>
                                                     )) :
-                                                        "No Comments"
+                                                        <Typography variant="subtitle2" id="tableTitle" component="h3" px={2} style={{ fontWeight: 200 }}>
+                                                            No Comments
+                                                        </Typography>
+                                                        // <div>"No Comments"
                                                     }
                                                 </div>
                                             </div>

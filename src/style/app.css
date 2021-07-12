@@ -37,3 +37,14 @@
     transform: rotate(360deg);
   }
 }
+
+label{
+  font-size: 12px;
+}
+input{
+  font-size: 12px !important;
+}
+
+select{
+  font-size: 12px !important;
+}

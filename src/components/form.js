@@ -53,36 +53,43 @@ const FeedbackForm = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div className="row">
                             <div className="col-md-6">
-                                <h4 className="mt-2">Measurement</h4>
-                                <div className="form-group ">
-                                    <label className="text-muted">Morning Weight</label>
-                                    <input className="form-control" type="number" {...register("morning_weight", { required: true })} />
-                                </div>
-                                <div className="form-group">
-                                    <label className="text-muted">Waist Circumference</label>
-                                    <input className="form-control" type="number"  {...register("waist_circumference", { required: true })} />
-                                </div>
-                                <div className="form-group">
-                                    <label className="text-muted">Resting Heart Rate (RHR)</label>
-                                    <input className="form-control" type="number" {...register("resting_heart_rate", { required: true })} />
-                                </div>
                                 <div className="row">
-                                    <div className="col-md-6">
-
+                                    <div className="col-md-12">
+                                        <h4 className="mt-2">Measurement</h4>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group ">
+                                            <label className="text-muted">Morning Weight</label>
+                                            <input className="form-control" type="number" {...register("morning_weight", { required: true })} />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label className="text-muted">Waist Circumference</label>
+                                            <input className="form-control" type="number"  {...register("waist_circumference", { required: true })} />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
+                                        <div className="form-group">
+                                            <label className="text-muted">Resting Heart Rate (RHR)</label>
+                                            <input className="form-control" type="number" {...register("resting_heart_rate", { required: true })} />
+                                        </div>
+                                    </div>
+                                    <div className="col-md-4">
                                         <div className="form-group">
                                             <label className="text-muted">BP: Systolic</label>
                                             <input className="form-control" type="number"  {...register("bp_systolic", { required: true })} />
                                         </div>
                                     </div>
-                                    <div className="col-md-6">
+                                    <div className="col-md-4">
                                         <div className="form-group">
                                             <label className="text-muted">BP: Dystolic</label>
                                             <input className="form-control" type="number"  {...register("bp_dystolic", { required: true })} />
                                         </div>
                                     </div>
-                                </div>
-                                <div className="row">
-                                    <h4 className="mt-2">Nutrition</h4>
+                                    <div className="col-md-12">
+                                        <h4 className="mt-2 mb-0">Nutrition</h4>
+                                    </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="text-muted">Medication</label>
@@ -123,9 +130,9 @@ const FeedbackForm = () => {
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <div className="row">
-                                    <h4 className="mt-2">Exercise</h4>
+                                    <div className="col-md-12">
+                                        <h4 className="mt-2">Exercise</h4>
+                                    </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="text-muted">Exercise Complience</label>
@@ -133,7 +140,6 @@ const FeedbackForm = () => {
                                                 <option value="">Select...</option>
                                                 <option value="Good">Good</option>
                                                 <option value="Poor">Poor</option>
-
                                             </select>
                                         </div>
                                     </div>
@@ -167,10 +173,14 @@ const FeedbackForm = () => {
                             </div>
                             {/* end of left side and start of right side */}
                             <div className="col-md-6 pl-20">
-                                <h4 className="mt-2">Lifestyle</h4>
                                 <div className="row">
-                                    <h5 className="mt-4">Sleep</h5>
-                                    <div className="col-md-6 pl-16">
+                                    <div className="col-md-12">
+                                        <h4 className="mt-2">Lifestyle</h4>
+                                    </div>
+                                    <div className="col-md-12">
+                                        <h5 className="mt-4 mb-0">Sleep</h5>
+                                    </div>
+                                    <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="text-muted">Duration</label>
                                             <input className="form-control" type="text" {...register("sleep_duration", { required: true })} />
@@ -187,10 +197,10 @@ const FeedbackForm = () => {
                                             </select>
                                         </div>
                                     </div>
-                                </div>
-                                <h5 className="mt-4">Energy</h5>
-                                <div className="row">
-                                    <div className="col-md-4 pl-16">
+                                    <div className="col-md-12">
+                                        <h5 className="mt-4 mb-0">Energy</h5>
+                                    </div>
+                                    <div className="col-md-4">
                                         <div className="form-group">
                                             <div className="form-group">
                                                 <label className="text-muted">Morning</label>
@@ -229,9 +239,9 @@ const FeedbackForm = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <h5 className="mt-4">Libido</h5>
-                                <div className="row">
+                                    <div className="col-md-12">
+                                        <h5 className="mt-4 mb-0">Libido</h5>
+                                    </div>
                                     <div className="col-md-6">
                                         <div className="form-group">
                                             <div className="form-group">
@@ -258,9 +268,9 @@ const FeedbackForm = () => {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <h5 className="mt-4">Stress</h5>
-                                <div className="row">
+                                    <div className="col-md-12">
+                                        <h5 className="mt-4 mb-0">Stress</h5>
+                                    </div>
                                     <div className="col-md-4">
                                         <div className="form-group">
                                             <div className="form-group">
@@ -300,27 +310,27 @@ const FeedbackForm = () => {
                                             </div>
                                         </div>
                                     </div>
+                                    <div className="col-md-12  text-end">
+                                        <button className="btn btn-raised btn-primary mt-2" type="submit" disabled={sending}>Add Bio Feedback</button>
+                                    </div>
                                 </div>
-                                <div className="col-md-12 m-2 text-center">
-                                    <button className="btn btn-raised btn-primary m-2" type="submit" disabled={sending}>Add Bio Feedback</button>
-                                </div>
+                                {/* end of main row */}
+                                {loading &&
+                                    <div className="alert alert-primary text-center m-3 " role="alert">
+                                        Adding Bio Feedback....
+                                    </div>
+                                }
+                                {error &&
+                                    <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#dc004e" }}>
+                                        {error}
+                                    </div>
+                                }
+                                {success &&
+                                    <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#102770" }}>
+                                        Add Bio Feedback Succesfully
+                                    </div>
+                                }
                             </div>
-                            {/* end of main row */}
-                            {loading &&
-                                <div className="alert alert-primary text-center m-3 " role="alert">
-                                    Adding Bio Feedback....
-                                </div>
-                            }
-                            {error &&
-                                <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#dc004e" }}>
-                                    {error}
-                                </div>
-                            }
-                            {success &&
-                                <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#102770" }}>
-                                    Add Bio Feedback Succesfully
-                                </div>
-                            }
                         </div>
                     </form>
                 </Container>
