@@ -13,6 +13,7 @@ import { MotionContainer, varBounceIn } from '../components/animate';
 import { getUsers } from "src/apiCalls/adminCalls";
 import Loading from "src/components/Loading";
 import NoData from "src/components/NoData";
+import Page from 'src/components/Page';
 
 export default function UserPage(props) {
 
@@ -97,69 +98,65 @@ export default function UserPage(props) {
     }
     console.log("adminpage", id)
     return (
-        <div>
-            <div>
-                {/* <div className="col-sm-12 no-float mt-5"> */}
-                <div className="container col-lg-12 col-md-12 ">
-                    <div className="text-center">
-                        <Scrollbar >
-                            <ButtonGroup color="primary" aria-label="outlined primary button group">
-                                <Button
-                                    className="btn"
-                                    onClick={() => { }} disabled
-                                    style={{ color: "#102770" }}>
-                                    {currentUser.name}</Button>
-                                <Button
-                                    onClick={() => {
-                                        setBioFeedback(true)
-                                        setNutrition(false)
-                                        setMessocycle(false)
-                                        setHabit(false)
-                                    }}
-                                    className={bioFeedback ? "btn-group-active" : "btn-group-outline"}>
-                                    Bio Feedback</Button>
-                                <Button className={nutrition ? "btn-group-active" : "btn-group-outline"} onClick={() => {
-                                    setBioFeedback(false)
-                                    setNutrition(true)
-                                    setMessocycle(false)
-                                    setHabit(false)
-                                }}>
-                                    Nutrition</Button>
-                                <Button className={messocycle ? "btn-group-active" : "btn-group-outline"} onClick={() => {
-                                    setBioFeedback(false)
-                                    setNutrition(false)
-                                    setMessocycle(true)
-                                    setHabit(false)
-                                }}>
-                                    Mesocycle Tracker</Button>
-                                <Button className={habit ? "btn-group-active" : "btn-group-outline"} onClick={() => {
-                                    setBioFeedback(false)
+        <Page title="Daniel Munro">
+            <div className="container col-lg-12 col-md-12 ">
+                <div className="text-center">
+                    <Scrollbar >
+                        <ButtonGroup color="primary" aria-label="outlined primary button group">
+                            <Button
+                                className="btn"
+                                onClick={() => { }} disabled
+                                style={{ color: "#102770" }}>
+                                {currentUser.name}</Button>
+                            <Button
+                                onClick={() => {
+                                    setBioFeedback(true)
                                     setNutrition(false)
                                     setMessocycle(false)
-                                    setHabit(true)
-                                }}>
-                                    Habit Tracker</Button>
-                            </ButtonGroup>
-                        </Scrollbar>
-                    </div>
-                    {bioFeedback &&
-                        <>
-                            {!currentUser || !currentUser.reports || currentUser.reports.length === 0
-                                ?
-                                <NoData />
-                                :
-                                <Container>
-                                    <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />
-                                </Container>
-                            }
-                        </>}
-                    {nutrition && <NutritionTable id={id} />}
-                    {messocycle && <MessocycleTable id={id} />}
-                    {habit && <HabitTable id={id} />}
-
+                                    setHabit(false)
+                                }}
+                                className={bioFeedback ? "btn-group-active" : "btn-group-outline"}>
+                                Bio Feedback</Button>
+                            <Button className={nutrition ? "btn-group-active" : "btn-group-outline"} onClick={() => {
+                                setBioFeedback(false)
+                                setNutrition(true)
+                                setMessocycle(false)
+                                setHabit(false)
+                            }}>
+                                Nutrition</Button>
+                            <Button className={messocycle ? "btn-group-active" : "btn-group-outline"} onClick={() => {
+                                setBioFeedback(false)
+                                setNutrition(false)
+                                setMessocycle(true)
+                                setHabit(false)
+                            }}>
+                                Mesocycle Tracker</Button>
+                            <Button className={habit ? "btn-group-active" : "btn-group-outline"} onClick={() => {
+                                setBioFeedback(false)
+                                setNutrition(false)
+                                setMessocycle(false)
+                                setHabit(true)
+                            }}>
+                                Habit Tracker</Button>
+                        </ButtonGroup>
+                    </Scrollbar>
                 </div>
-                {/* </div> */}
+                {bioFeedback &&
+                    <>
+                        {!currentUser || !currentUser.reports || currentUser.reports.length === 0
+                            ?
+                            <NoData />
+                            :
+                            <Container>
+                                <ReportTable report={currentUser.reports[currentUser.reports.length - 1]} userId={currentUser._id} />
+                            </Container>
+                        }
+                    </>}
+                {nutrition && <NutritionTable id={id} />}
+                {messocycle && <MessocycleTable id={id} />}
+                {habit && <HabitTable id={id} />}
+
             </div>
-        </div >
+        </Page>
     )
 }

@@ -1,40 +1,20 @@
-## Minimal [(Free version)](https://minimal-kit-react.vercel.app/)
+# Folder Structure
+Created apiCalls folder to house all the calls made to backend.
+=>Used fetch to make all the calls.
+=>created files to keep all kind of api calls seprate
 
-![license](https://img.shields.io/badge/license-MIT-blue.svg)
+Created page folder to complete the house all the main pages/routes
+such as UserPage and Admin Page.
 
-> Free React Admin Dashboard made with Material-UI components and React.
+Created components folder to house all reusable compoents.
 
-![preview](public/static/preview.png)
+Creates a routes folder to house all the routes 
+=> Main files is router that has the whole application route system
+=> Used AdminRoute to allow only Admin to access the route of /admin
+=> Used UserRoute to allow only Admin to access the route of /user
+---------------------------------------------
+# Functionality
 
-| [Minimal Free](https://minimal-kit-react.vercel.app/) | [Minimal](https://material-ui.com/store/items/minimal-dashboard/) |
-| --------------------------------------------------------- | :------------------------------------------------------------------------ |
-| **7** Demo pages                                          | **40** demo pages                                                         |
-| -                                                         | ✓ Multi-language                                                          |
-| -                                                         | ✓ Dark/Light Mode 🌓                                                      |
-| -                                                         | ✓ [More components](https://minimals.cc/components)                       |
-| -                                                         | ✓ TypeScript version                                                      |
-| -                                                         | ✓ Design files (Figma & Sketch)                                           |
-
-## Page demo
-
-- [Dashboard](https://minimal-kit-react.vercel.app/dashboard/app)
-- [Users](https://minimal-kit-react.vercel.app/dashboard/user)
-- [Product](https://minimal-kit-react.vercel.app/dashboard/products)
-- [Blog](https://minimal-kit-react.vercel.app/dashboard/blog)
-- [Login](https://minimal-kit-react.vercel.app/login)
-- [Register](https://minimal-kit-react.vercel.app/register)
-- [Not Found](https://minimal-kit-react.vercel.app/404)
-
-## Getting started
-
-- Recommended `node js 14+` and `npm 6+`
-- Install dependencies: `npm install` or `yarn`
-- Start the server: `npm run start` or `yarn start`
-
-## License
-
-Distributed under the MIT License. See [LICENSE](https://github.com/minimal-ui-kit/minimal.free/blob/main/LICENSE.md) for more information.
-
-## Contact us
-
-Email Us: support@minimals.cc
+User can create report and scroll down to see previous report and admins comments on it.
+Admin can see all the users lists click on user to see the report of that user and then comment on it
+Multiple Admins can do multiple comments.

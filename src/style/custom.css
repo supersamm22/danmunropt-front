@@ -86,6 +86,9 @@ a:hover{
      0px 1px 14px 0px rgb(145 158 171 / 12%) !important;
    background-color: #fff !important;
    border-radius: 4px !important;
+   margin-left: auto;
+   margin-right: auto;
+    height: auto;
 }
 .modal-dlt{
    width: 20% !important;
@@ -273,4 +276,5 @@ a:hover{
 .row-height{
     height: auto !important;
 }  
+.p{padding: 4px !important;}
 }

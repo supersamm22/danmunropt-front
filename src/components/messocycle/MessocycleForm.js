@@ -7,6 +7,8 @@ import trash2Fill from '@iconify/icons-eva/trash-2-fill';
 import { isLoggedIn } from 'src/helpers/loginHelp';
 import { addMesscycle, editMesscycle } from 'src/apiCalls/reportCalls';
 import Icon from '@iconify/react';
+import Scrollbar from '../Scrollbar';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,10 +23,10 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     modal: {
-        display: 'flex',
+        display: 'block',
         padding: theme.spacing(1),
-        alignItems: 'center',
-        justifyContent: 'center',
+        overflow: 'auto',
+        marginLeft: "auto",
     },
 }));
 
@@ -205,7 +207,7 @@ function MessocycleForm(props) {
                                 </div>
                             }
                             {success &&
-                                <div className="alert alert-danger self-align-center m-3" role="alert">
+                                <div className="alert alert-success self-align-center m-3" role="alert">
                                     {"Mesocycle added"}
                                 </div>
                             }
@@ -229,13 +231,13 @@ function MessocycleForm(props) {
                                             variant="contained"
                                             type="submit"
                                             disabled={sending}
-                                            className="btn"
+                                            className="btn mt-2 p"
                                         >Save</Button>
                                         <Button
                                             style={{ textAlign: 'left' }}
                                             variant="link"
                                             onClick={props.onClose}
-                                            className="daniel-cancel"
+                                            className="daniel-cancel mt-2"
                                         >Close</Button>
                                     </div>
                                 </div>
