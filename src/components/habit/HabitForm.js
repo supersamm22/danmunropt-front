@@ -60,6 +60,7 @@ export default function HabitForm(props) {
         const parms = {
             userId: loginData.user.id,
             habits: habits,
+            min: e.min || 0
         }
         addHabit(loginData.token, parms).then(data => {
             if (data) {
@@ -77,10 +78,11 @@ export default function HabitForm(props) {
         return <Loading />
     }
     const total = {
-        monday: 0, tuesday: 0, wednesday: 0, thursday: 0, friday: 0, saturday: 0, sunday: 0
+        monday: 0, tuesday: 0, wednesday: 0, thursday: 0, friday: 0, saturday: 0, sunday: 0, points: 0
     }
     array.forEach((num, index) => {
         const hb = (habit.habits || [])[index] || {}
+        total.points = total.points + (hb.points || 0)
         total.monday = total.monday + (hb.monday || 0)
         total.tuesday = total.tuesday + (hb.tuesday || 0)
         total.wednesday = total.wednesday + (hb.wednesday || 0)
@@ -95,6 +97,15 @@ export default function HabitForm(props) {
                 <h4 className="mt-2">Habit</h4>
                 <form onSubmit={handleSubmit(submit)}>
                     <div>
+                        <div className="row row-height">
+                            <div className="col-lg-2 md-4">
+                                <div className="form-group ">
+                                    <label className="text-muted">Minimum day win points</label>
+                                    <input className="form-control"
+                                        type="number"{...register("min", { required: false, value: habit.min || "" })} />
+                                </div>
+                            </div>
+                        </div>
                         {array.map((num, index) => {
                             const hb = (habit.habits || [])[index] || {}
                             return (
@@ -183,12 +194,12 @@ export default function HabitForm(props) {
                                 >Add Habit</Button>
                             </div>
                             <div className="col-lg-2 col-xl-1 col-sm-2">
-                                {/* <div className="form-group ">
-                                        <label className="text-muted">Points</label>
-                                        <input className="form-control" type="number"
-                                            value={total.points} disabled
-                                            {...register("t_points", { required: false })} />
-                                    </div> */}
+                                <div className="form-group ">
+                                    <label className="text-muted">Total</label>
+                                    <input className="form-control" type="number"
+                                        value={total.points} disabled
+                                        {...register("t_points", { required: false })} />
+                                </div>
                             </div>
                             <div className="col-lg-2 col-xl-1 col-sm-2">
                                 <div className="form-group ">
@@ -237,6 +248,49 @@ export default function HabitForm(props) {
                                     <label className="text-muted">Sunday</label>
                                     <input className="form-control" type="number"
                                         value={total.sunday} disabled />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="row">
+                            <div className="col-lg-2 col-xl-3 col-sm-2">
+                                Day win</div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    {total.monday >= habit.min ? "true" : "false"}
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    {total.tuesday >= habit.min ? "true" : "false"}
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    {total.wednesday >= habit.min ? "true" : "false"}
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    {total.thursday >= habit.min ? "true" : "false"}
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    {total.friday >= habit.min ? "true" : "false"}
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    {total.saturday >= habit.min ? "true" : "false"}
+                                </div>
+                            </div>
+                            <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="form-group ">
+                                    {total.sunday >= habit.min ? "true" : "false"}
                                 </div>
                             </div>
                         </div>

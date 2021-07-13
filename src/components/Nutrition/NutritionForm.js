@@ -11,7 +11,7 @@ import { fDate } from 'src/utils/formatTime';
 
 export default function NutritionForm(props) {
 
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, getValues } = useForm();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
@@ -60,8 +60,8 @@ export default function NutritionForm(props) {
             wake_up: e.wake_up,
             water: e.water,
             alcohol: e.alcohol,
-            alcohol_detail: e.alcohol_detail,
-            alcohol_cal: e.alcohol_cal,
+            alcohol_detail: e.alcohol === "Yes" ? e.alcohol_detail : "",
+            alcohol_cal: e.alcohol === "Yes" ? e.alcohol_cal : "",
             comment: e.comment,
             userId: loginData.user.id,
             meals: meals,
@@ -90,16 +90,17 @@ export default function NutritionForm(props) {
                 <Container>
                     <h4 className="mt-2">Nutrition <span style={{ fontSize: 16 }}>{nutrition.date || fDate()}</span></h4>
                     <form onSubmit={handleSubmit(submit)} >
+                        {getValues("wake_up")}
                         <div>
                             <div className="row">
                                 <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group ">
                                         <label className="text-muted">Wake Up</label>
                                         <input className="form-control"
-                                            type="time"  {...register("wake_up", { required: false, value: nutrition.wake_up })} />
+                                            type="text"  {...register("wake_up", { required: false, value: nutrition.wake_up })} />
                                     </div>
                                 </div>
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Water Intake</label>
                                         <input className="form-control" type="text"  {...register("water", { required: false, value: nutrition.water })} />
@@ -110,21 +111,21 @@ export default function NutritionForm(props) {
                                         <label className="text-muted">Consumed Alcohol</label>
                                         <select className="form-control" {...register("alcohol", { required: false, value: NutritionTable.alcohol })}>
                                             <option value="">Select...</option>
-                                            <option value="Compliant">Yes</option>
-                                            <option value="Non-Compliant">No</option>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
-                                        <label className="text-muted">consumed details</label>
+                                        <label className="text-muted">Details</label>
                                         <input className="form-control" type="text"  {...register("alcohol_datail", { required: false, value: nutrition.alcohol_detail })} />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
-                                        <label className="text-muted">Total Alcoholic Cal</label>
-                                        <input className="form-control" type="text"  {...register("alcohol_cal", { required: false, value: nutrition.alcohol_cal })} />
+                                        <label className="text-muted">Alcoholic Cal</label>
+                                        <input className="form-control" type="number"  {...register("alcohol_cal", { required: false, value: nutrition.alcohol_cal })} />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-3 col-sm-2">
@@ -146,7 +147,7 @@ export default function NutritionForm(props) {
                                             <div className="form-group ">
                                                 <label className="text-muted">Meal Time</label>
                                                 <input className="form-control"
-                                                    type="time" {...register(num + "_time", { required: false, value: meal.time })} />
+                                                    type="text" {...register(num + "_time", { required: false, value: meal.time })} />
                                             </div>
                                         </div>
                                         <div className="col-lg-2 col-xl-2 col-sm-2">

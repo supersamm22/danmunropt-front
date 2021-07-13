@@ -46,6 +46,20 @@ export default function HabitTable({ id }) {
             <Container className="mt-4">
                 {(habits && Array.isArray(habits) && habits.length > 0) ?
                     habits.map((h, index) => {
+                        const total = {
+                            monday: 0, tuesday: 0, wednesday: 0, thursday: 0, friday: 0, saturday: 0, sunday: 0, points: 0
+                        }
+                        h.habits.forEach((hb, index) => {
+                            total.points = total.points + (hb.points || 0)
+                            total.monday = total.monday + (hb.monday || 0)
+                            total.tuesday = total.tuesday + (hb.tuesday || 0)
+                            total.wednesday = total.wednesday + (hb.wednesday || 0)
+                            total.thursday = total.thursday + (hb.thursday || 0)
+                            total.friday = total.friday + (hb.friday || 0)
+                            total.saturday = total.saturday + (hb.saturday || 0)
+                            total.sunday = total.sunday + (hb.sunday || 0)
+                        })
+
                         return <Card key={index} className="card-padding">
                             <Scrollbar>
                                 <TableContainer sx={{ minWidth: 800 }}>
@@ -72,7 +86,7 @@ export default function HabitTable({ id }) {
                                                     tabIndex={-1}
                                                     key={index}>
                                                     <TableCell align="left">{e.name}</TableCell>
-                                                    <TableCell align="left">{e.point}</TableCell>
+                                                    <TableCell align="left">{e.points}</TableCell>
                                                     <TableCell align="left">{e.monday}</TableCell>
                                                     <TableCell align="left">{e.tuesday}</TableCell>
                                                     <TableCell align="left">{e.wednesday}</TableCell>
@@ -83,20 +97,20 @@ export default function HabitTable({ id }) {
                                                 </TableRow>
                                             )}
                                             <TableRow>
-                                                <TableCell className="totals">MInimal Points to win the day</TableCell>
-                                                <TableCell>5</TableCell>
-                                                <TableCell>False</TableCell>
-                                                <TableCell>False</TableCell>
-                                                <TableCell>False</TableCell>
-                                                <TableCell>False</TableCell>
-                                                <TableCell>False</TableCell>
-                                                <TableCell>False</TableCell>
-                                                <TableCell>False</TableCell>
+                                                <TableCell className="totals">Minimal Points to win the day</TableCell>
+                                                <TableCell>{h.min}</TableCell>
+                                                <TableCell>{total.monday >= h.min ? "true" : "false"}</TableCell>
+                                                <TableCell>{total.tuesday >= h.min ? "true" : "false"}</TableCell>
+                                                <TableCell>{total.wednesday >= h.min ? "true" : "false"}</TableCell>
+                                                <TableCell>{total.thursday >= h.min ? "true" : "false"}</TableCell>
+                                                <TableCell>{total.friday >= h.min ? "true" : "false"}</TableCell>
+                                                <TableCell>{total.saturday >= h.min ? "true" : "false"}</TableCell>
+                                                <TableCell>{total.sunday >= h.min ? "true" : "false"}</TableCell>
                                             </TableRow>
-                                            <TableRow>
+                                            {/* <TableRow>
                                                 <TableCell className="totals">Weekly habit Success</TableCell>
                                                 <TableCell>56</TableCell>
-                                            </TableRow>
+                                            </TableRow> */}
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
