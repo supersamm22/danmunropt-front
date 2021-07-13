@@ -80,14 +80,21 @@ export default function MessocycleTable({ id, isUser }) {
                             to="#"
                             startIcon={<Icon icon={plusFill} />}
                             onClick={() => setOpen(true)}
-                            className="btn"
+                            className="btn mt-2"
                         >
                             Add
                         </Button>}
                 </Stack>
                 {(messocycles && Array.isArray(messocycles) && messocycles.length > 0) ?
-                    messocycles.map((messocycle, index) =>
-                        <Card style={{ marginBottom: 16 }} key={index} className="card-padding">
+                    messocycles.map((messocycle, index) => {
+                        const total = {
+                            reps: 0, load: 0
+                        }
+                        messocycle.exercises.forEach((mc, index) => {
+                            total.reps = total.reps + (mc.reps || 0)
+                            total.load = total.load + (mc.load || 0)
+                        })
+                        return <Card style={{ marginBottom: 16 }} key={index} className="card-padding">
                             <Scrollbar>
                                 <Typography variant="h6" id="tableTitle" component="div">
                                     <div className="row">
@@ -146,11 +153,16 @@ export default function MessocycleTable({ id, isUser }) {
                                             </TableRow>
                                         }
                                         )}
+                                        <TableRow>
+                                            <TableCell align="center" className="totals" colSpan={2}>Totals</TableCell>
+                                            <TableCell align="left" className="totals" >{total.reps}</TableCell>
+                                            <TableCell align="left" className="totals" >{total.load}</TableCell>
+                                        </TableRow>
                                     </TableBody>
                                 </Table>
                             </Scrollbar>
                         </Card>
-                    ) :
+                    }) :
                     <NoData />
                 }
             </Container>

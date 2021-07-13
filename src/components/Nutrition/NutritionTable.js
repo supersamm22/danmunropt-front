@@ -7,6 +7,7 @@ import {
     TableCell,
     Container,
     TableHead,
+    Typography,
 } from '@material-ui/core';
 import { array } from 'prop-types';
 import { useEffect, useState } from 'react';
@@ -20,7 +21,6 @@ import Scrollbar from '../Scrollbar';
 // ----------------------------------------------------------------------
 
 export default function NutritionTable({ id }) {
-    const [open, setOpen] = useState(false)
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [nutritions, setNutrition] = useState([]);
@@ -47,8 +47,17 @@ export default function NutritionTable({ id }) {
         <>
             <Container className="mt-4">
                 {(nutritions && Array.isArray(nutritions) && nutritions.length > 0) ?
-                    nutritions.map((nutrition, index) =>
-                        <Card className="mt-4 card-padding" key={index}>
+                    nutritions.map((nutrition, index) => {
+                        const total = {
+                            protein: 0, carbohydrates: 0, calories: 0, fats: 0
+                        }
+                        nutrition.meals.forEach((nt, index) => {
+                            total.calories = total.calories + (nt.calories || 0)
+                            total.protein = total.protein + (nt.protein || 0)
+                            total.carbohydrates = total.carbohydrates + (nt.carbohydrates || 0)
+                            total.fats = total.fats + (nt.fats || 0)
+                        })
+                        return <Card className="mt-4 card-padding" key={index}>
                             <Scrollbar>
                                 <Table >
                                     <TableHead>
@@ -84,23 +93,15 @@ export default function NutritionTable({ id }) {
 
                                         }
                                         )}
-
-                                        {/* <Typography variant="h6" id="tableTitle" component="div" px={2} my={2}>
-                                            Daily Totals
-                                        </Typography>
-                                        <TableRow >
-                                            <TableCell className="totals">Calories</TableCell>
-                                            <TableCell className="totals">Protein</TableCell>
-                                            <TableCell className="totals">Carbohydrates</TableCell>
-                                            <TableCell className="totals">Fats</TableCell>
+                                        <TableRow>
+                                            <TableCell colSpan={2} className="totals">Totals</TableCell>
+                                            <TableCell>{total.calories}</TableCell>
+                                            <TableCell>{total.protein}</TableCell>
+                                            <TableCell>{total.carbohydrates}</TableCell>
+                                            <TableCell>{total.fats}</TableCell>
+                                            <TableCell>--</TableCell>
                                         </TableRow>
-                                        {Total.map((e, index) => {
-                                            return <TableRow key={index} >
-                                                <TableCell>{e.calories_}</TableCell>
-                                                <TableCell>{e.protein_}</TableCell>
-                                                <TableCell>{e.carbohydrates_}</TableCell>
-                                                <TableCell>{e.fats_}</TableCell>
-                                            </TableRow> */}
+
                                     </TableBody>
                                 </Table>
                                 <Table>
@@ -136,7 +137,7 @@ export default function NutritionTable({ id }) {
                                 </Table>
                             </Scrollbar>
                         </Card>
-                    )
+                    })
                     : <NoData />
                 }
 

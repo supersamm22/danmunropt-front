@@ -103,7 +103,7 @@ export default function NutritionForm(props) {
                                 <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Water</label>
-                                        <input className="form-control" type="text"  {...register("water", { required: false, value: nutrition.water })} />
+                                        <input className="form-control" type="number"  {...register("water", { required: false, value: nutrition.water })} />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
