@@ -267,14 +267,19 @@ a:hover{
 }
 
 @media only screen and (min-device-width : 320px) and (max-device-width : 768px) {
-.modal_{
+  .modal_{
     width: 80% !important;
- }
-.pl-20{
+   }
+  .pl-20{
     padding-left: 4px !important;
- }
-.row-height{
-    height: auto !important;
-}  
-.p{padding: 4px !important;}
+   }
+  .row-height{
+     height: auto !important;
+   }  
+ .p{
+    padding: 4px !important;
+  }
+  .card-padding{
+    padding: 20px !important;
+  }
 }

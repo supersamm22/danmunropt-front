@@ -117,16 +117,17 @@ export default function NutritionTable({ id }) {
                                         </TableRow>
                                         <TableRow >
                                             <TableCell className="totals">Did you consume any Alcohol today? (Yes/No)</TableCell>
-                                            <TableCell>{nutrition.alcohol}</TableCell>
+                                            <TableCell>{nutrition.alcohol || "No"}</TableCell>
                                         </TableRow>
-                                        <TableRow >
+                                        {nutrition.alcohol === "Yes" && <TableRow >
                                             <TableCell className="totals">If Yes - please detail what you consumed:</TableCell>
-                                            <TableCell>{nutrition.alcohol_datail}</TableCell>
+                                            <TableCell>{nutrition.alcohol_detail}</TableCell>
                                         </TableRow>
-                                        <TableRow >
+                                        }
+                                        {nutrition.alcohol === "Yes" && <TableRow >
                                             <TableCell className="totals">Total Alcoholic Cal consumption today:</TableCell>
                                             <TableCell>{nutrition.alcohol_cal}</TableCell>
-                                        </TableRow>
+                                        </TableRow>}
                                         <TableRow >
                                             <TableCell className="totals">Daily Comments:</TableCell>
                                             <TableCell>{nutrition.comment}</TableCell>

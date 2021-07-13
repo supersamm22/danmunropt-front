@@ -93,16 +93,16 @@ export default function NutritionForm(props) {
                         {getValues("wake_up")}
                         <div>
                             <div className="row">
-                                <div className="col-lg-2 col-xl-1 col-sm-2">
+                                <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group ">
                                         <label className="text-muted">Wake Up</label>
                                         <input className="form-control"
                                             type="text"  {...register("wake_up", { required: false, value: nutrition.wake_up })} />
                                     </div>
                                 </div>
-                                <div className="col-lg-2 col-xl-2 col-sm-2">
+                                <div className="col-lg-2 col-xl-1 col-sm-2">
                                     <div className="form-group">
-                                        <label className="text-muted">Water Intake</label>
+                                        <label className="text-muted">Water</label>
                                         <input className="form-control" type="text"  {...register("water", { required: false, value: nutrition.water })} />
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@ export default function NutritionForm(props) {
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
                                     <div className="form-group">
                                         <label className="text-muted">Details</label>
-                                        <input className="form-control" type="text"  {...register("alcohol_datail", { required: false, value: nutrition.alcohol_detail })} />
+                                        <input className="form-control" type="text"  {...register("alcohol_detail", { required: false, value: nutrition.alcohol_detail })} />
                                     </div>
                                 </div>
                                 <div className="col-lg-2 col-xl-2 col-sm-2">
