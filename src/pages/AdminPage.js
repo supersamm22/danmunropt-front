@@ -14,6 +14,8 @@ import { getUsers } from "src/apiCalls/adminCalls";
 import Loading from "src/components/Loading";
 import NoData from "src/components/NoData";
 import Page from 'src/components/Page';
+import PeriodizationTable from '../components/periodization/PeriodizationTable';
+import PeriodizationForm from '../components/periodization/PeriodizationForm';
 
 export default function UserPage(props) {
 
@@ -26,6 +28,7 @@ export default function UserPage(props) {
     const [nutrition, setNutrition] = useState(false);
     const [messocycle, setMessocycle] = useState(false);
     const [habit, setHabit] = useState(false);
+    const [periodization, setPeriodization] = useState(false);
 
     const { pathname } = useLocation();
     useEffect(() => {
@@ -114,6 +117,7 @@ export default function UserPage(props) {
                                     setNutrition(false)
                                     setMessocycle(false)
                                     setHabit(false)
+                                    setPeriodization(false)
                                 }}
                                 className={bioFeedback ? "btn-group-active" : "btn-group-outline"}>
                                 Bio Feedback</Button>
@@ -122,6 +126,7 @@ export default function UserPage(props) {
                                 setNutrition(true)
                                 setMessocycle(false)
                                 setHabit(false)
+                                setPeriodization(false)
                             }}>
                                 Nutrition</Button>
                             <Button className={messocycle ? "btn-group-active" : "btn-group-outline"} onClick={() => {
@@ -129,6 +134,7 @@ export default function UserPage(props) {
                                 setNutrition(false)
                                 setMessocycle(true)
                                 setHabit(false)
+                                setPeriodization(false)
                             }}>
                                 Mesocycle Tracker</Button>
                             <Button className={habit ? "btn-group-active" : "btn-group-outline"} onClick={() => {
@@ -136,8 +142,17 @@ export default function UserPage(props) {
                                 setNutrition(false)
                                 setMessocycle(false)
                                 setHabit(true)
+                                setPeriodization(false)
                             }}>
                                 Habit Tracker</Button>
+                            <Button className={periodization ? "btn-group-active" : "btn-group-outline"} onClick={() => {
+                                setBioFeedback(false)
+                                setNutrition(false)
+                                setMessocycle(false)
+                                setHabit(false)
+                                setPeriodization(true)
+                            }}>
+                                Periodization Tracker</Button>
                         </ButtonGroup>
                     </Scrollbar>
                 </div>
@@ -155,7 +170,7 @@ export default function UserPage(props) {
                 {nutrition && <NutritionTable id={id} />}
                 {messocycle && <MessocycleTable id={id} />}
                 {habit && <HabitTable id={id} />}
-
+                {periodization && <><PeriodizationTable id={id} /><PeriodizationForm /> </>}
             </div>
         </Page>
     )

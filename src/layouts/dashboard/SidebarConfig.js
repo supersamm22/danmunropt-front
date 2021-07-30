@@ -26,6 +26,10 @@ const userSidebarConfig = [
   {
     title: 'Habit Tracker',
     path: '/habit-tracker'
+  },
+  {
+    title: 'Periodization Tracker',
+    path: '/periodization-tracker'
   }
 ];
 

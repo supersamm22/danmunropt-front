@@ -27,6 +27,7 @@ import { isLoggedIn } from 'src/helpers/loginHelp';
 import DeleteMessocycle from './DeleteMessocycle';
 import Loading from '../Loading';
 import NoData from '../NoData';
+import { indexOf, reverse } from 'lodash';
 
 export default function MessocycleTable({ id, isUser }) {
     const [open, setOpen] = useState(false)
@@ -59,6 +60,7 @@ export default function MessocycleTable({ id, isUser }) {
             }
         })
     }
+
     if (loading) {
         return <Loading />
     }
@@ -90,6 +92,8 @@ export default function MessocycleTable({ id, isUser }) {
                         const total = {
                             reps: 0, load: 0
                         }
+                        const week = index + 1
+
                         messocycle.exercises.forEach((mc, index) => {
                             total.reps = total.reps + (mc.reps || 0)
                             total.load = total.load + (mc.load || 0)
@@ -124,6 +128,7 @@ export default function MessocycleTable({ id, isUser }) {
                                     <TableHead>
                                         <TableRow>
                                             <TableCell className="totals" colSpan={2}>Warm Up:{" "}{messocycle.warm_up}</TableCell>
+                                            <TableCell className="totals" colSpan={2}>Week:{" "}{week}</TableCell>
                                             <TableCell className="totals" colSpan={4}>Cool Down:{" "}{messocycle.cool_down}</TableCell>
                                         </TableRow>
                                     </TableHead>
