@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import trash2Fill from '@iconify/icons-eva/trash-2-fill';
 import Icon from '@iconify/react';
 import { isLoggedIn } from '../../helpers/loginHelp';
-import { addHabit, getHabit } from '../../apiCalls/reportCalls';
+import { addPeriodization, getPeriodization } from '../../apiCalls/reportCalls';
 import Loading from '../Loading';
 
 
@@ -22,14 +22,10 @@ export default function PeriodizationForm(props) {
         const token_ = isLoggedIn();
         setHabit({})
         setLoading(true)
-        getHabit(token_.token, token_.user.id).then(data => {
+        getPeriodization(token_.token, token_.user.id).then(data => {
             if (data && Array.isArray(data) && data.length > 0) {
                 const s = []
-                data[0].habits.forEach((e, index) => {
-                    s.push(index)
-                })
-                s.push(s.length)
-                setHabit(data[0])
+                // setHabit()
                 setArray(s)
                 setLoading(false)
             } else {
@@ -59,10 +55,10 @@ export default function PeriodizationForm(props) {
         const loginData = isLoggedIn()
         const parms = {
             userId: loginData.user.id,
-            habits: habits,
-            min: e.min || 0
+            week: 29,
+            year: 2021
         }
-        addHabit(loginData.token, parms).then(data => {
+        addPeriodization(loginData.token, parms).then(data => {
             if (data) {
                 setSending(false)
                 setError("")

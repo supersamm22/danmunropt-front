@@ -1,11 +1,11 @@
 import React from "react"
-import PeriodizationTable from "../components/periodization/PeriodizationTable"
 import { isLoggedIn } from "src/helpers/loginHelp"
+import PeriodizationForm from "src/components/periodization/PeriodizationForm"
 
 export default function MessocycleTracker() {
     return (
         <Page title="Danile Munro | Periodization Tracker">
-            <PeriodizationTable id={isLoggedIn().user.id} isUser={true} />
+            <PeriodizationForm id={isLoggedIn().user.id} isUser={true} />
         </Page>
     )
 }

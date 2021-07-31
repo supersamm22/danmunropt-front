@@ -1,5 +1,5 @@
 import { BASE_URL } from "src/helpers/loginHelp";
-import { fDate, week } from "src/utils/formatTime";
+import { fDate, week, year } from "src/utils/formatTime";
 
 export const uploadReport = (data, token) => {
     return fetch(`${BASE_URL}report`, {
@@ -105,7 +105,7 @@ export const addNutrition = (token, data) => {
 
 //Habits
 export const getHabit = (token, id) => {
-    return fetch(`${BASE_URL}habits?userId=${id}&week=${week()}`, {
+    return fetch(`${BASE_URL}habits?userId=${id}&week=${week()}&year=${year()}`, {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -121,6 +121,7 @@ export const getHabit = (token, id) => {
 
 export const addHabit = (token, data) => {
     data.week = week()
+    data.year = year()
     return fetch(`${BASE_URL}habits`, {
         method: 'POST',
         headers: {
@@ -161,3 +162,50 @@ export const deleteMeso = (token, _id) => {
         .then(response => { return response.json() })
         .catch(err => { console.log(err) })
 }
+
+// peridization
+
+//Habits
+export const getPeriodization = (token, id) => {
+    return fetch(`${BASE_URL}periodizations?userId=${id}&year=${year()}`, {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        }
+    })
+        .then(response => {
+            return response.json()
+        })
+        .catch(err => { console.log("gm", err) })
+}
+
+export const addPeriodization = (token, data) => {
+    return fetch(`${BASE_URL}periodizations`, {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(data)
+    })
+        .then(response => { return response.json() })
+        .catch(err => { console.log(err) })
+}
+
+// endpoints >>> /periodizations
+
+//     fields >>>
+// userId
+// week
+// year
+// monday
+// tuesday
+// wednesday
+// thursday
+// friday
+// saturday
+// sunday
+// notes

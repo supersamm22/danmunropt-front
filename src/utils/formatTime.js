@@ -12,6 +12,11 @@ export function week() {
   const result = Math.ceil((todaydate.getDay() + 1 + numberOfDays) / 7);
   return result
 }
+export function year() {
+  const todaydate = new Date();
+  return todaydate.getFullYear
+}
+
 export function fDateTime(date) {
   return format(new Date(date), 'dd MMM yyyy HH:mm');
 }

@@ -170,7 +170,7 @@ export default function UserPage(props) {
                 {nutrition && <NutritionTable id={id} />}
                 {messocycle && <MessocycleTable id={id} />}
                 {habit && <HabitTable id={id} />}
-                {periodization && <><PeriodizationTable id={id} /><PeriodizationForm /> </>}
+                {periodization && <PeriodizationTable id={id} />}
             </div>
         </Page>
     )

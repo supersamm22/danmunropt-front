@@ -12,7 +12,7 @@ import {
 } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { isLoggedIn } from '../../helpers/loginHelp';
-import { getHabit } from '../../apiCalls/reportCalls';
+import { getHabit, getPeriodization } from '../../apiCalls/reportCalls';
 import Scrollbar from '../Scrollbar';
 import Loading from '../Loading';
 import NoData from '../NoData';
@@ -26,7 +26,7 @@ export default function PeriodizationTable({ id }) {
         const token_ = isLoggedIn();
         setHabit([])
         setLoading(true)
-        getHabit(token_.token, id).then(data => {
+        getPeriodization(token_.token, id).then(data => {
             if (data && Array.isArray(data) && data.length > 0) {
                 setHabit(data)
                 setLoading(false)
