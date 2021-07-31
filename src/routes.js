@@ -10,7 +10,7 @@ import MessocycleTracker from './pages/MessocycleTracker';
 import HabitTracker from './pages/HabitTracker';
 import Page404 from './pages/Page404';
 import ResetPassword from './pages/ResetPassword';
-import PeriodizationTable from './components/periodization/PeriodizationTable';
+import Periodization from './pages/Periodization';
 
 
 export default function Router() {
@@ -31,7 +31,7 @@ export default function Router() {
         { path: '/nutrition', element: <Nutrition /> },
         { path: '/mesocycle-tracker', element: <MessocycleTracker /> },
         { path: '/habit-tracker', element: <HabitTracker /> },
-        { path: '/periodization-tracker', element: <PeriodizationTable /> },
+        { path: '/periodization-tracker', element: <Periodization /> },
         { path: '/404', element: <Page404 /> }
       ]
     },

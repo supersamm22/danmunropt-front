@@ -14,7 +14,7 @@ export function week() {
 }
 export function year() {
   const todaydate = new Date();
-  return todaydate.getFullYear
+  return todaydate.getFullYear()
 }
 
 export function fDateTime(date) {
