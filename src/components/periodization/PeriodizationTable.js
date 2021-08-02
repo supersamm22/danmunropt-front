@@ -6,20 +6,22 @@ import {
     TableBody,
     TableCell,
     Container,
-    TableContainer,
     TableHead,
-    Typography,
+    Button,
 } from '@material-ui/core';
 import { useEffect, useState } from 'react';
 import { isLoggedIn } from '../../helpers/loginHelp';
-import { getPeriodization } from '../../apiCalls/reportCalls';
+import { addPeriodization, getPeriodization } from '../../apiCalls/reportCalls';
 import Scrollbar from '../Scrollbar';
 import Loading from '../Loading';
 import NoData from '../NoData';
 import { fDate, addDays, startOfWeek } from 'src/utils/formatTime';
+import { useForm } from 'react-hook-form';
 
 export default function PeriodizationTable({ id }) {
+    const { register, handleSubmit, reset } = useForm();
     const [loading, setLoading] = useState(true);
+    const [sending, setSending] = useState(false);
     const [error, setError] = useState("");
     const [periodizations, setPeriodization] = useState([]);
 
@@ -28,27 +30,47 @@ export default function PeriodizationTable({ id }) {
         console.log(token_)
         setPeriodization([])
         setLoading(true)
+        setError("")
         getPeriodization(token_.token, id).then(data => {
             if (data && Array.isArray(data) && data.length > 0) {
                 setPeriodization(data)
                 setLoading(false)
             } else {
-                setError("Unable to get periodization data")
+                // setError("Unable to get periodization data")
                 setLoading(false)
             }
         })
     }, [id])
+    const submit = (e) => {
+        setSending(true)
+        setError("")
+        // setSuccess(false)
+        const loginData = isLoggedIn()
+        addPeriodization(loginData.token, e).then(data => {
+            if (data) {
+                setSending(false)
+                setError("")
+                // setSuccess(true)
+            } else {
+                setSending(false)
+                setError("Something went wrong")
+                // setSuccess(false)
+            }
+        })
+    }
 
     if (loading) {
         return <Loading />
     }
-    console.table(periodizations)
     return (
         <>
-
+            {error &&
+                <div className="alert alert-danger text-center m-3" role="alert" style={{ color: "#dc004e" }}>
+                    {error}
+                </div>
+            }
             {(periodizations && Array.isArray(periodizations) && periodizations.length > 0) ?
                 periodizations.map((p, index) => {
-                    console.log(p)
                     const start_ = startOfWeek(p.week, p.year)
                     return (<Container className="mt-4">
                         <Card className="card-padding">
@@ -69,11 +91,8 @@ export default function PeriodizationTable({ id }) {
                                             <TableCell align="left" className="totals">Friday</TableCell>
                                             <TableCell align="left" className="totals">Saturday</TableCell>
                                             <TableCell align="left" className="totals">Sunday</TableCell>
-                                            <TableCell align="left" className="totals">Notes</TableCell>
                                         </TableRow>
-                                        <TableRow
-                                            tabIndex={-1}
-                                        >
+                                        <TableRow tabIndex={-1} >
                                             <TableCell align="left">Date</TableCell>
                                             <TableCell align="left">{fDate(addDays(start_, 0))}</TableCell>
                                             <TableCell align="left">{fDate(addDays(start_, 1))}</TableCell>
@@ -82,10 +101,9 @@ export default function PeriodizationTable({ id }) {
                                             <TableCell align="left">{fDate(addDays(start_, 4))}</TableCell>
                                             <TableCell align="left">{fDate(addDays(start_, 5))}</TableCell>
                                             <TableCell align="left">{fDate(addDays(start_, 6))}</TableCell>
-                                            <TableCell align="left"></TableCell>
                                         </TableRow>
                                         <TableRow>
-                                            <TableCell>Weight</TableCell>
+                                            <TableCell>Weight in kg</TableCell>
                                             <TableCell>{p.monday}</TableCell>
                                             <TableCell>{p.tuesday}</TableCell>
                                             <TableCell>{p.wednesday}</TableCell>
@@ -93,7 +111,28 @@ export default function PeriodizationTable({ id }) {
                                             <TableCell>{p.friday}</TableCell>
                                             <TableCell>{p.saturday}</TableCell>
                                             <TableCell>{p.sunday}</TableCell>
-                                            <TableCell>{p.notes}</TableCell>
+                                        </TableRow>
+                                        <TableRow>
+                                            <TableCell>Notes</TableCell>
+                                            <td class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-429m73-MuiTableCell-root" colSpan="7">
+                                                <form onSubmit={handleSubmit((e) => {
+                                                    const n = e[p._id + "_notes"]
+                                                    p.notes = n
+                                                    submit(p)
+                                                })} id={"form" + index} key={"key" + index}>
+                                                    <input className="form-control" type="text"
+                                                        {...register(p._id + "_notes", { required: false, value: p.notes })}
+                                                        style={{ width: "80%", display: "inline-block" }} />
+                                                    <Button
+                                                        style={{ marginLeft: 10 }}
+                                                        className="btn"
+                                                        variant="link"
+                                                        size="xs"
+                                                        type="submit"
+                                                        disabled={sending}
+                                                    >Update</Button>
+                                                </form>
+                                            </td>
                                         </TableRow>
                                     </TableBody>
                                 </Table>
