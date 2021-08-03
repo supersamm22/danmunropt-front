@@ -16,7 +16,7 @@ import Periodization from './pages/Periodization';
 export default function Router() {
   return useRoutes([
     { path: '/', element: <Login />, exect: true },
-    { path: '/reset-password', element: <ResetPassword /> },
+    { path: '/reset-password/:token', element: <ResetPassword /> },
 
     {
       path: '/',

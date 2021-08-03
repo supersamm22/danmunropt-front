@@ -1,5 +1,8 @@
 import { experimentalStyled as styled } from '@material-ui/core/styles';
+import { useState } from 'react';
+import { reset } from 'src/apiCalls/loginCalls';
 import Page from '../components/Page';
+import { useParams } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
@@ -9,9 +12,46 @@ const RootStyle = styled(Page)(({ theme }) => ({
     }
 }));
 
-// ----------------------------------------------------------------------
 
 export default function ResetPassword() {
+    const [password, setPassword] = useState('');
+    const [nPassword, setNPassword] = useState('');
+    const [error, setError] = useState('');
+    const [message, setMessage] = useState('');
+    const params = useParams()
+
+    const handleForget = async (e) => {
+        if (!password) {
+            setError("Enter new password")
+            return
+        }
+        if (!nPassword) {
+            setError("Enter confirm password")
+            return
+        }
+        if (password != nPassword) {
+            setError("Password not matched")
+            return
+        }
+        setError("")
+
+        reset(password, params.token).then((data) => {
+            if (data) {
+                console.log(data);
+                if (data.error) {
+                    setError(data.error);
+                    console.log(error);
+                } else {
+                    setMessage('Password rest is done. Try login now.');
+                }
+            } else {
+                setError('Unable to Connect to Database')
+            }
+        })
+    }
+
+
+
     return (
         <RootStyle title="Reset Password">
             <div className="section">
@@ -35,6 +75,9 @@ export default function ResetPassword() {
                                                             id="newpassword"
                                                             required
                                                             autoComplete="off"
+                                                            onChange={e => {
+                                                                setPassword(e.target.value)
+                                                            }}
                                                         />
                                                     </div>
                                                     <div className="form-group mt-2">
@@ -46,9 +89,32 @@ export default function ResetPassword() {
                                                             required
                                                             id="confirmpasswords"
                                                             autoComplete="off"
+                                                            onChange={e => {
+                                                                setNPassword(e.target.value)
+                                                            }}
+
                                                         />
                                                     </div>
-                                                    <button className="btn mt-4">submit</button>
+                                                    {error &&
+                                                        <p className="mt-3">
+                                                            <span style={{ color: 'red' }}>{error}</span>
+                                                        </p>
+                                                    }
+                                                    {message &&
+                                                        <p className="mt-3">
+                                                            <span style={{ color: 'green' }}>{message}</span>
+                                                        </p>
+                                                    }
+
+                                                    <button className="btn mt-4" type="button"
+                                                        onClick={handleForget}
+                                                    >submit</button>
+                                                    <p className="mb-0 mt-4 text-center">
+                                                        <a href="/" className="link" >
+                                                            Back to login
+                                                        </a>
+                                                    </p>
+
                                                 </form>
                                             </div>
                                         </div>

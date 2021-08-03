@@ -1,8 +1,16 @@
+import { Button } from '@material-ui/core';
 import React, { useState } from 'react';
-import { register, signin } from '../../../apiCalls/loginCalls';
+import { register, signin, forget } from '../../../apiCalls/loginCalls';
 import { authenticate } from '../../../helpers/loginHelp';
 import './login.css';
 import logo from './logo.png';
+
+function isValidEmail(email = "") {
+  if (/^([a-zA-Z0-9]{3,20})+@(([a-zA-Z]{4,20})+\.)+([a-zA-Z]{2,4})+$/.test(email)) {
+    return (true)
+  }
+  return (false)
+}
 
 function Login(props) {
   const [name, setName] = useState('');
@@ -14,7 +22,11 @@ function Login(props) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const user = { email, password };
+    if (!isValidEmail(email)) {
+      setError("Enter valid email")
+      return
+    } const user = { email, password };
+    setError("")
     signin(user).then((data) => {
       if (data) {
         if (data.msg) {
@@ -40,8 +52,48 @@ function Login(props) {
     window.location = `/${redirect}`
     return
   }
+  const handleForget = async (e) => {
+    if (!isValidEmail(email)) {
+      setError("Enter valid email")
+      return
+    }
+    if (!password) {
+      setError("Enter password")
+      return
+    }
+    setError("")
+
+    forget(email).then((data) => {
+      if (data) {
+        console.log(data);
+        if (data.error) {
+          setError(data.error);
+          console.log(error);
+        } else {
+          setMessage('Password rest link is send to your email.');
+        }
+      } else {
+        setError('Unable to Connect to Database')
+      }
+    })
+  }
+
   const handleSignup = async (e) => {
     e.preventDefault();
+    if (!name) {
+      setError("Enter name")
+      return
+    }
+    if (!isValidEmail(email)) {
+      setError("Enter valid email")
+      return
+    }
+    if (!password) {
+      setError("Enter password")
+      return
+    }
+    setError("")
+
     const user = { name, email, password };
     register(user).then((data) => {
       if (data) {
@@ -110,9 +162,9 @@ function Login(props) {
                         }
                         <button className="btn mt-4">submit</button>
                         <p className="mb-0 mt-4 text-center">
-                          <a href="#0" className="link">
+                          <Button variant="text " className="link" onClick={handleForget}>
                             Forgot your password?
-                          </a>
+                          </Button>
                         </p>
                       </form>
                     </div>
