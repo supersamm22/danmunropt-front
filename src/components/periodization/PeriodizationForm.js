@@ -111,49 +111,49 @@ export default function PeriodizationForm(props) {
                                     <div className="col-lg-2 col-xl-1 col-sm-2">
                                         <div className="form-group ">
                                             <label className="text-muted">Monday<br />{fDate(addDays(start_, 0))}</label>
-                                            <input className="form-control" type="number"
+                                            <input className="form-control" type="number" placeholder="kg"
                                                 {...register(index + "_monday", { required: false, value: hb.monday, })} />
                                         </div>
                                     </div>
                                     <div className="col-lg-2 col-xl-1 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Tuesday<br />{fDate(addDays(start_, 1))}</label>
-                                            <input className="form-control" type="number"
+                                            <input className="form-control" type="number" placeholder="kg"
                                                 {...register(index + "_tuesday", { required: false, value: hb.tuesday })} />
                                         </div>
                                     </div>
                                     <div className="col-lg-2 col-xl-1 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Wednesday<br />{fDate(addDays(start_, 2))}</label>
-                                            <input className="form-control" type="number"
+                                            <input className="form-control" type="number" placeholder="kg"
                                                 {...register(index + "_wednesday", { required: false, value: hb.wednesday })} />
                                         </div>
                                     </div>
                                     <div className="col-lg-2 col-xl-1 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Thursday<br />{fDate(addDays(start_, 3))}</label>
-                                            <input className="form-control" type="number"
+                                            <input className="form-control" type="number" placeholder="kg"
                                                 {...register(index + "_thursday", { required: false, value: hb.thursday })} />
                                         </div>
                                     </div>
                                     <div className="col-lg-2 col-xl-1 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Friday<br />{fDate(addDays(start_, 4))}</label>
-                                            <input className="form-control" type="number"
+                                            <input className="form-control" type="number" placeholder="kg"
                                                 {...register(index + "_friday", { required: false, value: hb.friday })} />
                                         </div>
                                     </div>
                                     <div className="col-lg-2 col-xl-1 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Saturday<br />{fDate(addDays(start_, 5))}</label>
-                                            <input className="form-control" type="number"
+                                            <input className="form-control" type="number" placeholder="kg"
                                                 {...register(index + "_saturday", { required: false, value: hb.saturday })} />
                                         </div>
                                     </div>
                                     <div className="col-lg-2 col-xl-1 col-sm-2">
                                         <div className="form-group">
                                             <label className="text-muted">Sunday<br />{fDate(addDays(start_, 6))}</label>
-                                            <input className="form-control" type="number"
+                                            <input className="form-control" type="number" placeholder="kg"
                                                 {...register(index + "_sunday", { required: false, value: hb.sunday })} />
                                         </div>
                                     </div>
