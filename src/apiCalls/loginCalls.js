@@ -39,7 +39,7 @@ export const forget = (email) => {
         .catch(err => { console.log(err) })
 }
 export const reset = (password, token) => {
-    return fetch(`${BASE_URL}auth/rest`, {
+    return fetch(`${BASE_URL}auth/reset`, {
         method: 'POST',
         headers: {
             Accept: 'application/json',

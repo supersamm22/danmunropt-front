@@ -13,6 +13,7 @@ function isValidEmail(email = "") {
 }
 
 function Login(props) {
+  const [loading, setLoading] = useState(false);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,7 +28,9 @@ function Login(props) {
       return
     } const user = { email, password };
     setError("")
+    setLoading(true)
     signin(user).then((data) => {
+      setLoading(false)
       if (data) {
         if (data.msg) {
           setError(data.msg);
@@ -62,8 +65,10 @@ function Login(props) {
       return
     }
     setError("")
+    setLoading(true)
 
     forget(email).then((data) => {
+      setLoading(false)
       if (data) {
         console.log(data);
         if (data.error) {
@@ -93,9 +98,10 @@ function Login(props) {
       return
     }
     setError("")
-
+    setLoading(true)
     const user = { name, email, password };
     register(user).then((data) => {
+      setLoading(false)
       if (data) {
         console.log(data);
         if (data.error) {
@@ -160,9 +166,14 @@ function Login(props) {
                             <span style={{ color: 'red' }}>{error}</span>
                           </p>
                         }
-                        <button className="btn mt-4">submit</button>
+                        {message &&
+                          <p className="mt-3">
+                            <span style={{ color: 'green' }}>{message}</span>
+                          </p>
+                        }
+                        <button className="btn mt-4" disabled={loading}>submit</button>
                         <p className="mb-0 mt-4 text-center">
-                          <Button variant="text " className="link" onClick={handleForget}>
+                          <Button variant="text " className="link" onClick={handleForget} disabled={loading}>
                             Forgot your password?
                           </Button>
                         </p>
@@ -224,7 +235,7 @@ function Login(props) {
                             <span style={{ color: 'green' }}>{message}</span>
                           </p>
                         }
-                        <button className="btn mt-4">submit</button>
+                        <button className="btn mt-4" disabled={loading}>submit</button>
                       </form>
                     </div>
                   </div>

@@ -14,6 +14,7 @@ const RootStyle = styled(Page)(({ theme }) => ({
 
 
 export default function ResetPassword() {
+    const [loading, setLoading] = useState(false);
     const [password, setPassword] = useState('');
     const [nPassword, setNPassword] = useState('');
     const [error, setError] = useState('');
@@ -34,8 +35,9 @@ export default function ResetPassword() {
             return
         }
         setError("")
-
+        setLoading(true)
         reset(password, params.token).then((data) => {
+            setLoading(false)
             if (data) {
                 console.log(data);
                 if (data.error) {
