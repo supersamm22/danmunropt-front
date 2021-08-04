@@ -6,6 +6,9 @@ import './login.css';
 import logo from './logo.png';
 
 function isValidEmail(email = "") {
+  if (email) {
+    return true
+  }
   if (/^([a-zA-Z0-9]{3,20})+@(([a-zA-Z]{4,20})+\.)+([a-zA-Z]{2,4})+$/.test(email)) {
     return (true)
   }
@@ -23,10 +26,16 @@ function Login(props) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    const user = { email, password };
     if (!isValidEmail(email)) {
-      setError("Enter valid email")
+      setError("Enter email")
       return
-    } const user = { email, password };
+    }
+    if (!password) {
+      setError("Enter password")
+      return
+    }
+
     setError("")
     setLoading(true)
     signin(user).then((data) => {
@@ -57,11 +66,7 @@ function Login(props) {
   }
   const handleForget = async (e) => {
     if (!isValidEmail(email)) {
-      setError("Enter valid email")
-      return
-    }
-    if (!password) {
-      setError("Enter password")
+      setError("Enter email")
       return
     }
     setError("")
@@ -90,7 +95,7 @@ function Login(props) {
       return
     }
     if (!isValidEmail(email)) {
-      setError("Enter valid email")
+      setError("Enter email")
       return
     }
     if (!password) {
